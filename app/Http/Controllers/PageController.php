@@ -69,101 +69,15 @@ class PageController extends Controller
 
     public function update_hits(Request $request)
     {
-        $app = ListApp::findOrFail($request->input('id'));
+        $app = ListApp::findOrFail($request->item_id);
         $app->hits += 1;
         $app->save();
 
-        return response()->json(['success' => true, 'hits' => $app->hits]);
-    }
-
-    public function admin()
-    {
-        $list_apps = ListApp::all();
-        return view('admin.index', compact('list_apps'));
-    }
-
-    public function create()
-    {
-        return view('admin.create');
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'nama' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'akses' => 'required|string|max:255',
-            'pengguna' => 'required|string|max:255',
-            'pembuat' => 'required|string|max:255',
-            'link' => 'required|url|max:255',
-            'logo' => 'mime:jpeg,png,jpg,gif,svg|max:2048',
+        return response()->json([
+            'success' => true,
+            'hits' => $app->hits,
+            'url' => $app->link,
+            'id' => $app->id,
         ]);
-
-        $app = new ListApp;
-        $app->nama = $request->nama;
-        $app->deskripsi = $request->deskripsi;
-        $app->akses = $request->akses;
-        $app->pengguna = $request->pengguna;
-        $app->pembuat = $request->pembuat;
-        $app->link = $request->link;
-        $app->hits = 0;
-
-        if ($request->hasFile('logo')) {
-            $file = $request->file('logo');
-            $image = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('/img'), $image);
-            $app->logo = $image;
-        } else {
-            $app->logo = 'logo_bps.png';
-        }
-
-        $app->save();
-        return redirect()->route('admin.index')->with('success', 'Aplikasi berhasil ditambahkan.');
-    }
-
-    public function edit($id)
-    {
-        $app = ListApp::findOrFail($id);
-        return view('admin.edit', compact('app'));
-    }
-
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'nama' => 'required|string|max:255',
-            'deskripsi' => 'required|string',
-            'akses' => 'required|string|max:255',
-            'pengguna' => 'required|string|max:255',
-            'pembuat' => 'required|string|max:255',
-            'link' => 'required|url|max:255',
-            'logo' => 'mime:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
-
-        $app = ListApp::findOrFail($id);
-        $app->nama = $request->nama;
-        $app->deskripsi = $request->deskripsi;
-        $app->akses = $request->akses;
-        $app->pengguna = $request->pengguna;
-        $app->pembuat = $request->pembuat;
-        $app->link = $request->link;
-
-        if ($request->hasFile('logo')) {
-            $file = $request->file('logo');
-            $image = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('/img'), $image);
-            $app->logo = $image;
-        }
-
-        $app->save();
-        return redirect()->route('admin.index')->with('success', 'Aplikasi berhasil diperbarui.');
-    }
-
-    public function delete($id)
-    {
-        $app = ListApp::findOrFail($id);
-        File::delete(public_path('/img/' . $app->logo));
-
-        $app->delete();
-        return redirect()->route('admin.index')->with('success', 'Aplikasi berhasil dihapus.');
     }
 }

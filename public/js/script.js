@@ -119,7 +119,6 @@ function search_bps_kabkota(res) {
 $(document).ready(function () {
     $(document).on("click", ".hit-button", function (e) {
         e.preventDefault(); // Mencegah tindakan default sementara
-
         var id = $(this).data("id");
         var url = $(this).attr("href"); // Ambil URL dari atribut href
 
@@ -131,19 +130,21 @@ $(document).ready(function () {
                 item_id: id,
             },
             success: function (response) {
-                const hitCountElement = $(`#hits-count-${id}`);
+                const hitCountElement = $(`#hits-count-${response.id}`);
                 if (hitCountElement.length > 0) {
-                    hitCountElement.text(parseInt(hitCountElement.text()) + 1);
+                    hitCountElement.text(parseInt(response.hits));
                 } else {
-                    console.error(`Element with ID hits-count-${id} not found`);
+                    console.error(
+                        `Element with ID hits-count-${response.id} not found`
+                    );
                 }
                 // Setelah sukses, buka link di tab baru
-                window.open(url, "_blank");
+                window.open(response.url, "_blank");
             },
             error: function (xhr, status, error) {
                 console.error("Error updating hit count:", xhr.responseText);
                 // Jika ada error, tetap buka link di tab baru
-                window.open(url, "_blank");
+                window.open(response.url, "_blank");
             },
         });
     });

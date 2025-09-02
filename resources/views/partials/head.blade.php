@@ -14,4 +14,6 @@
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
   <link href="{{ asset('css/override.css') }}" rel="stylesheet">
   <link rel="stylesheet" href="/css/carousel.css">
+
+  @stack('styles')
 </head>

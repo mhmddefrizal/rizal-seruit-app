@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('list_apps', function (Blueprint $table) {
             $table->id();
+            $table->uuid('slug')->unique();
             $table->string('nama');
             $table->string('deskripsi');
             $table->string('link');
@@ -21,6 +22,7 @@ return new class extends Migration
             $table->string('hits');
             $table->string('pengguna');
             $table->string('pembuat');
+            $table->integer('user_id');
             $table->timestamps();
         });
     }

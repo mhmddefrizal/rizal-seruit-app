@@ -3,8 +3,9 @@
 namespace Database\Seeders;
 
 use App\Models\ListApp;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class ListAppSeeder extends Seeder
 {
@@ -19,6 +20,7 @@ class ListAppSeeder extends Seeder
         while (($data = fgetcsv($csv, 2000, ',')) !== false) {
             if (!$firstline) {
                 ListApp::create([
+                    'slug' => Str::uuid(),
                     'nama' => $data[0],
                     'link' => $data[1],
                     'akses' => $data[2],
@@ -27,6 +29,7 @@ class ListAppSeeder extends Seeder
                     'pembuat' => $data[5],
                     'logo' => $data[6],
                     'hits' => $data[7],
+                    'user_id' => 1,
                     'created_at' => now(),
                     'updated_at' => now(),
                 ]);
