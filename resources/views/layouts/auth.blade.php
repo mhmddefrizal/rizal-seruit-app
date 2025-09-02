@@ -5,16 +5,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SERUIT-BPS | Dashboard</title>
-
+  @vite('resources/css/app.css')
   <meta name="csrf-token" content="{{ csrf_token() }}">
   <link rel="shortcut icon" href="{{ asset('img/logo_bps.png') }}" type="image/x-icon">
-
-  <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome untuk Ikon -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
   <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-  <link href="{{ asset('css/jquery.dataTables.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('css/datatables.min.css') }}" rel="stylesheet">
+  <!-- Font Awesome untuk Ikon -->
+  <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
 
   <style>
     /* Kustomisasi kecil untuk DataTables agar cocok dengan Tailwind */
@@ -99,8 +96,9 @@
 
   <script src="{{ asset('js/app.js') }}"></script>
   <script src="{{ asset('js/jquery.min.js') }}"></script>
-  <script src="{{ asset('js/jquery.dataTables.min.js') }}"></script>
+  <script src="{{ asset('js/datatables.min.js') }}"></script>
   <script src="{{ asset('js/chart.js') }}"></script>
+  <script src="{{ asset('js/all.min.js') }}"></script>
 
   <!-- Script tambahan per halaman -->
   @stack('scripts')
