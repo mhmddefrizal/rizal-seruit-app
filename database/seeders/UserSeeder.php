@@ -19,6 +19,7 @@ class UserSeeder extends Seeder
             'email' => 'admin@statapps.dev',
             'password' => bcrypt('@dminbps!'),
             'role' => 'admin',
+            'status' => true,
             'created_at' => now(),
             'updated_at' => now(),
         ]);
@@ -29,6 +30,7 @@ class UserSeeder extends Seeder
             'email' => 'olah.it1800@gmail.com',
             'password' => bcrypt('it1800bps!'),
             'role' => 'user',
+            'status' => true,
             'created_at' => now(),
             'updated_at' => now(),
         ]);

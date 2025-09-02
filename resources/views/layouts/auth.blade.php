@@ -6,6 +6,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SERUIT-BPS | Dashboard</title>
 
+  <meta name="csrf-token" content="{{ csrf_token() }}">
+  <link rel="shortcut icon" href="{{ asset('img/logo_bps.png') }}" type="image/x-icon">
+
   <script src="https://cdn.tailwindcss.com"></script>
   <!-- Font Awesome untuk Ikon -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -59,8 +62,13 @@
                 Dashboard
               </a>
               <a href="{{ route('listapp.index') }}" class="text-gray-600 hover:text-gray-900 transition duration-300">
-                List Aplikasi
+                Kelola Aplikasi
               </a>
+              @if (Auth::user()->role == 'admin')
+                <a href="{{ route('users.index') }}" class="text-gray-600 hover:text-gray-900 transition duration-300">
+                  Kelola Pengguna
+                </a>
+              @endif
             </nav>
           </div>
 

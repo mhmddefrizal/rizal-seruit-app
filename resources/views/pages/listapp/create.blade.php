@@ -3,9 +3,15 @@
 @section('content')
   <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
     <div class="p-6 bg-white border-b border-gray-200">
-      <div class="flex justify-between items-center mb-6">
-        <h2 class="text-2xl font-semibold text-gray-800">Manajemen Aplikasi - Tambah Aplikasi</h2>
-      </div>
+      <!-- Breadcrumb -->
+      @include('components.breadcrumb', [
+          'route' => 'listapp.index',
+          'menu' => $apps_menu,
+          'submenu' => $apps_submenu,
+      ])
+
+      <!-- Judul -->
+      <h2 class="text-2xl font-semibold text-gray-800 mb-4">{{ $apps_submenu }}</h2>
       <div class="mt-5">
         <form action="{{ route('listapp.store') }}" method="POST" enctype="multipart/form-data">
           @csrf
@@ -47,7 +53,7 @@
                 class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <option value="none">Pilih Pembuat</option>
                 <option value="BPS RI">BPS RI</option>
-                <option value="BPS Provinsi">BPS Provinsi Lampung</option>
+                <option value="BPS Provinsi Lampung">BPS Provinsi Lampung</option>
                 <option value="BPS Kab/Kota">BPS Kab/Kota</option>
               </select>
             </div>

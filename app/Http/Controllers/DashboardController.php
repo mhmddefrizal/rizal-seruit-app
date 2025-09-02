@@ -24,9 +24,9 @@ class DashboardController extends Controller
 
         // Mendapatkan total aplikasi, total aplikasi berdasarkan akses, total aplikasi berdasarkan pengguna, dan total aplikasi berdasarkan pembuat
         $total_apps = ListApp::all()->count();
-        $total_bps_ri = ListApp::where('pengguna', 'BPS Selindo')->count();
-        $total_bps_prov = ListApp::where('pengguna', 'BPS Provinsi')->count();
-        $total_bps_kabkota = ListApp::where('pengguna', 'BPS Kab/Kota')->count();
+        $total_bps_ri = ListApp::where('pembuat', 'BPS RI')->count();
+        $total_bps_prov = ListApp::where('pembuat', 'BPS Provinsi Lampung')->count();
+        $total_bps_kabkota = ListApp::where('pembuat', 'BPS Kab/Kota')->count();
 
         return view('pages.dashboard', compact(['labels', 'data', 'total_apps', 'total_bps_ri', 'total_bps_prov', 'total_bps_kabkota']));
     }
