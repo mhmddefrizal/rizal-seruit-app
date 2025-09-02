@@ -1,0 +1,61 @@
+nama,link,akses,deskripsi,pengguna,pembuat,logo,hits
+KipApp,https://webapps.bps.go.id/kipapp/,publik,Laporan kinerja bulanan,BPS Selindo,BPS RI,KipApp.png,0
+BOS,https://backoffice.bps.go.id/,vpn,Administrasi kegiatan,BPS Selindo,BPS RI,BOS.png,0
+SIPECUT,https://sipecut.bps.go.id,vpn,Pengelolaan cuti,BPS Selindo,BPS RI,logo_bps.png,0
+SIMPEG,https://simpeg.bps.go.id,vpn,Pengelolaan Arsip Pegawai,BPS Selindo,BPS RI,logo_bps.png,0
+COMMUNITY,https://community.bps.go.id/,vpn,Database Pegawai Selindo,BPS Selindo,BPS RI,COMMUNITY.png,0
+SOBAT BPS,https://manajemen-mitra.bps.go.id,publik,Database dan Alokasi Mitra,BPS Selindo,BPS RI,SOBAT BPS.png,0
+ZIMBRA,https://mail.bps.go.id/,publik,Domain email Pegawai,BPS Selindo,BPS RI,ZIMBRA.png,0
+DRIVE BPS,https://drive.bps.go.id/,publik,Penyimpanan Softfile Internal,BPS Selindo,BPS RI,DRIVE BPS.png,0
+WARKOP BPS,https://lms.bps.go.id/login/index.php,publik,Web diklat PJJ yang dikelola Pusdiklat,BPS Selindo,BPS RI,WARKOP BPS.png,0
+SIMDIKLAT,https://simdiklat.web.bps.go.id/,vpn,Pengelolaan diklat PJJ Pusdiklat,BPS Selindo,BPS RI,logo_bps.png,0
+E-TTD,https://ettd.bps.go.id/home,publik,Tanda tangan digital,BPS Selindo,BPS RI,E-TTD.png,0
+Fasih SM,https://fasih-sm.bps.go.id/,vpn,Website CAPI,BPS Selindo,BPS RI,logo_bps.png,0
+Fasih Dashboard,https://fasih-dashboard.bps.go.id/,vpn,Website untuk memantau dashboard dan pengecekan anomali,BPS Selindo,BPS RI,Fasih Dashboard.png,0
+SSO BPS,https://sso.bps.go.id/,publik,Single Sign On,BPS Selindo,BPS RI,logo_bps.png,0
+SIIMUT,https://sdm.bps.go.id/siimut,vpn,Pengelolaan Permintaan Mutasi Pegawai,BPS Selindo,BPS RI,SIIMUT.png,0
+KSA PRO,https://ksapro-manajemen.bps.go.id,vpn,Laman untuk memonitoring hasil kegiatan KSA,BPS Selindo,BPS RI,logo_bps.png,0
+Qgate,https://webapps.bps.go.id/nqaf/qgate/,vpn,Quality Gates,BPS Selindo,BPS RI,Qgate.png,0
+Settama Menjawab,http://settama.web.bps.go.id/,vpn,Aplikasi layanan Sekretariat Utama BPS,BPS Selindo,BPS RI,Settama Menjawab.png,0
+Halosis,https://halosis.bps.go.id/,publik,Pengaduan BPS,BPS Selindo,BPS RI,logo_bps.png,0
+Indah,https://indah.bps.go.id/,publik,Pengelolaan Metadata Statistik,BPS Selindo,BPS RI,logo_bps.png,0
+Simdasi,https://simdasi.bps.go.id/login,vpn,Pengelolaan data publikasi Daerah Dalam Angka,BPS Selindo,BPS RI,Indah.png,0
+Simbatik,https://webapps.bps.go.id/simbatik/,publik,Aplikasi EPSS,BPS Selindo,BPS RI,logo_bps.png,0
+Romantik,https://romantik.web.bps.go.id/,publik,Pengelolaan usulan rekomendasi statistik,BPS Selindo,BPS RI,Romantik.png,0
+SKD,https://skd.bps.go.id/SKD2024/web/,publik,Survei kebutuhan data,BPS Selindo,BPS RI,logo_bps.png,0
+Sirusa,https://sirusa.web.bps.go.id/metadata/,publik,Metadata statistik,BPS Selindo,BPS RI,logo_bps.png,0
+Pengolahan,https://pengolahan.bps.go.id/,vpn,Website pengolahan kegiatan,BPS Selindo,BPS RI,logo_bps.png,0
+Data Visualization,https://dataviz.bps.go.id/,vpn,Visualisasi data,BPS Selindo,BPS RI,logo_bps.png,0
+Dashboard,http://dashboard.bps.go.id/,vpn,Dashboard Kegiatan,BPS Selindo,BPS RI,logo_bps.png,0
+Web Monitoring,https://webmonitoring.bps.go.id/,vpn,Web Monitoring,BPS Selindo,BPS RI,logo_bps.png,0
+SERUTI,https://webapps.bps.go.id/olah/seruti/#/,publik,Pengolahan kegiatan seruti,BPS Selindo,BPS RI,SERUTI.png,0
+Wilkerstat,https://wilkerstat.bps.go.id/,publik,Tag lokasi,BPS Selindo,BPS RI,Wilkerstat.png,0
+Geospatial System,https://dataspasial.bps.go.id/gs/,publik,Peta Digital,BPS Selindo,BPS RI,logo_bps.png,0
+SIG,https://sig.bps.go.id/,publik,Sistem Informasi Geografis,BPS Selindo,BPS RI,logo_bps.png,0
+FRS,https://frs.bps.go.id/area/login,publik,Pemutakhiran Master Wilayah dan Wilayah Kerja Statistik,BPS Selindo,BPS RI,FRS.png,0
+StatWebsite,https://noc.bps.go.id/stat-website/kab/,vpn,Pemantauan jumlah pengunjung website,BPS Selindo,BPS RI,logo_bps.png,0
+WebDash,https://webdash.bps.go.id/home,vpn,Dashboard website BPS,BPS Selindo,BPS RI,logo_bps.png,0
+GitLab,https://git.bps.go.id/,vpn,BPS Code Repositori,BPS Selindo,BPS RI,GitLab.png,0
+PPID,https://ppid.bps.go.id/dashboard,vpn,Penyediaan dokumen yang bisa diakses pihak eskternal BPS,BPS Selindo,BPS RI,logo_bps.png,0
+Portal Publikasi,https://portalpublikasi.bps.go.id/simpub/index.php/site/login,vpn,Unggah publikasi BPS,BPS Selindo,BPS RI,Portal Publikasi.png,0
+SIPMEN,https://sipmen.bps.go.id/,publik,Sistem Informasi Pengelolaan Dokumen,BPS Selindo,BPS RI,SIPMEN.png,0
+Perpustakaan,https://perpustakaan.bps.go.id/apps/,publik,Perpustakaan olnline BPS,BPS Selindo,BPS RI,Perpustakaan.png,0
+Daftar Hadir,https://webapps.bps.go.id/daftarhadir,publik,Pembuatan Absensi Kegiatan,BPS Selindo,BPS RI,Daftar Hadir.png,0
+TK Online,https://tkonline.bps.go.id/,vpn,Pengentrian tunjangan kinerja,BPS Selindo,BPS RI,logo_bps.png,0
+IPD,https://ipd.bps.go.id,vpn,Portal Pengolahan Data,BPS Selindo,BPS RI,logo_bps.png,0
+esurvey,https://esurvey.bps.go.id/,publik,Monitoring dan pengisian survei melalui CAWI,BPS Selindo,BPS RI,logo_bps.png,0
+SHK,https://shk.bps.go.id/,vpn,Aplikasi entri survei harga konsumen,BPS Selindo,BPS RI,logo_bps.png,0
+SIPADU,https://webapps.bps.go.id/aceh/sipadu/,publik,"Presensi kegiatan internal, booking zoom, pembuatan nomor surat, pelaporan perjalanan dinas, dll.",BPS Provinsi saja,BPS Aceh,logo_bps.png,0
+BUPESTA,https://bupesta.web.bps.go.id/,vpn,Monitoring timeline dan deadline kegiatan,BPS se-Aceh,BPS Aceh,logo_bps.png,0
+KOTAK,https://qna.bpsaceh.com,publik,"Konsultasi tata usaha (SDM, BMN, Keuangan, Arsip, Humas)",BPS se-Aceh,BPS Aceh,KOTAK.png,0
+Sites Google Administrasi 1101,https://sites.google.com/view/adm1101/home?authuser=0,publik,Pedoman Administrasi 1101,BPS satker kako pembuat saja,Simeulue,logo_bps.png,0
+Simpati,http://s.bps.go.id/SistemInformasiManajemenPetugasAcehTenggaraTerintegrasi_SIMPATI,publik,Sistem Informasi Manajemen Mitra,BPS satker kako pembuat saja,Aceh Tenggara,logo_bps.png,0
+Simantan,https://webapps.bps.go.id/acehbaratkab/depan.php,publik,Sistem Informasi Manajemen Akuntansi dan Anggaran,BPS satker kako pembuat saja,Aceh Barat,logo_bps.png,0
+E-Data,https://webapps.bps.go.id/acehbaratkab/e-data/,publik,Kumpulan publikasi,BPS satker kako pembuat saja,Aceh Barat,logo_bps.png,0
+Chatbot,https://s.bps.go.id/chatbot-1107,publik,Chatbot BPS Aceh Barat,BPS satker kako pembuat saja,Aceh Barat,logo_bps.png,0
+Meusapat,https://s.bps.go.id/indikatorstrategis-1107,publik,Dashboard Indikator Strategi Kabupaten Aceh Barat,BPS satker kako pembuat saja,Aceh Barat,Meusapat.png,0
+Monitoring Lapangan,https://s.bps.go.id/dashboard_1112,publik,Dashboard Pelaksanaan Lapangan PAPI,BPS satker kako pembuat saja,Aceh Barat Daya,logo_bps.png,0
+SIMANTOR,https://s.bps.go.id/admin_simantor1115,publik,Pengelolaan dan Penyimpanan Data Digital File Administrasi Kantor BPS Nagan Raya,BPS satker kako pembuat saja,Nagan Raya,logo_bps.png,0
+SIMPAN,https://s.bps.go.id/simpan1115,publik,Pengelolaan dan Penyimpanan Data Digital Persediaan dan BMN,BPS satker kako pembuat saja,Nagan Raya,logo_bps.png,0
+Link Permintaan Surat BOS,https://s.bps.go.id/permintaan1115,publik,Pengelolaan dan Penyimpanan Digital Data Nomor Surat untuk Form Permintaan di BOS,BPS satker kako pembuat saja,Nagan Raya,logo_bps.png,0
+BERGIAT,https://sites.google.com/view/bpskotabandaaceh/halaman-muka,publik,Menyimpan Dokumentasi Pelaksanaan Kegiatan pada BPS Kota Banda Aceh,BPS satker kako pembuat saja,Banda Aceh,logo_bps.png,0
