@@ -61,7 +61,10 @@
                 <option value="BPS RI" {{ $app->pembuat == 'BPS RI' ? 'selected' : '' }}>BPS RI</option>
                 <option value="BPS Provinsi Lampung" {{ $app->pembuat == 'BPS Provinsi Lampung' ? 'selected' : '' }}>BPS
                   Provinsi Lampung</option>
-                <option value="BPS Kab/Kota" {{ $app->pembuat == 'BPS Kab/Kota' ? 'selected' : '' }}>BPS Kab/Kota
+                <option value="BPS Kabupaten/Kota" {{ $app->pembuat == 'BPS Kabupaten/Kota' ? 'selected' : '' }}>BPS
+                  Kabupaten/Kota
+                </option>
+                <option value="KLDI" {{ $app->pembuat == 'KLDI' ? 'selected' : '' }}>K/L/D/I
                 </option>
               </select>
             </div>

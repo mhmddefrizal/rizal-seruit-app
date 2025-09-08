@@ -13,6 +13,7 @@ class PageController extends Controller
         $list_bps_ri = ListApp::where('pembuat', 'BPS RI')->orderBy('nama', 'asc')->get();
         $list_bps_lampung = ListApp::where('pembuat', 'BPS Provinsi Lampung')->orderBy('nama', 'asc')->get();
         $list_bps_kabkota = ListApp::where('pembuat', 'BPS Kabupaten/Kota')->orderBy('nama', 'asc')->get();
+        $list_kldi = ListApp::where('pembuat', 'KLDI')->orderBy('nama', 'asc')->get();
 
         $top_hits = ListApp::orderBy('hits', 'desc')->take(10)->get();
 
@@ -21,7 +22,7 @@ class PageController extends Controller
         array_unshift($top_items, $last_element);
         $top_hits = collect($top_items);
 
-        return view('pages.index', compact('list_bps_ri', 'list_bps_lampung', 'list_bps_kabkota', 'top_hits'));
+        return view('pages.index', compact('list_bps_ri', 'list_bps_lampung', 'list_bps_kabkota', 'top_hits', 'list_kldi'));
     }
 
     public function search(Request $request)
@@ -60,10 +61,22 @@ class PageController extends Controller
             ->orderBy('nama', 'asc')
             ->get();
 
+        $list_kldi = ListApp::where('pembuat', 'KLDI')
+            ->where(function ($query) use ($keyword) {
+                $query->where('nama', 'like', "%$keyword%")
+                    ->orWhere('deskripsi', 'like', "%$keyword%")
+                    ->orWhere('akses', 'like', "%$keyword%")
+                    ->orWhere('pengguna', 'like', "%$keyword%")
+                    ->orWhere('pembuat', 'like', "%$keyword%");
+            })
+            ->orderBy('nama', 'asc')
+            ->get();
+
         return response()->json([
             'list_bps_ri' => $list_bps_ri,
             'list_bps_lampung' => $list_bps_lampung,
             'list_bps_kabkota' => $list_bps_kabkota,
+            'list_kldi' => $list_kldi,
         ]);
     }
 

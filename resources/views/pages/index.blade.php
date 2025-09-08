@@ -92,11 +92,11 @@
   </div>
 
   {{-- Bagian BPS Kabupaten/Kota --}}
-  <div class="">
+  <div class="my-3">
     <div class="flex items-center justify-between pt-1 mb-1">
       <h3 class="font-semibold md:text-xl text-base mb-2">BPS KABUPATEN/KOTA SE-PROVINSI LAMPUNG</h3>
       <button id="toggle-chevron-kab" class="focus:outline-none">
-        <svg class="w-6 h-6 chevron chevron-up" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+        <svg class="w-6 h-6 chevron chevron-down" fill="none" stroke="currentColor" viewBox="0 0 24 24"
           xmlns="http://www.w3.org/2000/svg">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
         </svg>
@@ -107,6 +107,46 @@
       class="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2
                                 custom-scrollbar max-height-full transition-max-height duration-500 ease-in-out">
       @foreach ($list_bps_kabkota as $item)
+        <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id={{ $item->id }}>
+          <a href="{{ $item->link }}" target="_blank">
+            <div class="flex flex-row justify-between items-center mb-2">
+              <img src="img/{{ $item->logo }}" alt="" class="rounded-lg h-10">
+              <span
+                class="{{ $item->akses == 'publik' ? 'border-[#43a4d4]' : 'border-[#e7a861]' }}
+                           border text-black rounded-xl text-[10px] flex items-center justify-center px-2">
+                {{ $item->akses }}
+              </span>
+            </div>
+            <span class="bg-[#1EA05E] text-white rounded-xl text-[10px] px-2">{{ $item->pembuat }}</span>
+            <div class="flex flex-row justify-between items-center">
+              <p class="text-base font-semibold">{{ $item->nama }}</p>
+              <p class="mt-4 text-xs text-gray-500 w-1/4">
+                Hits: <span id="hits-count-{{ $item->id }}">{{ $item->hits }}</span>
+              </p>
+            </div>
+            <p class="text-sm text-gray-500">{{ $item->deskripsi }}</p>
+          </a>
+        </div>
+      @endforeach
+    </div>
+  </div>
+
+  {{-- Bagian K/L/D/I --}}
+  <div class="my-3">
+    <div class="flex items-center justify-between pt-1 mb-1">
+      <h3 class="font-semibold md:text-xl text-base mb-2">KEMENTRIAN/LEMBAGA/DINAS/INSTANSI</h3>
+      <button id="toggle-chevron-kldi" class="focus:outline-none">
+        <svg class="w-6 h-6 chevron chevron-down" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+          xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+        </svg>
+      </button>
+    </div>
+    <p id="res_kldi"></p>
+    <div id="bps_kldi"
+      class="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2
+                                custom-scrollbar max-height-full transition-max-height duration-500 ease-in-out">
+      @foreach ($list_kldi as $item)
         <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id={{ $item->id }}>
           <a href="{{ $item->link }}" target="_blank">
             <div class="flex flex-row justify-between items-center mb-2">

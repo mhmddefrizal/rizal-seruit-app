@@ -19,6 +19,7 @@ function search(val) {
             search_bps_ri(data.list_bps_ri);
             search_bps_lampung(data.list_bps_lampung);
             search_bps_kabkota(data.list_bps_kabkota);
+            search_bps_kldi(data.list_kldi);
         }
     );
 }
@@ -116,6 +117,38 @@ function search_bps_kabkota(res) {
     $("#bps_kabkota").html(bps_kabkota);
 }
 
+function search_bps_kldi(res) {
+    let bps_kldi = "";
+
+    if (res.length <= 0) {
+        bps_kldi += `
+            <p class="text-gray-500 col-span-full" style="width:200px">Aplikasi tidak ditemukan</p>
+        `;
+    } else {
+        res.forEach((element) => {
+            bps_kldi += `
+            <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id=${element.id}>
+                <a href="${element.link}" target="_blank">
+                    <div class="flex flex-row justify-between items-center mb-2">
+                        <img src="img/${element.logo}" alt="" class="rounded-lg h-8">
+                        <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
+                    </div>
+                    <span class="bg-[#1EA05E] text-white rounded-xl text-[10px] px-2">${element.pembuat}</span>
+                    <div class="flex flex-row justify-between items-center">
+                        <p class="text-base font-semibold w-3/4">${element.nama}</p>
+                        <p class="mt-4 text-xs text-gray-500 w-1/4">
+                            Hits: <span id="hits-count-${element.id}">${element.hits}</span>
+                    </div>
+                    <p class="text-sm text-gray-500">${element.deskripsi}</p>
+                </a>
+            </div>
+            `;
+        });
+    }
+
+    $("#bps_kldi").html(bps_kldi);
+}
+
 $(document).ready(function () {
     $(document).on("click", ".hit-button", function (e) {
         e.preventDefault(); // Mencegah tindakan default sementara
@@ -179,5 +212,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     setupToggle("toggle-chevron", "bps_ri", false);
     setupToggle("toggle-chevron-lampung", "bps_lampung", false);
-    setupToggle("toggle-chevron-kab", "bps_kabkota", true);
+    setupToggle("toggle-chevron-kab", "bps_kabkota", false);
+    setupToggle("toggle-chevron-kldi", "bps_kldi", false);
 });

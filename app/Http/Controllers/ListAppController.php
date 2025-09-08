@@ -35,7 +35,7 @@ class ListAppController extends Controller
             'pengguna' => 'required|string|max:255',
             'pembuat' => 'required|string|max:255',
             'link' => 'required|url|max:255',
-            'logo' => 'mime:jpeg,png,jpg,gif,svg|max:2048',
+            'logo' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $app = new ListApp;
@@ -93,7 +93,7 @@ class ListAppController extends Controller
             'pengguna' => 'required|string|max:255',
             'pembuat' => 'required|string|max:255',
             'link' => 'required|url|max:255',
-            'logo' => 'mime:jpeg,png,jpg,gif,svg|max:2048',
+            'logo' => 'mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         $app = ListApp::where('slug', $slug)->firstOrFail();

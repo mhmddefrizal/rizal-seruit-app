@@ -9,23 +9,23 @@
 
       <div class="grid grid-cols-1 sm:grid-cols-4 gap-6">
         <div class="bg-red-200 rounded-lg shadow-md p-6">
-          <p class="text-sm font-medium text-gray-900">Apps Total</p>
-          <p class="mt-1 text-2xl font-semibold text-gray-900">{{ $total_apps }}</p>
-        </div>
-
-        <div class="bg-yellow-200 rounded-lg shadow-md p-6">
           <p class="text-sm font-medium text-gray-900">Apps BPS Selindo</p>
           <p class="mt-1 text-2xl font-semibold text-gray-900">{{ $total_bps_ri }}</p>
         </div>
 
-        <div class="bg-green-200 rounded-lg shadow-md p-6">
+        <div class="bg-yellow-200 rounded-lg shadow-md p-6">
           <p class="text-sm font-medium text-gray-900">Apps BPS Provinsi</p>
           <p class="mt-1 text-2xl font-semibold text-gray-900">{{ $total_bps_prov }}</p>
         </div>
 
-        <div class="bg-blue-200 rounded-lg shadow-md p-6">
+        <div class="bg-green-200 rounded-lg shadow-md p-6">
           <p class="text-sm font-medium text-gray-900">Apps BPS Kab/Kota</p>
           <p class="mt-1 text-2xl font-semibold text-gray-900">{{ $total_bps_kabkota }}</p>
+        </div>
+
+        <div class="bg-blue-200 rounded-lg shadow-md p-6">
+          <p class="text-sm font-medium text-gray-900">Apps K/L/D/I</p>
+          <p class="mt-1 text-2xl font-semibold text-gray-900">{{ $total_kldi }}</p>
         </div>
       </div>
 

@@ -55,3 +55,7 @@ Sebelum instalasi, pastikan sudah terpasang:
 ![frontend](./frontend.png)
 
 ![backend](./backend.png)
+
+## Perbaikan
+
+-   [2025/09/08] Perbaikan tampilan beranda, tambah K/D/L/I

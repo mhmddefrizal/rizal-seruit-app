@@ -54,7 +54,8 @@
                 <option value="none">Pilih Pembuat</option>
                 <option value="BPS RI">BPS RI</option>
                 <option value="BPS Provinsi Lampung">BPS Provinsi Lampung</option>
-                <option value="BPS Kab/Kota">BPS Kab/Kota</option>
+                <option value="BPS Kabupaten/Kota">BPS Kabupaten/Kota</option>
+                <option value="KLDI">K/L/D/I</option>
               </select>
             </div>
             <div>
