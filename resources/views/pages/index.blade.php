@@ -32,7 +32,7 @@
         <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id={{ $item->id }}>
           <a href="{{ $item->link }}" target="_blank">
             <div class="flex flex-row justify-between items-center">
-              <img src="img/{{ $item->logo }}" alt="" class="rounded-lg h-12">
+              <img src="{{ asset('img/' . $item->logo) }}" alt="{{ $item->nama }}" class="rounded-lg h-12">
               <span
                 class="{{ $item->akses == 'publik' ? 'border-[#43a4d4]' : 'border-[#e7a861]' }}
                            border text-black rounded-xl text-[10px] flex items-center justify-center px-2">
@@ -71,7 +71,7 @@
         <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id={{ $item->id }}>
           <a href="{{ $item->link }}" target="_blank">
             <div class="flex flex-row justify-between items-center">
-              <img src="img/{{ $item->logo }}" alt="" class="rounded-lg h-10">
+              <img src="{{ asset('img/' . $item->logo) }}" alt="{{ $item->nama }}" class="rounded-lg h-10">
               <span
                 class="{{ $item->akses == 'publik' ? 'border-[#43a4d4]' : 'border-[#e7a861]' }}
                            border text-black rounded-xl text-[10px] flex items-center justify-center px-2">
@@ -110,7 +110,7 @@
         <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id={{ $item->id }}>
           <a href="{{ $item->link }}" target="_blank">
             <div class="flex flex-row justify-between items-center mb-2">
-              <img src="img/{{ $item->logo }}" alt="" class="rounded-lg h-10">
+              <img src="{{ asset('img/' . $item->logo) }}" alt="{{ $item->nama }}" class="rounded-lg h-10">
               <span
                 class="{{ $item->akses == 'publik' ? 'border-[#43a4d4]' : 'border-[#e7a861]' }}
                            border text-black rounded-xl text-[10px] flex items-center justify-center px-2">
@@ -150,7 +150,7 @@
         <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id={{ $item->id }}>
           <a href="{{ $item->link }}" target="_blank">
             <div class="flex flex-row justify-between items-center mb-2">
-              <img src="img/{{ $item->logo }}" alt="" class="rounded-lg h-10">
+              <img src="{{ asset('img/' . $item->logo) }}" alt="{{ $item->nama }}" class="rounded-lg h-10">
               <span
                 class="{{ $item->akses == 'publik' ? 'border-[#43a4d4]' : 'border-[#e7a861]' }}
                            border text-black rounded-xl text-[10px] flex items-center justify-center px-2">
