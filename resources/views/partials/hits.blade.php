@@ -19,7 +19,7 @@
               Hits: {{ $item['hits'] }}
               <div class="text-sm text-black mb-14">{{ $item['deskripsi'] }}</div>
             </div>
-            <a href="{{ $item['link'] }}" class="seeMore" target="_blank">Kunjungi &#8599</a>
+            <a href="{{ route('info', $item['slug']) }}" class="seeMore" target="_blank">Kunjungi &#8599</a>
           </div>
         </div>
         @php $i++; @endphp

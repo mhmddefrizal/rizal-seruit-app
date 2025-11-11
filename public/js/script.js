@@ -36,7 +36,7 @@ function search_bps_ri(res) {
         res.forEach((element) => {
             bg_akses = bps_ri += `
             <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id=${element.id}>
-                <a href="${element.link}" target="_blank">
+                <a href="info/${element.slug}" target="_blank">
                     <div class="flex flex-row justify-between items-center">
                         <img src="img/${element.logo}" alt="" class="rounded-lg h-8">
                         <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
@@ -66,7 +66,7 @@ function search_bps_lampung(res) {
         res.forEach((element) => {
             bps_lampung += `
             <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id=${element.id}>
-                <a href="${element.link}" target="_blank">
+                <a href="info/${element.slug}" target="_blank">
                     <div class="flex flex-row justify-between items-center">
                         <img src="img/${element.logo}" alt="" class="rounded-lg h-8">
                         <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
@@ -96,7 +96,7 @@ function search_bps_kabkota(res) {
         res.forEach((element) => {
             bps_kabkota += `
             <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id=${element.id}>
-                <a href="${element.link}" target="_blank">
+                <a href="info/${element.slug}" target="_blank">
                     <div class="flex flex-row justify-between items-center mb-2">
                         <img src="img/${element.logo}" alt="" class="rounded-lg h-8">
                         <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
@@ -128,7 +128,7 @@ function search_bps_kldi(res) {
         res.forEach((element) => {
             bps_kldi += `
             <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id=${element.id}>
-                <a href="${element.link}" target="_blank">
+                <a href="info/${element.slug}" target="_blank">
                     <div class="flex flex-row justify-between items-center mb-2">
                         <img src="img/${element.logo}" alt="" class="rounded-lg h-8">
                         <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
@@ -172,12 +172,12 @@ $(document).ready(function () {
                     );
                 }
                 // Setelah sukses, buka link di tab baru
-                window.open(response.url, "_blank");
+                window.open(`info/${response.slug}`, "_blank");
             },
             error: function (xhr, status, error) {
                 console.error("Error updating hit count:", xhr.responseText);
                 // Jika ada error, tetap buka link di tab baru
-                window.open(response.url, "_blank");
+                window.open(`info/${response.slug}`, "_blank");
             },
         });
     });

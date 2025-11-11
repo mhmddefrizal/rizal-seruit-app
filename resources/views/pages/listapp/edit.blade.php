@@ -24,9 +24,14 @@
                 value="{{ old('nama', $app->nama) }}">
             </div>
             <div class="md:col-span-2">
-              <label class="block text-gray-700">Deskripsi</label>
+              <label class="block text-gray-700">Deskripsi Singkat</label>
               <textarea id="deskripsi" name="deskripsi"
                 class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3">{{ old('deskripsi', $app->deskripsi) }}</textarea>
+            </div>
+            <div class="md:col-span-2">
+              <label class="block text-gray-700">Deskripsi Panjang (Ambil narasi di aplikasi)</label>
+              <textarea id="detail" name="detail"
+                class="w-full mt-1 p-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3">{{ old('detail', $app->detail) }}</textarea>
             </div>
             <div>
               <label class="block text-gray-700">Akses</label>

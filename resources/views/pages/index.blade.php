@@ -2,7 +2,7 @@
 
 @section('content')
   <div class="lg:block hidden bg-[#1EA05E] text-white rounded-lg py-1">
-    <h3 class="text-4xl font-bold text-center">SERUIT</h3><br>
+    <h3 class="text-4xl font-bold text-center"><a href="{{ route('home') }}">SERUIT</a></h3><br>
     <p class="-mt-5 text-lg text-center">Satu Ruang Informasi untuk Inovasi Terintegrasi</p>
   </div>
 
@@ -10,7 +10,7 @@
     <input id="search_0" type="text" placeholder="Cari aplikasi.."
       class="w-full px-4 py-2 border border-neutral-200 rounded-lg
              focus:outline-none focus:border-[#1ea05f98] focus:ring-1 focus:ring-[#1ea05f98]">
-    <img src="/img/search.svg" alt="Search" class="absolute top-1/2 right-3 transform -translate-y-1/2 w-5 h-5">
+    <img src="{{ asset('img/search.svg') }}" alt="Search" class="absolute top-1/2 right-3 transform -translate-y-1/2 w-5 h-5">
   </div>
 
   {{-- Bagian BPS RI --}}
@@ -30,7 +30,7 @@
                           custom-scrollbar transition-max-height duration-500 ease-in-out">
       @foreach ($list_bps_ri as $item)
         <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id={{ $item->id }}>
-          <a href="{{ $item->link }}" target="_blank">
+          <a href="{{ route('info', $item->slug) }}" target="_blank">
             <div class="flex flex-row justify-between items-center">
               <img src="{{ asset('img/' . $item->logo) }}" alt="{{ $item->nama }}" class="rounded-lg h-12">
               <span
@@ -69,7 +69,7 @@
                                 custom-scrollbar transition-max-height duration-500 ease-in-out">
       @foreach ($list_bps_lampung as $item)
         <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id={{ $item->id }}>
-          <a href="{{ $item->link }}" target="_blank">
+          <a href="{{ route('info', $item->slug) }}" target="_blank">
             <div class="flex flex-row justify-between items-center">
               <img src="{{ asset('img/' . $item->logo) }}" alt="{{ $item->nama }}" class="rounded-lg h-10">
               <span
@@ -108,7 +108,7 @@
                                 custom-scrollbar max-height-full transition-max-height duration-500 ease-in-out">
       @foreach ($list_bps_kabkota as $item)
         <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id={{ $item->id }}>
-          <a href="{{ $item->link }}" target="_blank">
+          <a href="{{ route('info', $item->slug) }}" target="_blank">
             <div class="flex flex-row justify-between items-center mb-2">
               <img src="{{ asset('img/' . $item->logo) }}" alt="{{ $item->nama }}" class="rounded-lg h-10">
               <span
@@ -148,7 +148,7 @@
                                 custom-scrollbar max-height-full transition-max-height duration-500 ease-in-out">
       @foreach ($list_kldi as $item)
         <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id={{ $item->id }}>
-          <a href="{{ $item->link }}" target="_blank">
+          <a href="{{ route('info', $item->slug) }}" target="_blank">
             <div class="flex flex-row justify-between items-center mb-2">
               <img src="{{ asset('img/' . $item->logo) }}" alt="{{ $item->nama }}" class="rounded-lg h-10">
               <span

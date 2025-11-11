@@ -16,6 +16,7 @@ return new class extends Migration
             $table->uuid('slug')->unique();
             $table->string('nama');
             $table->string('deskripsi');
+            $table->text('detail')->nullable();
             $table->string('link');
             $table->string('akses');
             $table->string('logo');

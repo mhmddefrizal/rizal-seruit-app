@@ -1,23 +1,22 @@
-@extends('layouts.auth')
+@extends('layouts.info')
 
 @section('content')
   <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
     <div class="p-6 bg-white border-b border-gray-200">
-      <!-- Breadcrumb -->
-      @include('components.breadcrumb', [
-          'route' => 'listapp.index',
-          'menu' => $apps_menu,
-          'submenu' => $apps_submenu,
-      ])
-
-      <!-- Judul -->
-      <h2 class="text-2xl font-semibold text-gray-800 mb-4">{{ $apps_submenu }}</h2>
 
       <div class="mt-5 flex flex-col md:flex-row items-start gap-6">
         <!-- Logo di kiri -->
         <div class="flex-shrink-0">
-          <img src="{{ asset('img/' . $app->logo) }}" alt="Logo {{ $app->nama }}"
-            class="w-40 h-40 object-contain border border-gray-200 rounded-lg shadow-sm">
+
+          <div class="flex flex-col">
+            <img src="{{ asset('img/' . $app->logo) }}" alt="Logo {{ $app->nama }}"
+              class="w-40 h-40 object-contain border border-gray-200 rounded-lg shadow-sm">
+            <a href="{{ $app->link }}"
+              class="mt-3 mb-3 text-center px-4 py-2 bg-[#1EA05E] text-white font-semibold rounded-lg shadow-md hover:bg-[#1EA05E] focus:outline-none focus:ring-2 focus:ring-[#1EA05E] focus:ring-opacity-75">
+              <i class="fa fa-globe mr-2"></i>Kunjungi
+            </a>
+          </div>
+
         </div>
 
         <!-- Deskripsi di kanan -->
@@ -30,14 +29,11 @@
                 <td class="px-4 py-2 text-gray-800">{{ $app->nama }}</td>
               </tr>
               <tr>
-                <td class="px-4 py-2 font-semibold text-gray-700">Deskripsi Singkat</td>
+                <td class="px-4 py-2 font-semibold text-gray-700">Deskripsi</td>
                 <td class="text-gray-500">:</td>
-                <td class="px-4 py-2 text-gray-800">{{ $app->deskripsi }}</td>
-              </tr>
-              <tr>
-                <td class="px-4 py-2 font-semibold text-gray-700">Detail</td>
-                <td class="text-gray-500">:</td>
-                <td class="px-4 py-2 text-gray-800">{{ $app->detail }}</td>
+                <td class="px-4 py-2 text-gray-800 text-justify">
+                  {{ $validation }}
+                </td>
               </tr>
               <tr>
                 <td class="px-4 py-2 font-semibold text-gray-700">Akses</td>
@@ -48,20 +44,6 @@
                 <td class="px-4 py-2 font-semibold text-gray-700">Pengguna</td>
                 <td class="text-gray-500">:</td>
                 <td class="px-4 py-2 text-gray-800">{{ $app->pengguna }}</td>
-              </tr>
-              <tr>
-                <td class="px-4 py-2 font-semibold text-gray-700">Pembuat</td>
-                <td class="text-gray-500">:</td>
-                <td class="px-4 py-2 text-gray-800">{{ $app->pembuat }}</td>
-              </tr>
-              <tr>
-                <td class="px-4 py-2 font-semibold text-gray-700">Link</td>
-                <td class="text-gray-500">:</td>
-                <td class="px-4 py-2 text-gray-800">
-                  <a href="{{ $app->link }}" class="text-indigo-600 hover:underline" target="_blank">
-                    {{ $app->link }}
-                  </a>
-                </td>
               </tr>
               <tr>
                 <td class="px-4 py-2 font-semibold text-gray-700">Total Hits</td>
@@ -75,6 +57,3 @@
     </div>
   </div>
 @endsection
-
-@push('scripts')
-@endpush

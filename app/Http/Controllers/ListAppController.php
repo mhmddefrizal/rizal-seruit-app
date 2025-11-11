@@ -31,6 +31,7 @@ class ListAppController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
+            'detail' => 'required|string',
             'akses' => 'required|string|max:255',
             'pengguna' => 'required|string|max:255',
             'pembuat' => 'required|string|max:255',
@@ -41,6 +42,7 @@ class ListAppController extends Controller
         $app = new ListApp;
         $app->nama = $request->nama;
         $app->deskripsi = $request->deskripsi;
+        $app->detail = $request->detail;
         $app->akses = $request->akses;
         $app->pengguna = $request->pengguna;
         $app->pembuat = $request->pembuat;
@@ -52,10 +54,12 @@ class ListAppController extends Controller
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
             $image = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('/img'), $image);
-            $app->logo = $image;
-        } else {
-            $app->logo = 'logo_bps.png';
+            $destination = public_path('img');
+            if ($file->move($destination, $image)) {
+                $app->logo = $image;
+            } else {
+                $app->logo = 'logo_bps.png';
+            }
         }
 
         $app->save();
@@ -89,6 +93,7 @@ class ListAppController extends Controller
         $request->validate([
             'nama' => 'required|string|max:255',
             'deskripsi' => 'required|string',
+            'detail' => 'required|string',
             'akses' => 'required|string|max:255',
             'pengguna' => 'required|string|max:255',
             'pembuat' => 'required|string|max:255',
@@ -99,6 +104,7 @@ class ListAppController extends Controller
         $app = ListApp::where('slug', $slug)->firstOrFail();
         $app->nama = $request->nama;
         $app->deskripsi = $request->deskripsi;
+        $app->detail = $request->detail;
         $app->akses = $request->akses;
         $app->pengguna = $request->pengguna;
         $app->pembuat = $request->pembuat;
@@ -107,10 +113,12 @@ class ListAppController extends Controller
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
             $image = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('/img'), $image);
-            $app->logo = $image;
-        } else {
-            $app->logo = 'logo_bps.png';
+            $destination = public_path('img');
+            if ($file->move($destination, $image)) {
+                $app->logo = $image;
+            } else {
+                $app->logo = 'logo_bps.png';
+            }
         }
 
         $app->save();

@@ -10,6 +10,9 @@ Route::get('/', [PageController::class, 'index'])->name('home');
 Route::post('/search', [PageController::class, 'search'])->name('search');
 Route::post('/update-hits', [PageController::class, 'update_hits'])->name('update_hits');
 
+// Detail tiap app
+Route::get('/info/{slug}', [PageController::class, 'info'])->name('info');
+
 Route::prefix('admin')->middleware(['auth', 'verified'])->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('admin.index');
 

@@ -90,7 +90,15 @@ class PageController extends Controller
             'success' => true,
             'hits' => $app->hits,
             'url' => $app->link,
+            'slug' => $app->slug,
             'id' => $app->id,
         ]);
+    }
+
+    public function info($slug) {
+
+        $app = ListApp::where('slug', $slug)->first();
+        $validation = $app->detail ? $app->detail : $app->deskripsi;
+        return view('pages.detail', compact('app', 'validation'));
     }
 }
