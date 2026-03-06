@@ -3,12 +3,23 @@
 @include('partials.head')
 
 <body>
-  <div class="lg:grid lg:grid-cols-12 lg:h-screen h-auto overflow-auto">
-    <div class="lg:col-span-3">
+  {{-- Full-width desktop header --}}
+  <div class="xl:block hidden bg-[#1EA05E] text-white py-3 px-6">
+    <div class="flex items-center justify-center gap-4">
+      <img src="{{ asset('img/logo_bps.png') }}" alt="Logo BPS" class="h-12">
+      <div class="text-center">
+        <h3 class="text-4xl font-bold"><a href="{{ route('home') }}">SERUIT</a></h3>
+        <p class="text-lg -mt-1">Satu Ruang Informasi untuk Inovasi Terintegrasi</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="xl:grid xl:grid-cols-12 xl:h-[calc(100vh-72px)] h-auto overflow-auto">
+    <div class="xl:col-span-4 xl:overflow-hidden">
       @include('partials.header')
       @include('partials.hits')
     </div>
-    <div class="lg:col-span-9 lg:pr-3 lg:pl-5 lg:py-1 md:p-12 px-4 mt-1 pb-4 overflow-auto custom-scrollbar">
+    <div class="xl:col-span-8 xl:pr-4 xl:pl-5 xl:py-1 md:p-12 px-4 mt-1 pb-4 overflow-auto custom-scrollbar">
       @yield('content')
     </div>
   </div>

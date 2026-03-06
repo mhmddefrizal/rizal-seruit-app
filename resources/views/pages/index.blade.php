@@ -1,12 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="lg:block hidden bg-[#1EA05E] text-white rounded-lg py-1">
-    <h3 class="text-4xl font-bold text-center"><a href="{{ route('home') }}">SERUIT</a></h3><br>
-    <p class="-mt-5 text-lg text-center">Satu Ruang Informasi untuk Inovasi Terintegrasi</p>
-  </div>
-
-  <div class="lg:relative lg:block hidden mt-4 mb-3 w-full">
+  <div class="xl:relative xl:block hidden mt-2 mb-3 w-full">
     <input id="search_0" type="text" placeholder="Cari aplikasi.."
       class="w-full px-4 py-2 border border-neutral-200 rounded-lg
              focus:outline-none focus:border-[#1ea05f98] focus:ring-1 focus:ring-[#1ea05f98]">
