@@ -1,4 +1,4 @@
-<div class="carousel lg:pt-12 lg:mt-0 md:mt-40 mt-36">
+<div class="carousel xl:pt-2 xl:mt-0 md:mt-40 mt-36">
   <div class="list">
     @php
       $order = [10, 1, 2, 3, 4, 5, 6, 7, 8, 9];
@@ -7,11 +7,11 @@
     @if (count($top_hits) > 0)
       @foreach ($top_hits as $item)
         <div class="item">
-          <img src="img/{{ $item['logo'] }}" alt="{{ $item['nama'] }}}" class="lg:hidden block rounded-lg">
+          <img src="img/{{ $item['logo'] }}" alt="{{ $item['nama'] }}}" class="xl:hidden block rounded-lg">
           <div class="introduce">
             <div class="title">#TOP HITS No. {{ $order[$i] }}</div>
             <div class="topic">{{ $item['nama'] }}</div>
-            <img src="img/{{ $item['logo'] }}" alt="{{ $item['nama'] }}}" class="lg:block hidden rounded-lg">
+            <img src="img/{{ $item['logo'] }}" alt="{{ $item['nama'] }}}" class="xl:block hidden rounded-lg">
             <span id="pembuat" class="bg-[#1ea053] rounded-md px-2 text-white text-xs">
               {{ $item['pembuat'] }}
             </span>

@@ -80,7 +80,7 @@ const et = Q("string"),
     },
     lt = C("URLSearchParams"),
     [ut, ft, dt, pt] = ["ReadableStream", "Request", "Response", "Headers"].map(
-        C
+        C,
     ),
     ht = (e) =>
         e.trim ? e.trim() : e.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "");
@@ -94,7 +94,7 @@ function M(e, t, { allOwnKeys: n = !1 } = {}) {
         const o = n ? Object.getOwnPropertyNames(e) : Object.keys(e),
             i = o.length;
         let c;
-        for (r = 0; r < i; r++) (c = o[r]), t.call(null, e[c], c, e);
+        for (r = 0; r < i; r++) ((c = o[r]), t.call(null, e[c], c, e));
     }
 }
 function _e(e, t) {
@@ -110,10 +110,10 @@ const U =
         typeof globalThis < "u"
             ? globalThis
             : typeof self < "u"
-            ? self
-            : typeof window < "u"
-            ? window
-            : global,
+              ? self
+              : typeof window < "u"
+                ? window
+                : global,
     Ue = (e) => !q(e) && e !== U;
 function se() {
     const { caseless: e } = (Ue(this) && this) || {},
@@ -123,10 +123,10 @@ function se() {
             J(t[o]) && J(r)
                 ? (t[o] = se(t[o], r))
                 : J(r)
-                ? (t[o] = se({}, r))
-                : D(r)
-                ? (t[o] = r.slice())
-                : (t[o] = r);
+                  ? (t[o] = se({}, r))
+                  : D(r)
+                    ? (t[o] = r.slice())
+                    : (t[o] = r);
         };
     for (let r = 0, s = arguments.length; r < s; r++)
         arguments[r] && M(arguments[r], n);
@@ -138,16 +138,16 @@ const mt = (e, t, n, { allOwnKeys: r } = {}) => (
             (s, o) => {
                 n && A(s) ? (e[o] = Ce(s, n)) : (e[o] = s);
             },
-            { allOwnKeys: r }
+            { allOwnKeys: r },
         ),
         e
     ),
     yt = (e) => (e.charCodeAt(0) === 65279 && (e = e.slice(1)), e),
     bt = (e, t, n, r) => {
-        (e.prototype = Object.create(t.prototype, r)),
+        ((e.prototype = Object.create(t.prototype, r)),
             (e.prototype.constructor = e),
             Object.defineProperty(e, "super", { value: t.prototype }),
-            n && Object.assign(e.prototype, n);
+            n && Object.assign(e.prototype, n));
     },
     wt = (e, t, n, r) => {
         let s, o, i;
@@ -155,16 +155,18 @@ const mt = (e, t, n, { allOwnKeys: r } = {}) => (
         if (((t = t || {}), e == null)) return t;
         do {
             for (s = Object.getOwnPropertyNames(e), o = s.length; o-- > 0; )
-                (i = s[o]),
-                    (!r || r(i, e, t)) && !c[i] && ((t[i] = e[i]), (c[i] = !0));
+                ((i = s[o]),
+                    (!r || r(i, e, t)) &&
+                        !c[i] &&
+                        ((t[i] = e[i]), (c[i] = !0)));
             e = n !== !1 && ue(e);
         } while (e && (!n || n(e, t)) && e !== Object.prototype);
         return t;
     },
     Et = (e, t, n) => {
-        (e = String(e)),
+        ((e = String(e)),
             (n === void 0 || n > e.length) && (n = e.length),
-            (n -= t.length);
+            (n -= t.length));
         const r = e.indexOf(t, n);
         return r !== -1 && r === n;
     },
@@ -209,11 +211,11 @@ const mt = (e, t, n, { allOwnKeys: r } = {}) => (
     Le = (e, t) => {
         const n = Object.getOwnPropertyDescriptors(e),
             r = {};
-        M(n, (s, o) => {
+        (M(n, (s, o) => {
             let i;
             (i = t(s, o, e)) !== !1 && (r[o] = i || s);
         }),
-            Object.defineProperties(e, r);
+            Object.defineProperties(e, r));
     },
     Ct = (e) => {
         Le(e, (t, n) => {
@@ -228,7 +230,7 @@ const mt = (e, t, n, { allOwnKeys: r } = {}) => (
                 t.set ||
                     (t.set = () => {
                         throw Error(
-                            "Can not rewrite read-only method '" + n + "'"
+                            "Can not rewrite read-only method '" + n + "'",
                         );
                     });
             }
@@ -241,7 +243,7 @@ const mt = (e, t, n, { allOwnKeys: r } = {}) => (
                     n[o] = !0;
                 });
             };
-        return D(e) ? r(e) : r(String(e).split(t)), n;
+        return (D(e) ? r(e) : r(String(e).split(t)), n);
     },
     Pt = () => {},
     Ft = (e, t) => (e != null && Number.isFinite((e = +e)) ? e : t);
@@ -277,21 +279,21 @@ const Ut = (e) => {
         e
             ? setImmediate
             : t
-            ? ((n, r) => (
-                  U.addEventListener(
-                      "message",
-                      ({ source: s, data: o }) => {
-                          s === U && o === n && r.length && r.shift()();
-                      },
-                      !1
-                  ),
-                  (s) => {
-                      r.push(s), U.postMessage(n, "*");
-                  }
-              ))(`axios@${Math.random()}`, [])
-            : (n) => setTimeout(n))(
+              ? ((n, r) => (
+                    U.addEventListener(
+                        "message",
+                        ({ source: s, data: o }) => {
+                            s === U && o === n && r.length && r.shift()();
+                        },
+                        !1,
+                    ),
+                    (s) => {
+                        (r.push(s), U.postMessage(n, "*"));
+                    }
+                ))(`axios@${Math.random()}`, [])
+              : (n) => setTimeout(n))(
         typeof setImmediate == "function",
-        A(U.postMessage)
+        A(U.postMessage),
     ),
     Dt =
         typeof queueMicrotask < "u"
@@ -358,7 +360,7 @@ const Ut = (e) => {
         isIterable: kt,
     };
 function m(e, t, n, r, s) {
-    Error.call(this),
+    (Error.call(this),
         Error.captureStackTrace
             ? Error.captureStackTrace(this, this.constructor)
             : (this.stack = new Error().stack),
@@ -367,7 +369,7 @@ function m(e, t, n, r, s) {
         t && (this.code = t),
         n && (this.config = n),
         r && (this.request = r),
-        s && ((this.response = s), (this.status = s.status ? s.status : null));
+        s && ((this.response = s), (this.status = s.status ? s.status : null)));
 }
 a.inherits(m, Error, {
     toJSON: function () {
@@ -415,7 +417,7 @@ m.from = (e, t, n, r, s, o) => {
             function (f) {
                 return f !== Error.prototype;
             },
-            (c) => c !== "isAxiosError"
+            (c) => c !== "isAxiosError",
         ),
         m.call(i, e.message, t, n, r, s),
         (i.cause = e),
@@ -436,7 +438,7 @@ function me(e, t, n) {
         ? e
               .concat(t)
               .map(function (s, o) {
-                  return (s = je(s)), !n && o ? "[" + s + "]" : s;
+                  return ((s = je(s)), !n && o ? "[" + s + "]" : s);
               })
               .join(n ? "." : "")
         : t;
@@ -449,15 +451,15 @@ const Ht = a.toFlatObject(a, {}, null, function (t) {
 });
 function Z(e, t, n) {
     if (!a.isObject(e)) throw new TypeError("target must be an object");
-    (t = t || new FormData()),
+    ((t = t || new FormData()),
         (n = a.toFlatObject(
             n,
             { metaTokens: !0, dots: !1, indexes: !1 },
             !1,
             function (y, h) {
                 return !a.isUndefined(h[y]);
-            }
-        ));
+            },
+        )));
     const r = n.metaTokens,
         s = n.visitor || u,
         o = n.dots,
@@ -480,7 +482,7 @@ function Z(e, t, n) {
         let w = p;
         if (p && !h && typeof p == "object") {
             if (a.endsWith(y, "{}"))
-                (y = r ? y : y.slice(0, -2)), (p = JSON.stringify(p));
+                ((y = r ? y : y.slice(0, -2)), (p = JSON.stringify(p)));
             else if (
                 (a.isArray(p) && qt(p)) ||
                 ((a.isFileList(p) || a.endsWith(y, "[]")) && (w = a.toArray(p)))
@@ -493,9 +495,9 @@ function Z(e, t, n) {
                                 i === !0
                                     ? me([y], P, o)
                                     : i === null
-                                    ? y
-                                    : y + "[]",
-                                l(g)
+                                      ? y
+                                      : y + "[]",
+                                l(g),
                             );
                     }),
                     !1
@@ -513,17 +515,17 @@ function Z(e, t, n) {
         if (!a.isUndefined(p)) {
             if (d.indexOf(p) !== -1)
                 throw Error("Circular reference detected in " + y.join("."));
-            d.push(p),
+            (d.push(p),
                 a.forEach(p, function (w, S) {
                     (!(a.isUndefined(w) || w === null) &&
                         s.call(t, w, a.isString(S) ? S.trim() : S, y, b)) ===
                         !0 && R(w, y ? y.concat(S) : [S]);
                 }),
-                d.pop();
+                d.pop());
         }
     }
     if (!a.isObject(e)) throw new TypeError("data must be an object");
-    return R(e), t;
+    return (R(e), t);
 }
 function ye(e) {
     const t = {
@@ -540,7 +542,7 @@ function ye(e) {
     });
 }
 function fe(e, t) {
-    (this._pairs = []), e && Z(e, this, t);
+    ((this._pairs = []), e && Z(e, this, t));
 }
 const qe = fe.prototype;
 qe.append = function (t, n) {
@@ -582,8 +584,8 @@ function He(e, t, n) {
         o)
     ) {
         const i = e.indexOf("#");
-        i !== -1 && (e = e.slice(0, i)),
-            (e += (e.indexOf("?") === -1 ? "?" : "&") + o);
+        (i !== -1 && (e = e.slice(0, i)),
+            (e += (e.indexOf("?") === -1 ? "?" : "&") + o));
     }
     return e;
 }
@@ -648,8 +650,8 @@ const Ie = {
                 origin: Kt,
             },
             Symbol.toStringTag,
-            { value: "Module" }
-        )
+            { value: "Module" },
+        ),
     ),
     O = { ...Xt, ...Jt };
 function vt(e, t) {
@@ -673,7 +675,7 @@ function Qt(e) {
     let r;
     const s = n.length;
     let o;
-    for (r = 0; r < s; r++) (o = n[r]), (t[o] = e[o]);
+    for (r = 0; r < s; r++) ((o = n[r]), (t[o] = e[o]));
     return t;
 }
 function Me(e) {
@@ -705,7 +707,7 @@ function Me(e) {
 function Zt(e, t, n) {
     if (a.isString(e))
         try {
-            return (t || JSON.parse)(e), a.trim(e);
+            return ((t || JSON.parse)(e), a.trim(e));
         } catch (r) {
             if (r.name !== "SyntaxError") throw r;
         }
@@ -737,7 +739,7 @@ const z = {
                 return (
                     n.setContentType(
                         "application/x-www-form-urlencoded;charset=utf-8",
-                        !1
+                        !1,
                     ),
                     t.toString()
                 );
@@ -753,7 +755,7 @@ const z = {
                     return Z(
                         c ? { "files[]": t } : t,
                         f && new f(),
-                        this.formSerializer
+                        this.formSerializer,
                     );
                 }
             }
@@ -780,7 +782,7 @@ const z = {
                                   m.ERR_BAD_RESPONSE,
                                   this,
                                   null,
-                                  this.response
+                                  this.response,
                               )
                             : c;
                 }
@@ -834,10 +836,10 @@ const Yt = a.toObjectSet([
                 e
                     .split(
                         `
-`
+`,
                     )
                     .forEach(function (i) {
-                        (s = i.indexOf(":")),
+                        ((s = i.indexOf(":")),
                             (n = i.substring(0, s).trim().toLowerCase()),
                             (r = i.substring(s + 1).trim()),
                             !(!n || (t[n] && Yt[n])) &&
@@ -845,7 +847,7 @@ const Yt = a.toObjectSet([
                                     ? t[n]
                                         ? t[n].push(r)
                                         : (t[n] = [r])
-                                    : (t[n] = t[n] ? t[n] + ", " + r : r));
+                                    : (t[n] = t[n] ? t[n] + ", " + r : r)));
                     }),
             t
         );
@@ -915,7 +917,7 @@ let x = class {
             for (const u of t) {
                 if (!a.isArray(u))
                     throw TypeError(
-                        "Object iterator must return a key-value pair"
+                        "Object iterator must return a key-value pair",
                     );
                 c[(l = u[0])] = (f = c[l])
                     ? a.isArray(f)
@@ -960,7 +962,7 @@ let x = class {
                 c && (!n || te(r, r[c], c, n)) && (delete r[c], (s = !0));
             }
         }
-        return a.isArray(t) ? t.forEach(o) : o(t), s;
+        return (a.isArray(t) ? t.forEach(o) : o(t), s);
     }
     clear(t) {
         const n = Object.keys(this);
@@ -979,11 +981,11 @@ let x = class {
             a.forEach(this, (s, o) => {
                 const i = a.findKey(r, o);
                 if (i) {
-                    (n[i] = V(s)), delete n[o];
+                    ((n[i] = V(s)), delete n[o]);
                     return;
                 }
                 const c = t ? rn(o) : String(o).trim();
-                c !== o && delete n[o], (n[c] = V(s)), (r[c] = !0);
+                (c !== o && delete n[o], (n[c] = V(s)), (r[c] = !0));
             }),
             this
         );
@@ -1021,7 +1023,7 @@ let x = class {
     }
     static concat(t, ...n) {
         const r = new this(t);
-        return n.forEach((s) => r.set(s)), r;
+        return (n.forEach((s) => r.set(s)), r);
     }
     static accessor(t) {
         const r = (this[we] = this[we] = { accessors: {} }).accessors,
@@ -1030,7 +1032,7 @@ let x = class {
             const c = j(i);
             r[c] || (sn(s, i), (r[c] = !0));
         }
-        return a.isArray(t) ? t.forEach(o) : o(t), this;
+        return (a.isArray(t) ? t.forEach(o) : o(t), this);
     }
 };
 x.accessor([
@@ -1068,8 +1070,8 @@ function ze(e) {
     return !!(e && e.__CANCEL__);
 }
 function k(e, t, n) {
-    m.call(this, e ?? "canceled", m.ERR_CANCELED, t, n),
-        (this.name = "CanceledError");
+    (m.call(this, e ?? "canceled", m.ERR_CANCELED, t, n),
+        (this.name = "CanceledError"));
 }
 a.inherits(k, m, { __CANCEL__: !0 });
 function $e(e, t, n) {
@@ -1084,8 +1086,8 @@ function $e(e, t, n) {
                   ],
                   n.config,
                   n.request,
-                  n
-              )
+                  n,
+              ),
           );
 }
 function on(e) {
@@ -1104,10 +1106,10 @@ function an(e, t) {
         function (f) {
             const l = Date.now(),
                 u = r[o];
-            i || (i = l), (n[s] = f), (r[s] = l);
+            (i || (i = l), (n[s] = f), (r[s] = l));
             let d = o,
                 b = 0;
-            for (; d !== s; ) (b += n[d++]), (d = d % e);
+            for (; d !== s; ) ((b += n[d++]), (d = d % e));
             if (((s = (s + 1) % e), s === o && (o = (o + 1) % e), l - i < t))
                 return;
             const R = u && l - u;
@@ -1121,7 +1123,7 @@ function cn(e, t) {
         s,
         o;
     const i = (l, u = Date.now()) => {
-        (n = u), (s = null), o && (clearTimeout(o), (o = null)), e(...l);
+        ((n = u), (s = null), o && (clearTimeout(o), (o = null)), e(...l));
     };
     return [
         (...l) => {
@@ -1132,7 +1134,7 @@ function cn(e, t) {
                 : ((s = l),
                   o ||
                       (o = setTimeout(() => {
-                          (o = null), i(s);
+                          ((o = null), i(s));
                       }, r - d)));
         },
         () => s && i(s),
@@ -1181,23 +1183,23 @@ const K = (e, t, n = 3) => {
                   (t || e.port === n.port)
           ))(
               new URL(O.origin),
-              O.navigator && /(msie|trident)/i.test(O.navigator.userAgent)
+              O.navigator && /(msie|trident)/i.test(O.navigator.userAgent),
           )
         : () => !0,
     un = O.hasStandardBrowserEnv
         ? {
               write(e, t, n, r, s, o) {
                   const i = [e + "=" + encodeURIComponent(t)];
-                  a.isNumber(n) &&
+                  (a.isNumber(n) &&
                       i.push("expires=" + new Date(n).toGMTString()),
                       a.isString(r) && i.push("path=" + r),
                       a.isString(s) && i.push("domain=" + s),
                       o === !0 && i.push("secure"),
-                      (document.cookie = i.join("; "));
+                      (document.cookie = i.join("; ")));
               },
               read(e) {
                   const t = document.cookie.match(
-                      new RegExp("(^|;\\s*)(" + e + ")=([^;]*)")
+                      new RegExp("(^|;\\s*)(" + e + ")=([^;]*)"),
                   );
                   return t ? decodeURIComponent(t[3]) : null;
               },
@@ -1230,10 +1232,10 @@ function B(e, t) {
         return a.isPlainObject(l) && a.isPlainObject(u)
             ? a.merge.call({ caseless: b }, l, u)
             : a.isPlainObject(u)
-            ? a.merge({}, u)
-            : a.isArray(u)
-            ? u.slice()
-            : u;
+              ? a.merge({}, u)
+              : a.isArray(u)
+                ? u.slice()
+                : u;
     }
     function s(l, u, d, b) {
         if (a.isUndefined(u)) {
@@ -1302,11 +1304,11 @@ const Ve = (e) => {
             headers: i,
             auth: c,
         } = t;
-        (t.headers = i = x.from(i)),
+        ((t.headers = i = x.from(i)),
             (t.url = He(
                 Je(t.baseURL, t.url, t.allowAbsoluteUrls),
                 e.params,
-                e.paramsSerializer
+                e.paramsSerializer,
             )),
             c &&
                 i.set(
@@ -1317,9 +1319,9 @@ const Ve = (e) => {
                                 ":" +
                                 (c.password
                                     ? unescape(encodeURIComponent(c.password))
-                                    : "")
-                        )
-                );
+                                    : ""),
+                        ),
+                ));
         let f;
         if (a.isFormData(n)) {
             if (O.hasStandardBrowserEnv || O.hasStandardBrowserWebWorkerEnv)
@@ -1362,19 +1364,19 @@ const Ve = (e) => {
                     R,
                     p;
                 function y() {
-                    R && R(),
+                    (R && R(),
                         p && p(),
                         s.cancelToken && s.cancelToken.unsubscribe(u),
-                        s.signal && s.signal.removeEventListener("abort", u);
+                        s.signal && s.signal.removeEventListener("abort", u));
                 }
                 let h = new XMLHttpRequest();
-                h.open(s.method.toUpperCase(), s.url, !0),
-                    (h.timeout = s.timeout);
+                (h.open(s.method.toUpperCase(), s.url, !0),
+                    (h.timeout = s.timeout));
                 function w() {
                     if (!h) return;
                     const g = x.from(
                             "getAllResponseHeaders" in h &&
-                                h.getAllResponseHeaders()
+                                h.getAllResponseHeaders(),
                         ),
                         T = {
                             data:
@@ -1387,18 +1389,18 @@ const Ve = (e) => {
                             config: e,
                             request: h,
                         };
-                    $e(
+                    ($e(
                         function (_) {
-                            n(_), y();
+                            (n(_), y());
                         },
                         function (_) {
-                            r(_), y();
+                            (r(_), y());
                         },
-                        T
+                        T,
                     ),
-                        (h = null);
+                        (h = null));
                 }
-                "onloadend" in h
+                ("onloadend" in h
                     ? (h.onloadend = w)
                     : (h.onreadystatechange = function () {
                           !h ||
@@ -1416,15 +1418,15 @@ const Ve = (e) => {
                             (h = null));
                     }),
                     (h.onerror = function () {
-                        r(new m("Network Error", m.ERR_NETWORK, e, h)),
-                            (h = null);
+                        (r(new m("Network Error", m.ERR_NETWORK, e, h)),
+                            (h = null));
                     }),
                     (h.ontimeout = function () {
                         let P = s.timeout
                             ? "timeout of " + s.timeout + "ms exceeded"
                             : "timeout exceeded";
                         const T = s.transitional || Ie;
-                        s.timeoutErrorMessage && (P = s.timeoutErrorMessage),
+                        (s.timeoutErrorMessage && (P = s.timeoutErrorMessage),
                             r(
                                 new m(
                                     P,
@@ -1432,10 +1434,10 @@ const Ve = (e) => {
                                         ? m.ETIMEDOUT
                                         : m.ECONNABORTED,
                                     e,
-                                    h
-                                )
+                                    h,
+                                ),
                             ),
-                            (h = null);
+                            (h = null));
                     }),
                     o === void 0 && i.setContentType(null),
                     "setRequestHeader" in h &&
@@ -1464,15 +1466,15 @@ const Ve = (e) => {
                         s.signal &&
                             (s.signal.aborted
                                 ? u()
-                                : s.signal.addEventListener("abort", u)));
+                                : s.signal.addEventListener("abort", u))));
                 const S = on(s.url);
                 if (S && O.protocols.indexOf(S) === -1) {
                     r(
                         new m(
                             "Unsupported protocol " + S + ":",
                             m.ERR_BAD_REQUEST,
-                            e
-                        )
+                            e,
+                        ),
                     );
                     return;
                 }
@@ -1486,20 +1488,20 @@ const Ve = (e) => {
                 s;
             const o = function (l) {
                 if (!s) {
-                    (s = !0), c();
+                    ((s = !0), c());
                     const u = l instanceof Error ? l : this.reason;
                     r.abort(
                         u instanceof m
                             ? u
-                            : new k(u instanceof Error ? u.message : u)
+                            : new k(u instanceof Error ? u.message : u),
                     );
                 }
             };
             let i =
                 t &&
                 setTimeout(() => {
-                    (i = null),
-                        o(new m(`timeout ${t} of ms exceeded`, m.ETIMEDOUT));
+                    ((i = null),
+                        o(new m(`timeout ${t} of ms exceeded`, m.ETIMEDOUT)));
                 }, t);
             const c = () => {
                 e &&
@@ -1514,7 +1516,7 @@ const Ve = (e) => {
             };
             e.forEach((l) => l.addEventListener("abort", o));
             const { signal: f } = r;
-            return (f.unsubscribe = () => a.asap(c)), f;
+            return ((f.unsubscribe = () => a.asap(c)), f);
         }
     },
     yn = function* (e, t) {
@@ -1525,7 +1527,7 @@ const Ve = (e) => {
         }
         let r = 0,
             s;
-        for (; r < n; ) (s = r + t), yield e.slice(r, s), (r = s);
+        for (; r < n; ) ((s = r + t), yield e.slice(r, s), (r = s));
     },
     bn = async function* (e, t) {
         for await (const n of wn(e)) yield* yn(n, t);
@@ -1559,7 +1561,7 @@ const Ve = (e) => {
                     try {
                         const { done: l, value: u } = await s.next();
                         if (l) {
-                            c(), f.close();
+                            (c(), f.close());
                             return;
                         }
                         let d = u.byteLength;
@@ -1573,10 +1575,10 @@ const Ve = (e) => {
                     }
                 },
                 cancel(f) {
-                    return c(f), s.return();
+                    return (c(f), s.return());
                 },
             },
-            { highWaterMark: 2 }
+            { highWaterMark: 2 },
         );
     },
     Y =
@@ -1607,7 +1609,7 @@ const Ve = (e) => {
                 body: new ReadableStream(),
                 method: "POST",
                 get duplex() {
-                    return (e = !0), "half";
+                    return ((e = !0), "half");
                 },
             }).headers.has("Content-Type");
             return e && !t;
@@ -1625,7 +1627,7 @@ Y &&
                           throw new m(
                               `Response type '${t}' is not supported`,
                               m.ERR_NOT_SUPPORT,
-                              r
+                              r,
                           );
                       });
         });
@@ -1721,9 +1723,9 @@ const Sn = async (e) => {
                         [_, $] = (c && Ee(F, K(Re(c), !0))) || [];
                     S = new Response(
                         ge(S.body, Oe, _, () => {
-                            $ && $(), y && y();
+                            ($ && $(), y && y());
                         }),
-                        T
+                        T,
                     );
                 }
                 l = l || "text";
@@ -1743,15 +1745,15 @@ const Sn = async (e) => {
                 );
             } catch (w) {
                 throw (
-                    (y && y(),
+                    y && y(),
                     w &&
                     w.name === "TypeError" &&
                     /Load failed|fetch/i.test(w.message)
                         ? Object.assign(
                               new m("Network Error", m.ERR_NETWORK, e, p),
-                              { cause: w.cause || w }
+                              { cause: w.cause || w },
                           )
-                        : m.from(w, w && w.code, e, p))
+                        : m.from(w, w && w.code, e, p)
                 );
             }
         }),
@@ -1790,7 +1792,7 @@ const Te = (e) => `- ${e}`,
                         `adapter ${c} ` +
                         (f === !1
                             ? "is not supported by the environment"
-                            : "is not available in the build")
+                            : "is not available in the build"),
                 );
                 let i = t
                     ? o.length > 1
@@ -1802,7 +1804,7 @@ const Te = (e) => `- ${e}`,
                     : "as no adapter specified";
                 throw new m(
                     "There is no suitable adapter to dispatch the request " + i,
-                    "ERR_NOT_SUPPORT"
+                    "ERR_NOT_SUPPORT",
                 );
             }
             return r;
@@ -1841,12 +1843,12 @@ function Ae(e) {
                             ((r.response.data = ne.call(
                                 e,
                                 e.transformResponse,
-                                r.response
+                                r.response,
                             )),
                             (r.response.headers = x.from(r.response.headers)))),
                     Promise.reject(r)
                 );
-            }
+            },
         )
     );
 }
@@ -1857,7 +1859,7 @@ const ve = "1.11.0",
         ee[e] = function (r) {
             return typeof r === e || "a" + (t < 1 ? "n " : " ") + e;
         };
-    }
+    },
 );
 const xe = {};
 ee.transitional = function (t, n, r) {
@@ -1876,7 +1878,7 @@ ee.transitional = function (t, n, r) {
         if (t === !1)
             throw new m(
                 s(i, " has been removed" + (n ? " in " + n : "")),
-                m.ERR_DEPRECATED
+                m.ERR_DEPRECATED,
             );
         return (
             n &&
@@ -1887,8 +1889,8 @@ ee.transitional = function (t, n, r) {
                         i,
                         " has been deprecated since v" +
                             n +
-                            " and will be removed in the near future"
-                    )
+                            " and will be removed in the near future",
+                    ),
                 )),
             t ? t(o, i, c) : !0
         );
@@ -1911,7 +1913,7 @@ function An(e, t, n) {
             if (f !== !0)
                 throw new m(
                     "option " + o + " must be " + f,
-                    m.ERR_BAD_OPTION_VALUE
+                    m.ERR_BAD_OPTION_VALUE,
                 );
             continue;
         }
@@ -1922,8 +1924,8 @@ const W = { assertOptions: An, validators: ee },
     N = W.validators;
 let L = class {
     constructor(t) {
-        (this.defaults = t || {}),
-            (this.interceptors = { request: new be(), response: new be() });
+        ((this.defaults = t || {}),
+            (this.interceptors = { request: new be(), response: new be() }));
     }
     async request(t, n) {
         try {
@@ -1939,7 +1941,7 @@ let L = class {
                     r.stack
                         ? o &&
                           !String(r.stack).endsWith(
-                              o.replace(/^.+\n.+\n/, "")
+                              o.replace(/^.+\n.+\n/, ""),
                           ) &&
                           (r.stack +=
                               `
@@ -1951,10 +1953,10 @@ let L = class {
         }
     }
     _request(t, n) {
-        typeof t == "string" ? ((n = n || {}), (n.url = t)) : (n = t || {}),
-            (n = B(this.defaults, n));
+        (typeof t == "string" ? ((n = n || {}), (n.url = t)) : (n = t || {}),
+            (n = B(this.defaults, n)));
         const { transitional: r, paramsSerializer: s, headers: o } = n;
-        r !== void 0 &&
+        (r !== void 0 &&
             W.assertOptions(
                 r,
                 {
@@ -1962,7 +1964,7 @@ let L = class {
                     forcedJSONParsing: N.transitional(N.boolean),
                     clarifyTimeoutError: N.transitional(N.boolean),
                 },
-                !1
+                !1,
             ),
             s != null &&
                 (a.isFunction(s)
@@ -1970,7 +1972,7 @@ let L = class {
                     : W.assertOptions(
                           s,
                           { encode: N.function, serialize: N.function },
-                          !0
+                          !0,
                       )),
             n.allowAbsoluteUrls !== void 0 ||
                 (this.defaults.allowAbsoluteUrls !== void 0
@@ -1982,22 +1984,22 @@ let L = class {
                     baseUrl: N.spelling("baseURL"),
                     withXsrfToken: N.spelling("withXSRFToken"),
                 },
-                !0
+                !0,
             ),
             (n.method = (
                 n.method ||
                 this.defaults.method ||
                 "get"
-            ).toLowerCase());
+            ).toLowerCase()));
         let i = o && a.merge(o.common, o[n.method]);
-        o &&
+        (o &&
             a.forEach(
                 ["delete", "get", "head", "post", "put", "patch", "common"],
                 (p) => {
                     delete o[p];
-                }
+                },
             ),
-            (n.headers = x.concat(i, o));
+            (n.headers = x.concat(i, o)));
         const c = [];
         let f = !0;
         this.interceptors.request.forEach(function (y) {
@@ -2019,7 +2021,6 @@ let L = class {
                     b = p.length,
                     u = Promise.resolve(n);
                 d < b;
-
             )
                 u = u.then(p[d++], p[d++]);
             return u;
@@ -2053,7 +2054,7 @@ let L = class {
 a.forEach(["delete", "get", "head", "options"], function (t) {
     L.prototype[t] = function (n, r) {
         return this.request(
-            B(r || {}, { method: t, url: n, data: (r || {}).data })
+            B(r || {}, { method: t, url: n, data: (r || {}).data }),
         );
     };
 });
@@ -2066,11 +2067,11 @@ a.forEach(["post", "put", "patch"], function (t) {
                     headers: r ? { "Content-Type": "multipart/form-data" } : {},
                     url: o,
                     data: i,
-                })
+                }),
             );
         };
     }
-    (L.prototype[t] = n()), (L.prototype[t + "Form"] = n(!0));
+    ((L.prototype[t] = n()), (L.prototype[t + "Form"] = n(!0)));
 });
 let xn = class Ge {
     constructor(t) {
@@ -2081,7 +2082,7 @@ let xn = class Ge {
             n = o;
         });
         const r = this;
-        this.promise.then((s) => {
+        (this.promise.then((s) => {
             if (!r._listeners) return;
             let o = r._listeners.length;
             for (; o-- > 0; ) r._listeners[o](s);
@@ -2090,7 +2091,7 @@ let xn = class Ge {
             (this.promise.then = (s) => {
                 let o;
                 const i = new Promise((c) => {
-                    r.subscribe(c), (o = c);
+                    (r.subscribe(c), (o = c));
                 }).then(s);
                 return (
                     (i.cancel = function () {
@@ -2101,7 +2102,7 @@ let xn = class Ge {
             }),
             t(function (o, i, c) {
                 r.reason || ((r.reason = new k(o, i, c)), n(r.reason));
-            });
+            }));
     }
     throwIfRequested() {
         if (this.reason) throw this.reason;
