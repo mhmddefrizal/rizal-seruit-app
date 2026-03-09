@@ -1,8 +1,7 @@
 @props(['item', 'showPembuat' => false])
 
 <div class="rounded-lg border border-neutral-200 p-2 hit-button
-            hover:shadow-md hover:border-neutral-300 transition-shadow duration-200"
-     data-id="{{ $item->id }}">
+            hover:shadow-md hover:border-neutral-300 transition-shadow duration-200" data-id="{{ $item->id }}">
   <a href="{{ route('info', $item->slug) }}" target="_blank">
     <div class="flex flex-row justify-between items-center {{ $showPembuat ? 'mb-2' : '' }}">
       <img src="{{ asset('img/' . $item->logo) }}" alt="{{ $item->nama }}" class="rounded-lg h-10">
