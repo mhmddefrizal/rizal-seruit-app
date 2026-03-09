@@ -6,7 +6,19 @@ $("#search_1").on("keyup", function () {
     search($("#search_1").val());
 });
 
-search();
+$("#search_kategori").on("keyup", function () {
+    var keyword = $(this).val().toLowerCase();
+    $("#app_grid .hit-button").each(function () {
+        var text = $(this).text().toLowerCase();
+        $(this).toggle(text.indexOf(keyword) > -1);
+    });
+});
+
+// Only run AJAX search if target elements exist (kategori sections on page)
+if ($("#bps_ri").length) {
+    search();
+}
+
 function search(val) {
     var keyword = val;
     $.post(
@@ -20,7 +32,7 @@ function search(val) {
             search_bps_lampung(data.list_bps_lampung);
             search_bps_kabkota(data.list_bps_kabkota);
             search_bps_kldi(data.list_kldi);
-        }
+        },
     );
 }
 
@@ -168,7 +180,7 @@ $(document).ready(function () {
                     hitCountElement.text(parseInt(response.hits));
                 } else {
                     console.error(
-                        `Element with ID hits-count-${response.id} not found`
+                        `Element with ID hits-count-${response.id} not found`,
                     );
                 }
                 // Setelah sukses, buka link di tab baru
@@ -181,37 +193,4 @@ $(document).ready(function () {
             },
         });
     });
-});
-
-document.addEventListener("DOMContentLoaded", function () {
-    function setupToggle(toggleButtonId, contentId, isOpenInitially) {
-        const toggleButton = document.getElementById(toggleButtonId);
-        const content = document.getElementById(contentId);
-        const chevronIcon = toggleButton.querySelector(".chevron");
-
-        if (isOpenInitially) {
-            content.classList.add("max-height-full");
-            chevronIcon.classList.add("chevron-up");
-        } else {
-            content.classList.remove("max-height-full");
-            chevronIcon.classList.add("chevron-down");
-        }
-
-        toggleButton.addEventListener("click", function () {
-            if (content.classList.contains("max-height-full")) {
-                content.classList.remove("max-height-full");
-                chevronIcon.classList.remove("chevron-up");
-                chevronIcon.classList.add("chevron-down");
-            } else {
-                content.classList.add("max-height-full");
-                chevronIcon.classList.remove("chevron-down");
-                chevronIcon.classList.add("chevron-up");
-            }
-        });
-    }
-
-    setupToggle("toggle-chevron", "bps_ri", false);
-    setupToggle("toggle-chevron-lampung", "bps_lampung", false);
-    setupToggle("toggle-chevron-kab", "bps_kabkota", false);
-    setupToggle("toggle-chevron-kldi", "bps_kldi", false);
 });
