@@ -265,12 +265,21 @@ header nav a {
     color: #555;
     width: 75%;
 }
+
 .carousel .arrows {
     position: absolute;
-    bottom: 10px;
-    width: 100%;
+    top: 0;
+    bottom: 0;
+    left: 5%;
+    right: 5%;
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    pointer-events: none;
+    z-index: 20;
+}
+.carousel .arrows button {
+    pointer-events: auto;
 }
 
 .carousel .list .item .introduce .seeMore {
@@ -494,16 +503,7 @@ header nav a {
 .carousel.showDetail .list .item:nth-child(2) .detail .checkout {
     animation-delay: 1.6s;
 }
-.arrows {
-    position: absolute;
-    bottom: 10px;
-    width: 1140px;
-    max-width: 90%;
-    display: flex;
-    justify-content: space-between;
-    left: 50%;
-    transform: translateX(-50%);
-}
+
 #prev,
 #next {
     width: 40px;
@@ -543,9 +543,12 @@ header nav a {
     opacity: 0;
     pointer-events: auto;
 }
+
 .carousel {
-    background-color: rgba(243, 242, 242, 0.437);
+    background-color: #f3f4f4;
+    border-radius: 20px;
 }
+
 .carousel::before {
     width: 500px;
     height: 300px;
@@ -566,28 +569,51 @@ header nav a {
 }
 /* Desktop: carousel inside sidebar */
 @media screen and (min-width: 1280px) {
+    /*
+     * ===== UBAH VARIABEL INI UNTUK MANIPULASI UKURAN =====
+     * --sidebar-carousel-height  : tinggi keseluruhan carousel
+     * --sidebar-list-height      : tinggi area list (% dari carousel)
+     * --sidebar-img-width        : lebar gambar logo
+     * --sidebar-font-size        : base font size (semua teks ikut skala ini)
+     * --sidebar-title-size       : ukuran judul "#TOP HITS No.X"
+     * --sidebar-topic-size       : ukuran nama aplikasi
+     * --sidebar-gap              : jarak antara gambar dan teks
+     */
     .carousel {
-        height: calc(100vh - 140px);
+        --sidebar-carousel-width: 90%;
+        --sidebar-carousel-height: 50vh;
+        --sidebar-list-height: 85%;
+        --sidebar-img-width: 15%;
+        --sidebar-font-size: 12px;
+        --sidebar-title-size: 1.2em;
+        --sidebar-topic-size: 1.8em;
+        --sidebar-gap: 1em;
+    }
+
+    .carousel {
+        width: var(--sidebar-carousel-width);
+        height: var(--sidebar-carousel-height);
         overflow: hidden;
+        margin: 120px auto 0;
     }
     .carousel .list {
         width: 100%;
         max-width: 100%;
         left: 50%;
-        height: 85%;
+        height: var(--sidebar-list-height);
     }
     .carousel .list .item {
         width: 100%;
-        font-size: 12px;
+        font-size: var(--sidebar-font-size);
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        gap: 1em;
+        gap: var(--sidebar-gap);
     }
     .carousel .list .item img {
-        width: 30%;
-        min-width: 80px;
+        width: var(--sidebar-img-width);
+        min-width: 60px;
         position: static;
         transform: none;
         flex-shrink: 0;
@@ -599,10 +625,10 @@ header nav a {
         text-align: left;
     }
     .carousel .list .item .introduce .title {
-        font-size: 1.2em;
+        font-size: var(--sidebar-title-size);
     }
     .carousel .list .item .introduce .topic {
-        font-size: 1.8em;
+        font-size: var(--sidebar-topic-size);
     }
     .carousel .list .item .introduce .des {
         width: 100%;
@@ -611,7 +637,7 @@ header nav a {
         font-size: 1em;
     }
     .carousel .arrows {
-        bottom: 5px;
+        top: 0;
     }
     .carousel::before {
         display: none;
