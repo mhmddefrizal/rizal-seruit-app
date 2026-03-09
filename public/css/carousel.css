@@ -578,29 +578,37 @@ header nav a {
     }
     .carousel .list .item {
         width: 100%;
-        font-size: 10px;
+        font-size: 12px;
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
-        gap: 0.5em;
+        gap: 1em;
     }
     .carousel .list .item img {
-        width: 35%;
+        width: 30%;
+        min-width: 80px;
         position: static;
         transform: none;
+        flex-shrink: 0;
     }
     .carousel .list .item .introduce {
-        width: 100%;
+        width: 60%;
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
+    }
+    .carousel .list .item .introduce .title {
+        font-size: 1.2em;
     }
     .carousel .list .item .introduce .topic {
-        font-size: 2em;
+        font-size: 1.8em;
     }
     .carousel .list .item .introduce .des {
-        width: 90%;
+        width: 100%;
+    }
+    .carousel .list .item .introduce .seeMore {
+        font-size: 1em;
     }
     .carousel .arrows {
         bottom: 5px;
