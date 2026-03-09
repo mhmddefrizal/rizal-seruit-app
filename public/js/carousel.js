@@ -32,6 +32,6 @@ const showSlider = (type) => {
     }, 2000);
 };
 
-// let autoNextInterval = setInterval(() => {
-//     nextButton.click();
-// }, 7000);
+let autoNextInterval = setInterval(() => {
+    nextButton.click();
+}, 7000);

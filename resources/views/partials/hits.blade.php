@@ -8,6 +8,8 @@
       @foreach ($top_hits as $item)
         <div class="item">
           <img src="img/{{ $item['logo'] }}" alt="{{ $item['nama'] }}}" class="xl:hidden block rounded-lg">
+          
+          {{-- Bagian introduce untuk menampilkan informasi tentang top hits --}}
           <div class="introduce">
             <div class="title">#TOP HITS No. {{ $order[$i] }}</div>
             <div class="topic">{{ $item['nama'] }}</div>
@@ -17,7 +19,7 @@
             </span>
             <div class="des">
               Hits: {{ $item['hits'] }}
-              <div class="text-sm text-black mb-14">{{ $item['deskripsi'] }}</div>
+              <div class="text-sm text-black">{{ $item['deskripsi'] }}</div>
             </div>
             <a href="{{ route('info', $item['slug']) }}" class="seeMore" target="_blank">Kunjungi &#8599</a>
           </div>
