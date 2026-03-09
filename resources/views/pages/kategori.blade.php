@@ -16,7 +16,7 @@
     <h2 class="font-bold md:text-2xl text-lg mb-4">{{ $title }}</h2>
 
     {{-- App Grid --}}
-    <div id="app_grid" class="grid xl:grid-cols-5 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-3">
+    <div id="app_grid" class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-4">
         @forelse ($apps as $item)
             <x-app-card :item="$item" :showPembuat="$showPembuat" />
         @empty
