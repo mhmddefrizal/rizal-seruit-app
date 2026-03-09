@@ -8,8 +8,6 @@
     <div class="h-24 relative" style="background: linear-gradient(135deg, {{ $color }}, {{ $color }}cc);">
       <div class="absolute inset-0 opacity-10">
         <svg class="w-full h-full" viewBox="0 0 200 100" preserveAspectRatio="none">
-          <circle cx="170" cy="15" r="40" fill="white" />
-          <circle cx="30" cy="80" r="25" fill="white" />
         </svg>
       </div>
       <div class="absolute top-3 left-4">

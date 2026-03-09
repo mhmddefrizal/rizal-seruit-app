@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\ListApp;
-use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -50,7 +49,7 @@ class PageController extends Controller
             ],
         ];
 
-        if (!isset($categories[$slug])) {
+        if (! isset($categories[$slug])) {
             abort(404);
         }
 
@@ -141,10 +140,12 @@ class PageController extends Controller
         ]);
     }
 
-    public function info($slug) {
+    public function info($slug)
+    {
 
         $app = ListApp::where('slug', $slug)->first();
         $validation = $app->detail ? $app->detail : $app->deskripsi;
+
         return view('pages.detail', compact('app', 'validation'));
     }
 }
