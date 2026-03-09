@@ -56,10 +56,12 @@
 @layer theme {
     :root,
     :host {
-        --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        --font-sans:
+            "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
             "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
             "Noto Color Emoji";
-        --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+        --font-mono:
+            ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
             "Liberation Mono", "Courier New", monospace;
         --color-red-100: oklch(93.6% 0.032 17.717);
         --color-red-200: oklch(88.5% 0.062 18.334);
@@ -1260,30 +1262,38 @@
         color: var(--color-gray-500);
     }
     .shadow {
-        --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, #0000001a),
+        --tw-shadow:
+            0 1px 3px 0 var(--tw-shadow-color, #0000001a),
             0 1px 2px -1px var(--tw-shadow-color, #0000001a);
-        box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
+        box-shadow:
+            var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
             var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
             var(--tw-shadow);
     }
     .shadow-md {
-        --tw-shadow: 0 4px 6px -1px var(--tw-shadow-color, #0000001a),
+        --tw-shadow:
+            0 4px 6px -1px var(--tw-shadow-color, #0000001a),
             0 2px 4px -2px var(--tw-shadow-color, #0000001a);
-        box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
+        box-shadow:
+            var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
             var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
             var(--tw-shadow);
     }
     .shadow-sm {
-        --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, #0000001a),
+        --tw-shadow:
+            0 1px 3px 0 var(--tw-shadow-color, #0000001a),
             0 1px 2px -1px var(--tw-shadow-color, #0000001a);
-        box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
+        box-shadow:
+            var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
             var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
             var(--tw-shadow);
     }
     .shadow-xl {
-        --tw-shadow: 0 20px 25px -5px var(--tw-shadow-color, #0000001a),
+        --tw-shadow:
+            0 20px 25px -5px var(--tw-shadow-color, #0000001a),
             0 8px 10px -6px var(--tw-shadow-color, #0000001a);
-        box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
+        box-shadow:
+            var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
             var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
             var(--tw-shadow);
     }
@@ -1291,7 +1301,8 @@
         --tw-ring-shadow: var(--tw-ring-inset) 0 0 0
             calc(1px + var(--tw-ring-offset-width))
             var(--tw-ring-color, currentcolor);
-        box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
+        box-shadow:
+            var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
             var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
             var(--tw-shadow);
     }
@@ -1322,12 +1333,31 @@
             var(--tw-saturate) var(--tw-sepia) var(--tw-drop-shadow);
     }
     .transition {
-        transition-property: color, background-color, border-color,
-            outline-color, text-decoration-color, fill, stroke,
-            --tw-gradient-from, --tw-gradient-via, --tw-gradient-to, opacity,
-            box-shadow, transform, translate, scale, rotate, filter,
-            -webkit-backdrop-filter, backdrop-filter, display, visibility,
-            content-visibility, overlay, pointer-events;
+        transition-property:
+            color,
+            background-color,
+            border-color,
+            outline-color,
+            text-decoration-color,
+            fill,
+            stroke,
+            --tw-gradient-from,
+            --tw-gradient-via,
+            --tw-gradient-to,
+            opacity,
+            box-shadow,
+            transform,
+            translate,
+            scale,
+            rotate,
+            filter,
+            -webkit-backdrop-filter,
+            backdrop-filter,
+            display,
+            visibility,
+            content-visibility,
+            overlay,
+            pointer-events;
         transition-timing-function: var(
             --tw-ease,
             var(--default-transition-timing-function)
@@ -1338,9 +1368,10 @@
         );
     }
     .transition-colors {
-        transition-property: color, background-color, border-color,
-            outline-color, text-decoration-color, fill, stroke,
-            --tw-gradient-from, --tw-gradient-via, --tw-gradient-to;
+        transition-property:
+            color, background-color, border-color, outline-color,
+            text-decoration-color, fill, stroke, --tw-gradient-from,
+            --tw-gradient-via, --tw-gradient-to;
         transition-timing-function: var(
             --tw-ease,
             var(--default-transition-timing-function)
@@ -1476,9 +1507,11 @@
             text-decoration-line: underline;
         }
         .hover\:shadow-sm:hover {
-            --tw-shadow: 0 1px 3px 0 var(--tw-shadow-color, #0000001a),
+            --tw-shadow:
+                0 1px 3px 0 var(--tw-shadow-color, #0000001a),
                 0 1px 2px -1px var(--tw-shadow-color, #0000001a);
-            box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
+            box-shadow:
+                var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
                 var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
                 var(--tw-shadow);
         }
@@ -1506,7 +1539,8 @@
         --tw-ring-shadow: var(--tw-ring-inset) 0 0 0
             calc(1px + var(--tw-ring-offset-width))
             var(--tw-ring-color, currentcolor);
-        box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
+        box-shadow:
+            var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
             var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
             var(--tw-shadow);
     }
@@ -1514,7 +1548,8 @@
         --tw-ring-shadow: var(--tw-ring-inset) 0 0 0
             calc(2px + var(--tw-ring-offset-width))
             var(--tw-ring-color, currentcolor);
-        box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
+        box-shadow:
+            var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
             var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
             var(--tw-shadow);
     }
@@ -1548,7 +1583,8 @@
     }
     .active\:shadow-none:active {
         --tw-shadow: 0 0 #0000;
-        box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
+        box-shadow:
+            var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
             var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
             var(--tw-shadow);
     }
@@ -1895,7 +1931,8 @@
             --tw-ring-shadow: var(--tw-ring-inset) 0 0 0
                 calc(1px + var(--tw-ring-offset-width))
                 var(--tw-ring-color, currentcolor);
-            box-shadow: var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
+            box-shadow:
+                var(--tw-inset-shadow), var(--tw-inset-ring-shadow),
                 var(--tw-ring-offset-shadow), var(--tw-ring-shadow),
                 var(--tw-shadow);
         }

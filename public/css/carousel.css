@@ -506,6 +506,8 @@ header nav a {
 
 #prev,
 #next {
+    background-color: #1ea05e;
+    color: #ffff;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -597,12 +599,15 @@ header nav a {
         margin: 120px auto 0;
     }
     .carousel .list {
+        /* border: 5px solid red; */
         width: 100%;
         max-width: 100%;
         left: 50%;
         height: var(--sidebar-list-height);
     }
     .carousel .list .item {
+        /* border: 5px solid blue; */
+        margin-top: 20px;
         width: 100%;
         font-size: var(--sidebar-font-size);
         display: flex;

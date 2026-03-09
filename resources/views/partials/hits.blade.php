@@ -27,12 +27,12 @@
     @endif
   </div>
   <div class="arrows flex justify-center gap-3 mt-2">
-    <button id="prev" class="p-2 bg-gray-200 rounded-full hover:bg-gray-300">
+    <button id="prev" class="p-2 rounded-full">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
       </svg>
     </button>
-    <button id="next" class="p-2 bg-gray-200 rounded-full hover:bg-gray-300">
+    <button id="next" class="p-2 rounded-full">
       <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
       </svg>
