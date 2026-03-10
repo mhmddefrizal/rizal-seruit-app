@@ -47,54 +47,7 @@
             </div>
 
             {{-- Category icon (centered large) --}}
-            <div class="absolute inset-0 flex items-center justify-center">
-                <div
-                    class="w-16 h-16 rounded-2xl bg-white/15 backdrop-blur-sm
-                    flex items-center justify-center
-                    group-hover:scale-110 group-hover:bg-white/20 group-hover:rotate-3
-                    transition-all duration-500 ease-out border border-white/20 shadow-lg shadow-black/5">
-                    @switch($icon)
-                        @case('ri')
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="1.5"
-                                viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="10" />
-                                <path
-                                    d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z" />
-                            </svg>
-                        @break
 
-                        @case('provinsi')
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="1.5"
-                                viewBox="0 0 24 24">
-                                <path d="M3 21h18M5 21V7l7-4 7 4v14M9 21v-4h6v4M9 9h.01M15 9h.01M9 13h.01M15 13h.01" />
-                            </svg>
-                        @break
-
-                        @case('kabkota')
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="1.5"
-                                viewBox="0 0 24 24">
-                                <rect x="3" y="3" width="7" height="7" rx="1" />
-                                <rect x="14" y="3" width="7" height="7" rx="1" />
-                                <rect x="3" y="14" width="7" height="7" rx="1" />
-                                <rect x="14" y="14" width="7" height="7" rx="1" />
-                            </svg>
-                        @break
-
-                        @case('kldi')
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="1.5"
-                                viewBox="0 0 24 24">
-                                <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                            </svg>
-                        @break
-
-                        @default
-                            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" stroke-width="1.5"
-                                viewBox="0 0 24 24">
-                                <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z" />
-                            </svg>
-                    @endswitch
-                </div>
-            </div>
 
             {{-- Count badge (top-left like the reference) --}}
             <div class="absolute top-3 left-3">
