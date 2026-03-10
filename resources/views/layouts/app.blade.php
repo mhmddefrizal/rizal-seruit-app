@@ -15,12 +15,12 @@
   </div>
 
   <div class="xl:grid xl:grid-cols-12 xl:h-[calc(100vh-72px)] h-auto overflow-auto">
+    <div class="xl:col-span-8 xl:pr-4 xl:pl-5 xl:py-1 md:p-12 px-4 mt-1 pb-4 overflow-auto custom-scrollbar">
+      @yield('content')
+    </div>
     <div class="xl:col-span-4 xl:overflow-hidden">
       @include('partials.header')
       @include('partials.hits')
-    </div>
-    <div class="xl:col-span-8 xl:pr-4 xl:pl-5 xl:py-1 md:p-12 px-4 mt-1 pb-4 overflow-auto custom-scrollbar">
-      @yield('content')
     </div>
   </div>
   @include('partials.footer')
