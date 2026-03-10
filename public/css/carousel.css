@@ -599,7 +599,7 @@ header nav a {
         width: var(--sidebar-carousel-width);
         height: var(--sidebar-carousel-height);
         overflow: hidden;
-        margin: 120px auto 0;
+        margin: 12px auto 0;
     }
     .carousel .list {
         /* border: 5px solid red; */
