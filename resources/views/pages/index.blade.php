@@ -11,7 +11,7 @@
     </div>
 
     {{-- Category Cards — 4 per row --}}
-    <div class="grid grid-cols-2 sm:grid-cols-4 gap-5">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
         <x-category-card href="{{ route('kategori', 'bps-ri') }}" title="BPS RI"
             description="Aplikasi yang dikembangkan dan dikelola oleh BPS Pusat (BPS RI)" :count="count($list_bps_ri)" color="#1EA05E"
             icon="ri" />

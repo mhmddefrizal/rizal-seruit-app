@@ -14,7 +14,7 @@
               border border-gray-100 bg-white h-full flex flex-col">
 
         {{-- ===== DECORATIVE HEADER AREA ===== --}}
-        <div class="relative h-40 overflow-hidden"
+        <div class="relative h-20 overflow-hidden"
             style="background: linear-gradient(160deg, {{ $color }}, {{ $colorSecondary }});">
 
             {{-- Geometric pattern overlay (like the reference image) --}}
