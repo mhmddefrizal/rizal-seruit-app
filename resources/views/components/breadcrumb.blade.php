@@ -1,4 +1,4 @@
-<nav class="flex mb-6 text-sm text-gray-600" aria-label="Breadcrumb">
+<nav class="max-w-screen-xl mt-2 pt-8 flex mb-4 text-sm text-gray-600" aria-label="Breadcrumb">
   <ol class="inline-flex items-center space-x-1 md:space-x-3">
     <li class="inline-flex items-center">
       <a href="{{ route($route) }}" class="inline-flex items-center text-gray-600 hover:text-indigo-600">
