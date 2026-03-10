@@ -1,17 +1,17 @@
 @extends('layouts.app')
 
 @section('content')
-  {{-- Section heading --}}
-  <div class="max-w-screen-xl mt-6 mb-4 pt-8">
-    <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
-      <span class="w-1 h-5 bg-[#1EA05E] rounded-full inline-block"></span>
-      Kategori Aplikasi
-    </h2>
-    <p class="text-xs text-gray-400 mt-0.5 ml-3">Pilih kategori untuk melihat daftar aplikasi</p>
-  </div>
+    {{-- Section heading --}}
+    <div class="max-w-screen-xl mt-6 mb-4 pt-8">
+        <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+            <span class="w-1 h-5 bg-[#1EA05E] rounded-full inline-block"></span>
+            Kategori Aplikasi
+        </h2>
+        <p class="text-xs text-gray-400 mt-0.5 ml-3">Pilih kategori untuk melihat daftar aplikasi</p>
+    </div>
 
-    {{-- Category Cards — 3 per row --}}
-    <div class="grid lg:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-5">
+    {{-- Category Cards — 4 per row --}}
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-5">
         <x-category-card href="{{ route('kategori', 'bps-ri') }}" title="BPS RI"
             description="Aplikasi yang dikembangkan dan dikelola oleh BPS Pusat (BPS RI)" :count="count($list_bps_ri)" color="#1EA05E"
             icon="ri" />
