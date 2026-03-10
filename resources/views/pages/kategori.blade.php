@@ -4,7 +4,7 @@
     {{-- Search Bar --}}
     <div class="xl:relative xl:block hidden mt-2 mb-3 w-full">
         <input id="search_kategori" type="text" placeholder="Cari aplikasi.." class="w-full px-4 py-2 border border-neutral-200 rounded-lg
-                     focus:outline-none focus:border-[#1ea05f98] focus:ring-1 focus:ring-[#1ea05f98]">
+                         focus:outline-none focus:border-[#1ea05f98] focus:ring-1 focus:ring-[#1ea05f98]">
         <img src="{{ asset('img/search.svg') }}" alt="Search"
             class="absolute top-1/2 right-3 transform -translate-y-1/2 w-5 h-5">
     </div>
