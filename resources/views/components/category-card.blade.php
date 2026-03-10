@@ -50,9 +50,8 @@
 
 
             {{-- Count badge (top-left like the reference) --}}
-            <div class="absolute top-3 left-3">
-                <span
-                    class="bg-white/20 backdrop-blur-sm text-white text-[10px] font-semibold rounded-md px-2.5 py-1 border border-white/20">
+            <div class="absolute top-3 right-3">
+                <span class="bg-white text-gray-800 text-[10px] font-semibold rounded-md px-2.5 py-1">
                     {{ $count }} Aplikasi
                 </span>
             </div>
