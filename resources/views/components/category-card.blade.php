@@ -5,7 +5,7 @@
     $colorSecondary = $color . '88';
 @endphp
 
-<a href="{{ $href }}" class="block group">
+<a href="{{ $href }}" class="block group min-w-0">
     <div
         class="rounded-2xl overflow-hidden
               shadow-sm hover:shadow-xl
@@ -61,9 +61,9 @@
         {{-- ===== TEXT CONTENT AREA ===== --}}
         <div class="p-4 flex-1 flex flex-col justify-between">
             <div>
-                <h3
-                    class="font-bold text-sm text-gray-800 leading-snug line-clamp-2
-                    group-hover:text-gray-900 transition-colors duration-300">
+                <h3 class="font-bold text-sm text-gray-800 leading-snug
+                    group-hover:text-gray-900 transition-colors duration-300"
+                    style="word-break: break-all; overflow-wrap: break-word;">
                     {{ $title }}
                 </h3>
                 <p class="text-[11px] text-gray-400 mt-2 leading-relaxed line-clamp-2">
