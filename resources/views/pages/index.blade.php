@@ -1,8 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+    {{-- Search Bar --}}
+    <div class="max-w-screen-xl mt-6 mb-6 pt-8">
+        <form id="search-form" class="relative w-full">
+            <input id="search_kategori" type="text" placeholder="Search"
+                class="w-full px-4 py-2 border border-gray-300 rounded-lg
+                   focus:outline-none focus:border-[#1ea05f98] focus:ring-1 focus:ring-[#1ea05f98]">
+            <button type="submit" class="absolute right-3 top-1/2 transform -translate-y-1/2">
+                <i class="fa fa-search text-gray-400"></i>
+            </button>
+        </form>
+    </div>
+
     {{-- Section heading --}}
-    <div class="max-w-screen-xl mt-6 mb-4 pt-8">
+    <div class="max-w-screen-xl mb-4">
         <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
             <span class="w-1 h-5 bg-[#1EA05E] rounded-full inline-block"></span>
             Kategori Aplikasi
