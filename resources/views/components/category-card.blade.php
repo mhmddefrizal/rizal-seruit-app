@@ -123,10 +123,7 @@
             <div class="flex items-center gap-1.5 mt-3 text-xs font-semibold transition-all duration-300 group-hover:gap-2.5"
                 style="color: {{ $color }};">
                 <span>Lihat Semua</span>
-                <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform duration-300" fill="none"
-                    stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
-                </svg>
+
             </div>
         </div>
 
