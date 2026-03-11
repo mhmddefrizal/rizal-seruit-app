@@ -13,19 +13,19 @@
     {{-- Category Cards — 4 per row --}}
     <div class="grid grid-cols-2 sm:grid-cols-4 gap-6">
         <x-category-card href="{{ route('kategori', 'bps-ri') }}" title="BPS RI"
-            description="Aplikasi yang dikembangkan dan dikelola oleh BPS Pusat (BPS RI)" :count="count($list_bps_ri)" color="#1EA05E"
-            icon="ri" />
+            description="Aplikasi yang dikembangkan dan dikelola oleh BPS Pusat (BPS RI)" :count="count($list_bps_ri)"
+            color="#1EA05E" icon="ri" />
 
         <x-category-card href="{{ route('kategori', 'bps-provinsi-lampung') }}" title="BPS PROVINSI LAMPUNG"
-            description="Aplikasi yang dikembangkan dan dikelola oleh BPS Provinsi Lampung" :count="count($list_bps_lampung)"
-            color="#2B7CB3" icon="provinsi" />
+            description="Aplikasi yang dikembangkan dan dikelola oleh BPS Provinsi Lampung"
+            :count="count($list_bps_lampung)" color="#2B7CB3" icon="provinsi" />
 
         <x-category-card href="{{ route('kategori', 'bps-kabkota') }}" title="BPS KAB/KOTA SE-PROV. LAMPUNG"
-            description="Aplikasi yang dikembangkan oleh BPS Kabupaten/Kota se-Provinsi Lampung" :count="count($list_bps_kabkota)"
-            color="#E57A25" icon="kabkota" />
+            description="Aplikasi yang dikembangkan oleh BPS Kabupaten/Kota se-Provinsi Lampung"
+            :count="count($list_bps_kabkota)" color="#E57A25" icon="kabkota" />
 
         <x-category-card href="{{ route('kategori', 'kldi') }}" title="KEMENTRIAN/LEMBAGA/DINAS/INSTANSI"
-            description="Aplikasi dari Kementerian, Lembaga, Dinas, dan Instansi terkait" :count="count($list_kldi)" color="#8B5CF6"
-            icon="kldi" />
+            description="Aplikasi dari Kementerian, Lembaga, Dinas, dan Instansi terkait" :count="count($list_kldi)"
+            color="#8B5CF6" icon="kldi" />
     </div>
 @endsection

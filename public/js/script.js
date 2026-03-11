@@ -2,8 +2,82 @@ $("#search_0").on("keyup", function () {
     search($("#search_0").val());
 });
 
+// === Homepage search with debounce ===
+var searchTimer = null;
 $("#search_1").on("keyup", function () {
-    search($("#search_1").val());
+    var keyword = $(this).val().trim();
+    clearTimeout(searchTimer);
+
+    if (keyword === "") {
+        // No keyword: show main content, hide search results
+        $("#search-results").addClass("hidden");
+        $("#main-content").removeClass("hidden");
+        return;
+    }
+
+    searchTimer = setTimeout(function () {
+        // Show search results area, hide main content
+        $("#search-results").removeClass("hidden");
+        $("#main-content").addClass("hidden");
+        $("#search-info").text('Mencari "' + keyword + '"...');
+        $("#search-results-grid").html(
+            '<p class="text-gray-400 col-span-full text-center py-8">Memuat...</p>'
+        );
+
+        $.post(
+            "/search",
+            {
+                _token: $('meta[name="csrf-token"]').attr("content"),
+                keyword: keyword,
+            },
+            function (data) {
+                // Merge all categories into one flat array
+                var allResults = []
+                    .concat(data.list_bps_ri || [])
+                    .concat(data.list_bps_lampung || [])
+                    .concat(data.list_bps_kabkota || [])
+                    .concat(data.list_kldi || []);
+
+                var html = "";
+                if (allResults.length === 0) {
+                    html =
+                        '<p class="text-gray-500 col-span-full text-center py-8">Aplikasi tidak ditemukan untuk "<strong>' +
+                        keyword +
+                        '</strong>"</p>';
+                    $("#search-info").text("0 aplikasi ditemukan");
+                } else {
+                    $("#search-info").text(
+                        allResults.length + ' aplikasi ditemukan untuk "' + keyword + '"'
+                    );
+                    allResults.forEach(function (el) {
+                        var aksesClass =
+                            el.akses === "publik"
+                                ? "border-[#43a4d4]"
+                                : "border-[#e7a861]";
+                        html += `
+                        <div class="rounded-lg border border-neutral-200 p-2 hit-button
+                                    hover:shadow-md hover:border-neutral-300 transition-shadow duration-200" data-id="${el.id}">
+                            <a href="info/${el.slug}" target="_blank">
+                                <div class="flex flex-row justify-between items-center mb-2">
+                                    <img src="img/${el.logo}" alt="${el.nama}" class="rounded-lg h-10">
+                                    <span class="${aksesClass} border text-black rounded-xl text-[10px] flex items-center justify-center px-2">${el.akses}</span>
+                                </div>
+                                <span class="bg-[#1EA05E] text-white rounded-xl text-[10px] px-2">${el.pembuat}</span>
+                                <div class="flex flex-row justify-between items-center">
+                                    <p class="text-base font-semibold">${el.nama}</p>
+                                    <p class="mt-4 text-xs text-gray-500 w-1/4">
+                                        Hits: <span id="hits-count-${el.id}">${el.hits}</span>
+                                    </p>
+                                </div>
+                                <p class="text-sm text-gray-500">${el.deskripsi}</p>
+                            </a>
+                        </div>`;
+                    });
+                }
+                $("#search-results-grid").html(html);
+            }
+        );
+    }, 300);
 });
 
 $("#search_kategori").on("keyup", function () {
