@@ -21,7 +21,7 @@ $("#search_1").on("keyup", function () {
         $("#main-content").addClass("hidden");
         $("#search-info").text('Mencari "' + keyword + '"...');
         $("#search-results-grid").html(
-            '<p class="text-gray-400 col-span-full text-center py-8">Memuat...</p>'
+            '<p class="text-gray-400 col-span-full text-center py-8">Memuat...</p>',
         );
 
         $.post(
@@ -47,7 +47,10 @@ $("#search_1").on("keyup", function () {
                     $("#search-info").text("0 aplikasi ditemukan");
                 } else {
                     $("#search-info").text(
-                        allResults.length + ' aplikasi ditemukan untuk "' + keyword + '"'
+                        allResults.length +
+                            ' aplikasi ditemukan untuk "' +
+                            keyword +
+                            '"',
                     );
                     allResults.forEach(function (el) {
                         var aksesClass =
@@ -57,9 +60,9 @@ $("#search_1").on("keyup", function () {
                         html += `
                         <div class="rounded-lg border border-neutral-200 p-2 hit-button
                                     hover:shadow-md hover:border-neutral-300 transition-shadow duration-200" data-id="${el.id}">
-                            <a href="info/${el.slug}" target="_blank">
+                            <a href="/info/${el.slug}" target="_blank">
                                 <div class="flex flex-row justify-between items-center mb-2">
-                                    <img src="img/${el.logo}" alt="${el.nama}" class="rounded-lg h-10">
+                                    <img src="/img/${el.logo}" alt="${el.nama}" class="rounded-lg h-10">
                                     <span class="${aksesClass} border text-black rounded-xl text-[10px] flex items-center justify-center px-2">${el.akses}</span>
                                 </div>
                                 <span class="bg-[#1EA05E] text-white rounded-xl text-[10px] px-2">${el.pembuat}</span>
@@ -75,7 +78,7 @@ $("#search_1").on("keyup", function () {
                     });
                 }
                 $("#search-results-grid").html(html);
-            }
+            },
         );
     }, 300);
 });
@@ -122,9 +125,9 @@ function search_bps_ri(res) {
         res.forEach((element) => {
             bg_akses = bps_ri += `
             <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id=${element.id}>
-                <a href="info/${element.slug}" target="_blank">
+                <a href="/info/${element.slug}" target="_blank">
                     <div class="flex flex-row justify-between items-center">
-                        <img src="img/${element.logo}" alt="" class="rounded-lg h-8">
+                        <img src="/img/${element.logo}" alt="" class="rounded-lg h-8">
                         <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
                     </div>
                     <div class="flex flex-row justify-between items-center">
@@ -152,9 +155,9 @@ function search_bps_lampung(res) {
         res.forEach((element) => {
             bps_lampung += `
             <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id=${element.id}>
-                <a href="info/${element.slug}" target="_blank">
+                <a href="/info/${element.slug}" target="_blank">
                     <div class="flex flex-row justify-between items-center">
-                        <img src="img/${element.logo}" alt="" class="rounded-lg h-8">
+                        <img src="/img/${element.logo}" alt="" class="rounded-lg h-8">
                         <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
                     </div>
                     <div class="flex flex-row justify-between items-center">
@@ -182,9 +185,9 @@ function search_bps_kabkota(res) {
         res.forEach((element) => {
             bps_kabkota += `
             <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id=${element.id}>
-                <a href="info/${element.slug}" target="_blank">
+                <a href="/info/${element.slug}" target="_blank">
                     <div class="flex flex-row justify-between items-center mb-2">
-                        <img src="img/${element.logo}" alt="" class="rounded-lg h-8">
+                        <img src="/img/${element.logo}" alt="" class="rounded-lg h-8">
                         <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
                     </div>
                     <span class="bg-[#1EA05E] text-white rounded-xl text-[10px] px-2">${element.pembuat}</span>
@@ -214,9 +217,9 @@ function search_bps_kldi(res) {
         res.forEach((element) => {
             bps_kldi += `
             <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id=${element.id}>
-                <a href="info/${element.slug}" target="_blank">
+                <a href="/info/${element.slug}" target="_blank">
                     <div class="flex flex-row justify-between items-center mb-2">
-                        <img src="img/${element.logo}" alt="" class="rounded-lg h-8">
+                        <img src="/img/${element.logo}" alt="" class="rounded-lg h-8">
                         <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
                     </div>
                     <span class="bg-[#1EA05E] text-white rounded-xl text-[10px] px-2">${element.pembuat}</span>
@@ -258,12 +261,12 @@ $(document).ready(function () {
                     );
                 }
                 // Setelah sukses, buka link di tab baru
-                window.open(`info/${response.slug}`, "_blank");
+                window.open(`/info/${response.slug}`, "_blank");
             },
             error: function (xhr, status, error) {
                 console.error("Error updating hit count:", xhr.responseText);
                 // Jika ada error, tetap buka link di tab baru
-                window.open(`info/${response.slug}`, "_blank");
+                window.open(`/info/${response.slug}`, "_blank");
             },
         });
     });
