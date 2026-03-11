@@ -58,8 +58,9 @@ $("#search_1").on("keyup", function () {
                                 ? "border-[#43a4d4]"
                                 : "border-[#e7a861]";
                         html += `
-                        <div class="rounded-lg border border-neutral-200 p-2 hit-button
-                                    hover:shadow-md hover:border-neutral-300 transition-shadow duration-200" data-id="${el.id}">
+                        <div class="rounded-lg border border-neutral-200 p-2 hit-button cursor-pointer
+                                    hover:shadow-md hover:border-neutral-300 transition-shadow duration-200"
+                             data-id="${el.id}" data-nama="${el.nama}" data-logo="/img/${el.logo}" data-slug="${el.slug}">
                             <a href="/info/${el.slug}" target="_blank">
                                 <div class="flex flex-row justify-between items-center mb-2">
                                     <img src="/img/${el.logo}" alt="${el.nama}" class="rounded-lg h-10">
@@ -124,7 +125,8 @@ function search_bps_ri(res) {
     } else {
         res.forEach((element) => {
             bg_akses = bps_ri += `
-            <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id=${element.id}>
+            <div class="rounded-lg border border-neutral-200 p-2 hit-button cursor-pointer"
+                 data-id="${element.id}" data-nama="${element.nama}" data-logo="/img/${element.logo}" data-slug="${element.slug}">
                 <a href="/info/${element.slug}" target="_blank">
                     <div class="flex flex-row justify-between items-center">
                         <img src="/img/${element.logo}" alt="" class="rounded-lg h-8">
@@ -154,7 +156,8 @@ function search_bps_lampung(res) {
     } else {
         res.forEach((element) => {
             bps_lampung += `
-            <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id=${element.id}>
+            <div class="rounded-lg border border-neutral-200 p-2 hit-button cursor-pointer"
+                 data-id="${element.id}" data-nama="${element.nama}" data-logo="/img/${element.logo}" data-slug="${element.slug}">
                 <a href="/info/${element.slug}" target="_blank">
                     <div class="flex flex-row justify-between items-center">
                         <img src="/img/${element.logo}" alt="" class="rounded-lg h-8">
@@ -184,7 +187,8 @@ function search_bps_kabkota(res) {
     } else {
         res.forEach((element) => {
             bps_kabkota += `
-            <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id=${element.id}>
+            <div class="rounded-lg border border-neutral-200 p-2 hit-button cursor-pointer"
+                 data-id="${element.id}" data-nama="${element.nama}" data-logo="/img/${element.logo}" data-slug="${element.slug}">
                 <a href="/info/${element.slug}" target="_blank">
                     <div class="flex flex-row justify-between items-center mb-2">
                         <img src="/img/${element.logo}" alt="" class="rounded-lg h-8">
@@ -216,7 +220,8 @@ function search_bps_kldi(res) {
     } else {
         res.forEach((element) => {
             bps_kldi += `
-            <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id=${element.id}>
+            <div class="rounded-lg border border-neutral-200 p-2 hit-button cursor-pointer"
+                 data-id="${element.id}" data-nama="${element.nama}" data-logo="/img/${element.logo}" data-slug="${element.slug}">
                 <a href="/info/${element.slug}" target="_blank">
                     <div class="flex flex-row justify-between items-center mb-2">
                         <img src="/img/${element.logo}" alt="" class="rounded-lg h-8">
@@ -238,35 +243,116 @@ function search_bps_kldi(res) {
     $("#bps_kldi").html(bps_kldi);
 }
 
+// ========================================
+// Confirmation Modal Logic
+// ========================================
+var pendingCardId = null;
+var pendingCardSlug = null;
+
+function showConfirmModal(id, nama, logo, slug) {
+    pendingCardId = id;
+    pendingCardSlug = slug;
+
+    // Populate modal content
+    $("#confirm-modal-logo").attr("src", logo);
+    $("#confirm-modal-app-name").text(nama);
+
+    // Show modal with animation
+    var $overlay = $("#confirm-modal-overlay");
+    $overlay.css("display", "flex");
+    // Force reflow so the transition triggers
+    $overlay[0].offsetHeight;
+    $overlay.addClass("active");
+
+    // Prevent body scroll
+    $("body").css("overflow", "hidden");
+}
+
+function hideConfirmModal() {
+    var $overlay = $("#confirm-modal-overlay");
+    $overlay.removeClass("active");
+    setTimeout(function () {
+        $overlay.css("display", "none");
+    }, 300);
+
+    // Restore body scroll
+    $("body").css("overflow", "");
+
+    pendingCardId = null;
+    pendingCardSlug = null;
+}
+
 $(document).ready(function () {
+    // === Card click → show confirmation modal ===
     $(document).on("click", ".hit-button", function (e) {
-        e.preventDefault(); // Mencegah tindakan default sementara
-        var id = $(this).data("id");
-        var url = $(this).attr("href"); // Ambil URL dari atribut href
+        e.preventDefault();
+        e.stopPropagation();
+
+        var $card = $(this);
+        var id = $card.data("id");
+        var nama = $card.data("nama") || $card.find(".font-semibold").first().text().trim();
+        var logo = $card.data("logo") || $card.find("img").first().attr("src");
+        var slug = $card.data("slug") || "";
+
+        // Extract slug from href if not in data attribute
+        if (!slug) {
+            var href = $card.find("a").attr("href") || "";
+            var match = href.match(/\/info\/(.+)/);
+            if (match) slug = match[1];
+        }
+
+        showConfirmModal(id, nama, logo, slug);
+    });
+
+    // === Modal: Cancel / Close ===
+    $("#confirm-modal-cancel, #confirm-modal-close").on("click", function () {
+        hideConfirmModal();
+    });
+
+    // === Modal: Click overlay to close ===
+    $("#confirm-modal-overlay").on("click", function (e) {
+        if (e.target === this) {
+            hideConfirmModal();
+        }
+    });
+
+    // === Modal: Escape key to close ===
+    $(document).on("keydown", function (e) {
+        if (e.key === "Escape" && $("#confirm-modal-overlay").hasClass("active")) {
+            hideConfirmModal();
+        }
+    });
+
+    // === Modal: Confirm → update hits & navigate ===
+    $("#confirm-modal-confirm").on("click", function () {
+        if (!pendingCardId || !pendingCardSlug) return;
+
+        var $btn = $(this);
+        $btn.prop("disabled", true).css("opacity", "0.7");
 
         $.ajax({
-            url: "/update-hits", // Sesuaikan URL dengan rute Anda
+            url: "/update-hits",
             type: "POST",
             data: {
                 _token: $('meta[name="csrf-token"]').attr("content"),
-                item_id: id,
+                item_id: pendingCardId,
             },
             success: function (response) {
                 const hitCountElement = $(`#hits-count-${response.id}`);
                 if (hitCountElement.length > 0) {
                     hitCountElement.text(parseInt(response.hits));
-                } else {
-                    console.error(
-                        `Element with ID hits-count-${response.id} not found`,
-                    );
                 }
-                // Setelah sukses, buka link di tab baru
+                // Navigate to detail page
                 window.open(`/info/${response.slug}`, "_blank");
             },
             error: function (xhr, status, error) {
                 console.error("Error updating hit count:", xhr.responseText);
-                // Jika ada error, tetap buka link di tab baru
-                window.open(`/info/${response.slug}`, "_blank");
+                // Still navigate even on error
+                window.open(`/info/${pendingCardSlug}`, "_blank");
+            },
+            complete: function () {
+                $btn.prop("disabled", false).css("opacity", "1");
+                hideConfirmModal();
             },
         });
     });

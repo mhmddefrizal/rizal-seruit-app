@@ -42,6 +42,7 @@
         </div>
     </div>
     <!-- </div> -->
+    @include('partials.confirm-modal')
     @include('partials.footer')
 </body>
 
