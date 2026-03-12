@@ -9,7 +9,7 @@
 
         <!-- Tengah: SERUIT -->
         <div class="flex-1 text-center px-8">
-            <h3 class="text-3xl font-bold text-white tracking-wider">SERUIT</h3>
+            <h3 class="text-3xl font-bold text-white tracking-wider">SERUI</h3>
             <p class="text-xs text-white leading-tight">
                 Satu Ruang Informasi untuk Inovasi Terintegrasi
             </p>
@@ -17,10 +17,13 @@
 
         <!-- Kanan: Informasi dengan Dropdown -->
         <div class="flex-shrink-0 relative min-w-fit">
-            <button id="infoDropdownBtn" class="flex items-center gap-1 text-white hover:text-gray-200 transition px-4 py-2">
+            <button id="infoDropdownBtn"
+                class="flex items-center gap-1 text-white hover:text-gray-200 transition px-4 py-2">
                 <span class="text-xs font-medium whitespace-nowrap">Informasi</span>
-                <svg class="w-4 h-4 transition-transform flex-shrink-0" id="dropdownIcon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                <svg class="w-4 h-4 transition-transform flex-shrink-0" id="dropdownIcon" fill="none"
+                    stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                 </svg>
             </button>
 
@@ -29,13 +32,16 @@
                 <div class="px-4 py-3 border-b border-gray-200">
                     <h4 class="font-bold text-gray-800 mb-2">Tentang Aplikasi SERUIT</h4>
                     <p class="text-sm text-gray-600 leading-relaxed">
-                        SERUIT (Satu Ruang Informasi untuk Inovasi Terintegrasi) adalah platform informasi terintegrasi dari 
-                        Badan Pusat Statistik. Platform ini dirancang untuk memfasilitasi inovasi dan integrasi data statistik 
+                        SERUIT (Satu Ruang Informasi untuk Inovasi Terintegrasi) adalah platform informasi terintegrasi
+                        dari
+                        Badan Pusat Statistik. Platform ini dirancang untuk memfasilitasi inovasi dan integrasi data
+                        statistik
                         dalam satu ruang yang komprehensif dan mudah diakses.
                     </p>
                 </div>
                 <div class="px-4 py-2">
-                    <a href="#" class="text-[#A51C31] text-sm font-medium hover:underline">Pelajari lebih lanjut →</a>
+                    <a href="#" class="text-[#A51C31] text-sm font-medium hover:underline">Pelajari lebih lanjut
+                        →</a>
                 </div>
             </div>
         </div>
@@ -59,21 +65,27 @@
 
         <!-- Kanan Mobile: Dropdown -->
         <div class="flex-shrink-0 relative">
-            <button id="infoDropdownBtnMobile" class="flex items-center justify-center text-white hover:text-gray-100 transition p-2">
-                <svg class="w-4 h-4 transition-transform" id="dropdownIconMobile" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            <button id="infoDropdownBtnMobile"
+                class="flex items-center justify-center text-white hover:text-gray-100 transition p-2">
+                <svg class="w-4 h-4 transition-transform" id="dropdownIconMobile" fill="none" stroke="currentColor"
+                    viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
                 </svg>
             </button>
-            <div id="infoDropdownMobile" class="hidden absolute right-0 mt-1 w-64 bg-white rounded-lg shadow-xl py-3 z-20">
+            <div id="infoDropdownMobile"
+                class="hidden absolute right-0 mt-1 w-64 bg-white rounded-lg shadow-xl py-3 z-20">
                 <div class="px-4 py-3 border-b border-gray-200">
                     <h4 class="font-bold text-gray-800 mb-2 text-sm">Tentang Aplikasi SERUIT</h4>
                     <p class="text-xs text-gray-600 leading-relaxed">
-                        SERUIT (Satu Ruang Informasi untuk Inovasi Terintegrasi) adalah platform informasi terintegrasi dari 
+                        SERUIT (Satu Ruang Informasi untuk Inovasi Terintegrasi) adalah platform informasi terintegrasi
+                        dari
                         Badan Pusat Statistik.
                     </p>
                 </div>
                 <div class="px-4 py-2">
-                    <a href="#" class="text-[#A51C31] text-xs font-medium hover:underline">Pelajari lebih lanjut →</a>
+                    <a href="#" class="text-[#A51C31] text-xs font-medium hover:underline">Pelajari lebih lanjut
+                        →</a>
                 </div>
             </div>
         </div>
