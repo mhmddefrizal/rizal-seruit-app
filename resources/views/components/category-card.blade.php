@@ -5,13 +5,14 @@
     $colorSecondary = $color . '88';
 @endphp
 
-<a href="{{ $href }}" class="block group min-w-0">
+<a href="{{ $href }}" class="block group min-w-0" style="height: 100%;">
     <div
         class="rounded-2xl overflow-hidden
               shadow-sm hover:shadow-xl
               hover:-translate-y-1.5
               transition-all duration-500 ease-out
-              border border-gray-100 bg-white h-full flex flex-col">
+              border border-gray-100 bg-white"
+        style="height: 100%; display: flex; flex-direction: column;">
 
         {{-- ===== DECORATIVE HEADER AREA ===== --}}
         <div class="relative h-20 overflow-hidden"
@@ -59,11 +60,11 @@
         </div>
 
         {{-- ===== TEXT CONTENT AREA ===== --}}
-        <div class="p-4 flex-1 flex flex-col justify-between">
+        <div class="p-4" style="flex: 1; display: flex; flex-direction: column; justify-content: space-between;">
             <div>
-                <h3 class="font-bold text-sm text-gray-800 leading-snug
+                <h3 class="font-bold text-sm text-gray-800 leading-snug line-clamp-2
                     group-hover:text-gray-900 transition-colors duration-300"
-                    style="word-break: break-all; overflow-wrap: break-word;">
+                    style="overflow-wrap: break-word;">
                     {{ $title }}
                 </h3>
                 <p class="text-[11px] text-gray-400 mt-2 leading-relaxed line-clamp-2">
