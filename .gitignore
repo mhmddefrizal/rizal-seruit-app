@@ -17,6 +17,7 @@
 /public/hot
 /public/storage
 /public/img
+!/public/img/category
 /storage/*.key
 /storage/pail
 /vendor
