@@ -6,8 +6,7 @@
 @endphp
 
 <a href="{{ $href }}" class="block group min-w-0" style="height: 100%;">
-    <div
-        class="rounded-2xl overflow-hidden
+    <div class="rounded-2xl overflow-hidden
               shadow-sm hover:shadow-xl
               hover:-translate-y-1.5
               transition-all duration-500 ease-out
