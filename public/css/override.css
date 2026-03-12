@@ -29,7 +29,9 @@
     position: relative;
     background-color: #fff;
     border-radius: 16px;
-    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+    box-shadow:
+        0 25px 60px rgba(0, 0, 0, 0.15),
+        0 0 0 1px rgba(0, 0, 0, 0.05);
     padding: 32px 28px 24px;
     max-width: 400px;
     width: 90%;
@@ -99,7 +101,7 @@
 }
 
 .confirm-modal-message strong {
-    color: #1EA05E;
+    color: #1ea05e;
     font-weight: 600;
 }
 
@@ -134,7 +136,7 @@
 }
 
 .confirm-modal-btn-confirm {
-    background-color: #1EA05E;
+    background-color: #1ea05e;
     color: #fff;
     box-shadow: 0 2px 8px rgba(30, 160, 94, 0.3);
 }
