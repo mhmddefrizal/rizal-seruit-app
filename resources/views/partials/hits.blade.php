@@ -7,15 +7,13 @@
         @if (count($top_hits) > 0)
             @foreach ($top_hits as $item)
                 <div class="item">
-                    <img src="{{ asset('img/' . $item['logo']) }}" alt="{{ $item['nama'] }}"
-                        class="xl:hidden block rounded-lg">
+                    {{-- Gambar logo aplikasi --}}
+                    <img src="{{ asset('img/' . $item['logo']) }}" alt="{{ $item['nama'] }}" class="item-img rounded-lg">
 
                     {{-- Bagian introduce untuk menampilkan informasi tentang top hits --}}
                     <div class="introduce">
                         <div class="title">#TOP HITS No. {{ $order[$i] }}</div>
                         <div class="topic">{{ $item['nama'] }}</div>
-                        <img src="{{ asset('img/' . $item['logo']) }}" alt="{{ $item['nama'] }}"
-                            class="xl:block hidden rounded-lg">
                         <span id="pembuat" class="bg-[#1ea053] rounded-md px-2 text-white text-xs">
                             {{ $item['pembuat'] }}
                         </span>
@@ -35,7 +33,8 @@
     <div class="carousel-dots">
         @if (count($top_hits) > 0)
             @for ($d = 0; $d < count($top_hits); $d++)
-                <button class="dot {{ $d === 0 ? 'active' : '' }}" data-index="{{ $d }}" aria-label="Slide {{ $d + 1 }}"></button>
+                <button class="dot {{ $d === 0 ? 'active' : '' }}" data-index="{{ $d }}"
+                    aria-label="Slide {{ $d + 1 }}"></button>
             @endfor
         @endif
     </div>
