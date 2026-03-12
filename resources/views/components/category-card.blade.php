@@ -1,8 +1,14 @@
 @props(['href', 'title', 'description', 'count', 'color' => '#1EA05E', 'icon' => 'default'])
 
 @php
-    // Generate a lighter shade for the secondary gradient color
-    $colorSecondary = $color . '88';
+    // Map icon prop to image filename
+    $imageMap = [
+        'ri' => 'image-category-bps-ri.jpg',
+        'provinsi' => 'image-category-bps-prov-lpg.jpg',
+        'kabkota' => 'image-category-bps-kab-lpg.jpg',
+        'kldi' => 'image-category-kementerian.jpg',
+    ];
+    $imagePath = isset($imageMap[$icon]) ? asset('img/category/' . $imageMap[$icon]) : '';
 @endphp
 
 <a href="{{ $href }}" class="block group min-w-0" style="height: 100%;">
@@ -13,45 +19,19 @@
               border border-gray-100 bg-white"
         style="height: 100%; display: flex; flex-direction: column;">
 
-        {{-- ===== DECORATIVE HEADER AREA ===== --}}
-        <div class="relative h-20 overflow-hidden"
-            style="background: linear-gradient(160deg, {{ $color }}, {{ $colorSecondary }});">
+        {{-- ===== IMAGE HEADER AREA ===== --}}
+        <div class="relative overflow-hidden" style="height: 140px;">
 
-            {{-- Geometric pattern overlay (like the reference image) --}}
-            <svg class="absolute inset-0 w-full h-full opacity-[0.12]" xmlns="http://www.w3.org/2000/svg">
-                <defs>
-                    <pattern id="pattern-{{ Str::slug($title) }}" x="0" y="0" width="60" height="60"
-                        patternUnits="userSpaceOnUse">
-                        <rect x="5" y="5" width="25" height="25" fill="white" rx="4"
-                            transform="rotate(15 17.5 17.5)" />
-                        <rect x="30" y="30" width="20" height="20" fill="white" rx="3"
-                            transform="rotate(-10 40 40)" />
-                        <circle cx="50" cy="10" r="8" fill="white" />
-                    </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#pattern-{{ Str::slug($title) }})" />
-            </svg>
+            {{-- Category image --}}
+            @if($imagePath)
+                <img src="{{ $imagePath }}" alt="{{ $title }}"
+                    class="group-hover:scale-110 transition-transform duration-500 ease-out"
+                    style="width: 100%; height: 100%; object-fit: cover;">
+            @endif
 
-            {{-- Animated floating circles --}}
-            <div
-                class="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-white/10
-                  group-hover:scale-125 group-hover:bg-white/15 transition-all duration-700 ease-out">
-            </div>
-            <div
-                class="absolute -bottom-10 -left-6 w-28 h-28 rounded-full bg-white/[0.07]
-                  group-hover:scale-110 transition-all duration-700 ease-out delay-100">
-            </div>
-            <div
-                class="absolute top-6 left-8 w-16 h-16 rounded-full bg-white/[0.06]
-                  group-hover:translate-y-1 transition-all duration-500">
-            </div>
-
-            {{-- Category icon (centered large) --}}
-
-
-            {{-- Count badge (top-left like the reference) --}}
-            <div class="absolute top-3 right-3">
-                <span class="bg-white text-gray-800 text-[10px] font-semibold rounded-md px-2.5 py-1">
+            {{-- Count badge (top-right) --}}
+            <div style="position: absolute; top: 10px; right: 10px; z-index: 10;">
+                <span style="background: rgba(255,255,255,0.92); color: #1f2937; font-size: 10px; font-weight: 600; border-radius: 6px; padding: 4px 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.15);">
                     {{ $count }} Aplikasi
                 </span>
             </div>
