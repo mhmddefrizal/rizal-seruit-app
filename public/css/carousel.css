@@ -714,6 +714,15 @@ header nav a {
     .carousel .list .item .introduce #pembuat {
         margin-bottom: 0.4em;
     }
+    /* Hide blurred preview slides, only show active slide */
+    .carousel .list .item:nth-child(1),
+    .carousel .list .item:nth-child(3),
+    .carousel .list .item:nth-child(4),
+    .carousel .list .item:nth-child(5) {
+        opacity: 0 !important;
+        visibility: hidden;
+        pointer-events: none;
+    }
     .carousel::before {
         background-image: none;
     }
