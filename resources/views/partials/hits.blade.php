@@ -30,14 +30,25 @@
             @endforeach
         @endif
     </div>
-    <div class="arrows flex justify-center gap-3 mt-2">
-        <button id="prev" class="p-2 rounded-full">
+
+    {{-- Dot indicators untuk navigasi di mobile/tablet --}}
+    <div class="carousel-dots">
+        @if (count($top_hits) > 0)
+            @for ($d = 0; $d < count($top_hits); $d++)
+                <button class="dot {{ $d === 0 ? 'active' : '' }}" data-index="{{ $d }}" aria-label="Slide {{ $d + 1 }}"></button>
+            @endfor
+        @endif
+    </div>
+
+    {{-- Arrow buttons untuk navigasi di desktop --}}
+    <div class="arrows">
+        <button id="prev" class="p-2 rounded-full" aria-label="Previous slide">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
             </svg>
         </button>
-        <button id="next" class="p-2 rounded-full">
+        <button id="next" class="p-2 rounded-full" aria-label="Next slide">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
                 stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />

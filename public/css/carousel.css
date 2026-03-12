@@ -238,7 +238,6 @@ header nav a {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    
 }
 .carousel .list .item:nth-child(2) .introduce {
     opacity: 1;
@@ -283,6 +282,40 @@ header nav a {
 }
 .carousel .arrows button {
     pointer-events: auto;
+}
+
+/* ========== DOT INDICATORS ========== */
+.carousel-dots {
+    display: none; /* hidden by default on desktop, shown via media queries */
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 0 6px;
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 25;
+}
+.carousel-dots .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background-color: #c4c4c4;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+.carousel-dots .dot:hover {
+    background-color: #888;
+    transform: scale(1.2);
+}
+.carousel-dots .dot.active {
+    background-color: #1ea053;
+    width: 24px;
+    border-radius: 4px;
+    transform: scale(1);
 }
 
 .carousel .list .item .introduce .seeMore {
@@ -647,23 +680,22 @@ header nav a {
     .carousel .arrows {
         top: 0;
     }
+    .carousel-dots {
+        display: none !important;
+    }
     .carousel::before {
         display: none;
     }
 }
-@media screen and (max-width: 1024px) {
+/* ========== TABLET: 640px – 1023px ========== */
+@media screen and (max-width: 1023px) {
     .carousel {
-        height: 40vh;
+        height: 38vh;
+        min-height: 220px;
     }
     .carousel .list {
-        left: 54%;
-    }
-    .carousel .list .item {
-        width: 100%;
-    }
-    .carousel .list .item img {
-        right: 0%;
-        width: 30%;
+        left: 50%;
+        max-width: 94%;
     }
     .carousel .list .item {
         width: 100%;
@@ -674,14 +706,24 @@ header nav a {
         align-items: center;
         gap: 0em;
     }
+    .carousel .list .item img {
+        right: 0%;
+        width: 28%;
+    }
     .carousel .list .item .introduce {
         width: 100%;
         flex-direction: column;
         align-items: start;
         text-align: start;
     }
-    .carousel::before {
-        background-image: none;
+    .carousel .list .item .introduce .title {
+        font-size: 1.3em;
+    }
+    .carousel .list .item .introduce .topic {
+        font-size: 2em;
+    }
+    .carousel .list .item .introduce .des {
+        width: 90%;
     }
     .carousel .list .item .introduce .title,
     .carousel .list .item .introduce .topic,
@@ -690,36 +732,15 @@ header nav a {
     .carousel .list .item .introduce #pembuat {
         margin-bottom: 0.5em;
     }
-}
-@media screen and (max-width: 991px) {
-    /* ipad, tablets */
-    .carousel .list {
-        left: 50%;
+    .carousel::before {
+        background-image: none;
     }
-    .carousel .list .item {
-        width: 100%;
+    /* Hide arrows, show dots */
+    .carousel .arrows {
+        display: none !important;
     }
-    .carousel .list .item {
-        width: 100%;
-    }
-    .carousel .list .item img {
-        right: 0%;
-        width: 30%;
-    }
-    .carousel .list .item {
-        width: 100%;
-        font-size: 10px;
+    .carousel-dots {
         display: flex;
-        flex-direction: row-reverse;
-        justify-content: space-between;
-        align-items: center;
-        gap: 0em;
-    }
-    .carousel .list .item .introduce {
-        width: 100%;
-        flex-direction: column;
-        align-items: start;
-        text-align: start;
     }
     .carousel.showDetail .list .item:nth-child(2) .detail .specifications {
         overflow: auto;
@@ -728,13 +749,24 @@ header nav a {
         font-size: 2em;
     }
 }
+
+/* ========== MOBILE: <=767px ========== */
 @media screen and (max-width: 767px) {
-    /* mobile */
     .carousel {
-        height: 30vh;
+        height: 34vh;
+        min-height: 200px;
     }
     .carousel .list {
-        height: 100%;
+        height: 88%;
+        left: 50%;
+        max-width: 96%;
+    }
+    .carousel .list .item {
+        width: 100%;
+        font-size: 8px;
+    }
+    .carousel .list .item img {
+        width: 32%;
     }
     .carousel .list .item .introduce {
         width: 100%;
@@ -746,28 +778,20 @@ header nav a {
         width: 100%;
     }
     .carousel .list .item .introduce .title {
-        font-size: 2em;
+        font-size: 1.3em;
     }
     .carousel .list .item .introduce .topic {
-        font-size: 3em;
+        font-size: 1.8em;
     }
-    .carousel .list .item {
-        width: 100%;
-        font-size: 6px;
+    .carousel .list .item .introduce a.seeMore {
+        font-size: 1.3em;
     }
-    .carousel .list .item img {
-        width: 40%;
-    }
-    /* .carousel .list .item .introduce .des {
-        height: 6em;
-    } */
     .carousel.showDetail .list .item:nth-child(2) .detail {
         backdrop-filter: blur(10px);
         font-size: small;
     }
     .carousel .list .item:nth-child(2) .introduce .des,
     .carousel.showDetail .list .item:nth-child(2) .detail .des {
-        /* height: 100px; */
         overflow: auto;
     }
     .carousel.showDetail .list .item:nth-child(2) .detail .checkout {
@@ -775,31 +799,58 @@ header nav a {
         width: max-content;
         float: right;
     }
-    /* .arrows {
-        display: none;
-    } */
-    .carousel .list .item .introduce a.seeMore {
+    .carousel-dots {
+        bottom: 4px;
+        gap: 6px;
+    }
+    .carousel-dots .dot {
+        width: 6px;
+        height: 6px;
+    }
+    .carousel-dots .dot.active {
+        width: 20px;
+    }
+}
+
+/* ========== SMALL PHONE: <=480px ========== */
+@media screen and (max-width: 480px) {
+    .carousel {
+        height: 30vh;
+        min-height: 180px;
+    }
+    .carousel .list {
+        height: 85%;
+        max-width: 98%;
+    }
+    .carousel .list .item {
+        font-size: 7px;
+    }
+    .carousel .list .item img {
+        width: 30%;
+    }
+    .carousel .list .item .introduce .title {
+        font-size: 1.2em;
+        position: static;
+    }
+    .carousel .list .item .introduce .topic {
         font-size: 1.5em;
     }
-    .carousel .arrows {
-        position: absolute;
-        bottom: 100px;
-        width: 100vw;
-        max-width: 100%;
-        display: flex;
-        justify-content: space-between;
-        left: 50%;
-        transform: translateX(-50%);
+    .carousel .list .item .introduce .des {
+        font-size: 1.1em;
+        line-height: 1.4;
     }
-    /* #prev,
-    #next{
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        font-family: monospace;
-        border: 1px solid #5555;
-        font-size: large;
-        bottom: 1000px;
-        left: 10%;
-    } */
+    .carousel .list .item .introduce a.seeMore {
+        font-size: 1.2em;
+    }
+    .carousel .list .item .introduce .title,
+    .carousel .list .item .introduce .topic,
+    .carousel .list .item .introduce .des,
+    .carousel .list .item .introduce img,
+    .carousel .list .item .introduce #pembuat {
+        margin-bottom: 0.3em;
+    }
+    .carousel-dots {
+        bottom: 2px;
+        padding: 6px 0 4px;
+    }
 }
