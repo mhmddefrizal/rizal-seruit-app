@@ -53,29 +53,7 @@ $("#search_1").on("keyup", function () {
                             '"',
                     );
                     allResults.forEach(function (el) {
-                        var aksesClass =
-                            el.akses === "publik"
-                                ? "border-[#43a4d4]"
-                                : "border-[#e7a861]";
-                        html += `
-                        <div class="rounded-lg border border-neutral-200 p-2 hit-button cursor-pointer
-                                    hover:shadow-md hover:border-neutral-300 transition-shadow duration-200"
-                             data-id="${el.id}" data-nama="${el.nama}" data-logo="/img/${el.logo}" data-slug="${el.slug}">
-                            <a href="/info/${el.slug}" target="_blank">
-                                <div class="flex flex-row justify-between items-center mb-2">
-                                    <img src="/img/${el.logo}" alt="${el.nama}" class="rounded-lg h-10">
-                                    <span class="${aksesClass} border text-black rounded-xl text-[10px] flex items-center justify-center px-2">${el.akses}</span>
-                                </div>
-                                <span class="bg-[#1EA05E] text-white rounded-xl text-[10px] px-2">${el.pembuat}</span>
-                                <div class="flex flex-row justify-between items-center">
-                                    <p class="text-base font-semibold">${el.nama}</p>
-                                    <p class="mt-4 text-xs text-gray-500 w-1/4">
-                                        Hits: <span id="hits-count-${el.id}">${el.hits}</span>
-                                    </p>
-                                </div>
-                                <p class="text-sm text-gray-500">${el.deskripsi}</p>
-                            </a>
-                        </div>`;
+                        html += buildAppCard(el, true);
                     });
                 }
                 $("#search-results-grid").html(html);
@@ -97,6 +75,53 @@ if ($("#bps_ri").length) {
     search();
 }
 
+// ========================================
+// Reusable Card Builder
+// ========================================
+function buildAppCard(el, showPembuat) {
+    var borderColors = ['#3B82F6', '#EF4444', '#F59E0B', '#10B981', '#8B5CF6', '#EC4899', '#06B6D4', '#F97316'];
+    var randomColor = borderColors[Math.floor(Math.random() * borderColors.length)];
+    var badgeColor = el.akses === 'publik' ? '#1EA05E' : '#F59E0B';
+    var aksesLabel = el.akses.charAt(0).toUpperCase() + el.akses.slice(1);
+    var pembuatHtml = showPembuat && el.pembuat
+        ? `<div class="px-3 pt-2"><span class="bg-[#1EA05E] text-white rounded-xl text-[10px] px-2 py-0.5">${el.pembuat}</span></div>`
+        : '';
+
+    return `
+    <div class="rounded-lg border border-neutral-200 hit-button
+                hover:shadow-md hover:border-neutral-300 transition-shadow duration-200 cursor-pointer
+                overflow-hidden flex flex-col"
+         data-id="${el.id}" data-nama="${el.nama}" data-logo="/img/${el.logo}" data-slug="${el.slug}">
+        <a href="/info/${el.slug}" target="_blank" class="flex flex-col flex-1 no-underline">
+            <div class="p-3 pb-0">
+                <div class="flex flex-row justify-between items-center">
+                    <img src="/img/${el.logo}" alt="${el.nama}" class="rounded-lg h-10">
+                    <span class="rounded-full text-[10px] font-semibold flex items-center justify-center"
+                        style="background-color: ${badgeColor}; color: #fff; padding: 2px 12px;">
+                        ${aksesLabel}
+                    </span>
+                </div>
+            </div>
+            ${pembuatHtml}
+            <div class="px-3 pt-3 flex-1">
+                <div class="flex flex-row justify-between items-start">
+                    <p class="text-base font-bold text-gray-800 leading-tight">${el.nama}</p>
+                    <div class="flex items-center gap-2 text-gray-400 shrink-0 ml-2">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                            <path d="M12 1a2 2 0 0 1 2 2v7h1V8a2 2 0 1 1 4 0v4h1V9a2 2 0 1 1 4 0v7a8 8 0 0 1-8 8h-2a6 6 0 0 1-5.2-3L4.35 13.53a2 2 0 0 1 3.46-2L10 15V3a2 2 0 0 1 2-2z" opacity="0.85"/>
+                        </svg>
+                        <span class="text-xs font-medium">
+                            Hits: <span id="hits-count-${el.id}">${el.hits}</span>
+                        </span>
+                    </div>
+                </div>
+                <p class="text-xs text-gray-400 mt-1 mb-3 leading-relaxed">${el.deskripsi}</p>
+            </div>
+            <div class="w-full rounded-b-lg" style="height: 2px; background-color: ${randomColor};"></div>
+        </a>
+    </div>`;
+}
+
 function search(val) {
     var keyword = val;
     $.post(
@@ -116,131 +141,43 @@ function search(val) {
 
 // table row with ajax
 function search_bps_ri(res) {
-    let bps_ri = "";
-
+    let html = "";
     if (res.length <= 0) {
-        bps_ri += `
-            <p class="text-gray-500 relative col-span-5" style="width:500px">Aplikasi tidak ditemukan</p>
-        `;
+        html += `<p class="text-gray-500 relative col-span-5" style="width:500px">Aplikasi tidak ditemukan</p>`;
     } else {
-        res.forEach((element) => {
-            bg_akses = bps_ri += `
-            <div class="rounded-lg border border-neutral-200 p-2 hit-button cursor-pointer"
-                 data-id="${element.id}" data-nama="${element.nama}" data-logo="/img/${element.logo}" data-slug="${element.slug}">
-                <a href="/info/${element.slug}" target="_blank">
-                    <div class="flex flex-row justify-between items-center">
-                        <img src="/img/${element.logo}" alt="" class="rounded-lg h-8">
-                        <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
-                    </div>
-                    <div class="flex flex-row justify-between items-center">
-                        <p class="mt-4 text-base font-semibold">${element.nama}</p>
-                        <p class="mt-4 text-xs text-gray-500" id="hits-count-${element.id}">Hits: ${element.hits}</p>
-                    </div>
-                    <p class="text-sm text-gray-500">${element.deskripsi}</p>
-                </a>
-            </div>
-            `;
-        });
+        res.forEach((el) => { html += buildAppCard(el, false); });
     }
-
-    $("#bps_ri").html(bps_ri);
+    $("#bps_ri").html(html);
 }
 
 function search_bps_lampung(res) {
-    let bps_lampung = "";
-
+    let html = "";
     if (res.length <= 0) {
-        bps_lampung += `
-            <p class="text-gray-500 col-span-full" style="width:200px">Aplikasi tidak ditemukan</p>
-        `;
+        html += `<p class="text-gray-500 col-span-full" style="width:200px">Aplikasi tidak ditemukan</p>`;
     } else {
-        res.forEach((element) => {
-            bps_lampung += `
-            <div class="rounded-lg border border-neutral-200 p-2 hit-button cursor-pointer"
-                 data-id="${element.id}" data-nama="${element.nama}" data-logo="/img/${element.logo}" data-slug="${element.slug}">
-                <a href="/info/${element.slug}" target="_blank">
-                    <div class="flex flex-row justify-between items-center">
-                        <img src="/img/${element.logo}" alt="" class="rounded-lg h-8">
-                        <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
-                    </div>
-                    <div class="flex flex-row justify-between items-center">
-                        <p class="mt-4 text-base font-semibold">${element.nama}</p>
-                        <p class="mt-4 text-xs text-gray-500" id="hits-count-${element.id}">Hits: ${element.hits}</p>
-                    </div>
-                    <p class="text-sm text-gray-500">${element.deskripsi}</p>
-                </a>
-            </div>
-            `;
-        });
+        res.forEach((el) => { html += buildAppCard(el, false); });
     }
-
-    $("#bps_lampung").html(bps_lampung);
+    $("#bps_lampung").html(html);
 }
 
 function search_bps_kabkota(res) {
-    let bps_kabkota = "";
-
+    let html = "";
     if (res.length <= 0) {
-        bps_kabkota += `
-            <p class="text-gray-500 col-span-full" style="width:200px">Aplikasi tidak ditemukan</p>
-        `;
+        html += `<p class="text-gray-500 col-span-full" style="width:200px">Aplikasi tidak ditemukan</p>`;
     } else {
-        res.forEach((element) => {
-            bps_kabkota += `
-            <div class="rounded-lg border border-neutral-200 p-2 hit-button cursor-pointer"
-                 data-id="${element.id}" data-nama="${element.nama}" data-logo="/img/${element.logo}" data-slug="${element.slug}">
-                <a href="/info/${element.slug}" target="_blank">
-                    <div class="flex flex-row justify-between items-center mb-2">
-                        <img src="/img/${element.logo}" alt="" class="rounded-lg h-8">
-                        <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
-                    </div>
-                    <span class="bg-[#1EA05E] text-white rounded-xl text-[10px] px-2">${element.pembuat}</span>
-                    <div class="flex flex-row justify-between items-center">
-                        <p class="text-base font-semibold w-3/4">${element.nama}</p>
-                        <p class="mt-4 text-xs text-gray-500 w-1/4">
-                            Hits: <span id="hits-count-${element.id}">${element.hits}</span>
-                    </div>
-                    <p class="text-sm text-gray-500">${element.deskripsi}</p>
-                </a>
-            </div>
-            `;
-        });
+        res.forEach((el) => { html += buildAppCard(el, true); });
     }
-
-    $("#bps_kabkota").html(bps_kabkota);
+    $("#bps_kabkota").html(html);
 }
 
 function search_bps_kldi(res) {
-    let bps_kldi = "";
-
+    let html = "";
     if (res.length <= 0) {
-        bps_kldi += `
-            <p class="text-gray-500 col-span-full" style="width:200px">Aplikasi tidak ditemukan</p>
-        `;
+        html += `<p class="text-gray-500 col-span-full" style="width:200px">Aplikasi tidak ditemukan</p>`;
     } else {
-        res.forEach((element) => {
-            bps_kldi += `
-            <div class="rounded-lg border border-neutral-200 p-2 hit-button cursor-pointer"
-                 data-id="${element.id}" data-nama="${element.nama}" data-logo="/img/${element.logo}" data-slug="${element.slug}">
-                <a href="/info/${element.slug}" target="_blank">
-                    <div class="flex flex-row justify-between items-center mb-2">
-                        <img src="/img/${element.logo}" alt="" class="rounded-lg h-8">
-                        <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
-                    </div>
-                    <span class="bg-[#1EA05E] text-white rounded-xl text-[10px] px-2">${element.pembuat}</span>
-                    <div class="flex flex-row justify-between items-center">
-                        <p class="text-base font-semibold w-3/4">${element.nama}</p>
-                        <p class="mt-4 text-xs text-gray-500 w-1/4">
-                            Hits: <span id="hits-count-${element.id}">${element.hits}</span>
-                    </div>
-                    <p class="text-sm text-gray-500">${element.deskripsi}</p>
-                </a>
-            </div>
-            `;
-        });
+        res.forEach((el) => { html += buildAppCard(el, true); });
     }
-
-    $("#bps_kldi").html(bps_kldi);
+    $("#bps_kldi").html(html);
 }
 
 // ========================================
