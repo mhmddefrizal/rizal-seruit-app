@@ -2,21 +2,15 @@
 
 @php
     // Random color for bottom border line
-    $borderColors = ['#3B82F6', '#EF4444', '#F59E0B', '#10B981', '#8B5CF6', '#EC4899', '#06B6D4', '#F97316'];
-    $randomColor = $borderColors[array_rand($borderColors)];
+    $borderColors = '#EF4444';
 @endphp
 
 <div class="rounded-lg border border-neutral-200 hit-button
             hover:shadow-md hover:border-neutral-300 transition-shadow duration-200 cursor-pointer
             overflow-hidden flex flex-col"
-    data-id="{{ $item->id }}"
-    data-nama="{{ $item->nama }}"
-    data-logo="{{ asset('img/' . $item->logo) }}"
-    data-slug="{{ $item->slug }}"
-    data-deskripsi="{{ $item->deskripsi }}"
-    data-akses="{{ $item->akses }}"
-    data-pengguna="{{ $item->pengguna }}"
-    data-link="{{ $item->link }}">
+    data-id="{{ $item->id }}" data-nama="{{ $item->nama }}" data-logo="{{ asset('img/' . $item->logo) }}"
+    data-slug="{{ $item->slug }}" data-deskripsi="{{ $item->deskripsi }}" data-akses="{{ $item->akses }}"
+    data-pengguna="{{ $item->pengguna }}" data-link="{{ $item->link }}">
     <a href="{{ route('info', $item->slug) }}" target="_blank" class="flex flex-col flex-1 no-underline">
         {{-- Top section: Logo + Badge --}}
         <div class="p-3 pb-0">
@@ -42,8 +36,11 @@
                 <p class="text-base font-bold text-gray-800 leading-tight">{{ $item->nama }}</p>
                 <div class="flex items-center gap-2 text-gray-400 shrink-0 ml-2">
                     {{-- Touch/Hand icon --}}
-                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" stroke="none">
-                        <path d="M12 1a2 2 0 0 1 2 2v7h1V8a2 2 0 1 1 4 0v4h1V9a2 2 0 1 1 4 0v7a8 8 0 0 1-8 8h-2a6 6 0 0 1-5.2-3L4.35 13.53a2 2 0 0 1 3.46-2L10 15V3a2 2 0 0 1 2-2z" opacity="0.85"/>
+                    <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"
+                        stroke="none">
+                        <path
+                            d="M12 1a2 2 0 0 1 2 2v7h1V8a2 2 0 1 1 4 0v4h1V9a2 2 0 1 1 4 0v7a8 8 0 0 1-8 8h-2a6 6 0 0 1-5.2-3L4.35 13.53a2 2 0 0 1 3.46-2L10 15V3a2 2 0 0 1 2-2z"
+                            opacity="0.85" />
                     </svg>
                     <span class="text-xs font-medium">
                         Hits: <span id="hits-count-{{ $item->id }}">{{ $item->hits }}</span>
@@ -54,6 +51,6 @@
         </div>
 
         {{-- Bottom colored line --}}
-        <div class="w-full rounded-b-lg" style="height: 2px; background-color: {{ $randomColor }};"></div>
+        <div class="w-full rounded-b-lg" style="height: 2px; background-color: {{ $borderColors }};"></div>
     </a>
 </div>
