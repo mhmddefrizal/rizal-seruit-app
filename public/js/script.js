@@ -60,8 +60,8 @@ $("#search_1").on("keyup", function () {
                         html += `
                         <div class="rounded-lg border border-neutral-200 p-2 hit-button cursor-pointer
                                     hover:shadow-md hover:border-neutral-300 transition-shadow duration-200"
-                             data-id="${el.id}" data-nama="${el.nama}" data-logo="/img/${el.logo}" data-slug="${el.slug}">
-                            <a href="/info/${el.slug}" target="_blank">
+                             data-id="${el.id}" data-nama="${el.nama}" data-logo="/img/${el.logo}" data-slug="${el.slug}"
+                             data-deskripsi="${el.deskripsi}" data-akses="${el.akses}" data-pengguna="${el.pengguna}" data-link="${el.link}">
                                 <div class="flex flex-row justify-between items-center mb-2">
                                     <img src="/img/${el.logo}" alt="${el.nama}" class="rounded-lg h-10">
                                     <span class="${aksesClass} border text-black rounded-xl text-[10px] flex items-center justify-center px-2">${el.akses}</span>
@@ -74,7 +74,6 @@ $("#search_1").on("keyup", function () {
                                     </p>
                                 </div>
                                 <p class="text-sm text-gray-500">${el.deskripsi}</p>
-                            </a>
                         </div>`;
                     });
                 }
@@ -126,8 +125,8 @@ function search_bps_ri(res) {
         res.forEach((element) => {
             bg_akses = bps_ri += `
             <div class="rounded-lg border border-neutral-200 p-2 hit-button cursor-pointer"
-                 data-id="${element.id}" data-nama="${element.nama}" data-logo="/img/${element.logo}" data-slug="${element.slug}">
-                <a href="/info/${element.slug}" target="_blank">
+                 data-id="${element.id}" data-nama="${element.nama}" data-logo="/img/${element.logo}" data-slug="${element.slug}"
+                 data-deskripsi="${element.deskripsi}" data-akses="${element.akses}" data-pengguna="${element.pengguna}" data-link="${element.link}">
                     <div class="flex flex-row justify-between items-center">
                         <img src="/img/${element.logo}" alt="" class="rounded-lg h-8">
                         <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
@@ -137,7 +136,6 @@ function search_bps_ri(res) {
                         <p class="mt-4 text-xs text-gray-500" id="hits-count-${element.id}">Hits: ${element.hits}</p>
                     </div>
                     <p class="text-sm text-gray-500">${element.deskripsi}</p>
-                </a>
             </div>
             `;
         });
@@ -157,8 +155,8 @@ function search_bps_lampung(res) {
         res.forEach((element) => {
             bps_lampung += `
             <div class="rounded-lg border border-neutral-200 p-2 hit-button cursor-pointer"
-                 data-id="${element.id}" data-nama="${element.nama}" data-logo="/img/${element.logo}" data-slug="${element.slug}">
-                <a href="/info/${element.slug}" target="_blank">
+                 data-id="${element.id}" data-nama="${element.nama}" data-logo="/img/${element.logo}" data-slug="${element.slug}"
+                 data-deskripsi="${element.deskripsi}" data-akses="${element.akses}" data-pengguna="${element.pengguna}" data-link="${element.link}">
                     <div class="flex flex-row justify-between items-center">
                         <img src="/img/${element.logo}" alt="" class="rounded-lg h-8">
                         <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
@@ -168,7 +166,6 @@ function search_bps_lampung(res) {
                         <p class="mt-4 text-xs text-gray-500" id="hits-count-${element.id}">Hits: ${element.hits}</p>
                     </div>
                     <p class="text-sm text-gray-500">${element.deskripsi}</p>
-                </a>
             </div>
             `;
         });
@@ -188,8 +185,8 @@ function search_bps_kabkota(res) {
         res.forEach((element) => {
             bps_kabkota += `
             <div class="rounded-lg border border-neutral-200 p-2 hit-button cursor-pointer"
-                 data-id="${element.id}" data-nama="${element.nama}" data-logo="/img/${element.logo}" data-slug="${element.slug}">
-                <a href="/info/${element.slug}" target="_blank">
+                 data-id="${element.id}" data-nama="${element.nama}" data-logo="/img/${element.logo}" data-slug="${element.slug}"
+                 data-deskripsi="${element.deskripsi}" data-akses="${element.akses}" data-pengguna="${element.pengguna}" data-link="${element.link}">
                     <div class="flex flex-row justify-between items-center mb-2">
                         <img src="/img/${element.logo}" alt="" class="rounded-lg h-8">
                         <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
@@ -201,7 +198,6 @@ function search_bps_kabkota(res) {
                             Hits: <span id="hits-count-${element.id}">${element.hits}</span>
                     </div>
                     <p class="text-sm text-gray-500">${element.deskripsi}</p>
-                </a>
             </div>
             `;
         });
@@ -221,8 +217,8 @@ function search_bps_kldi(res) {
         res.forEach((element) => {
             bps_kldi += `
             <div class="rounded-lg border border-neutral-200 p-2 hit-button cursor-pointer"
-                 data-id="${element.id}" data-nama="${element.nama}" data-logo="/img/${element.logo}" data-slug="${element.slug}">
-                <a href="/info/${element.slug}" target="_blank">
+                 data-id="${element.id}" data-nama="${element.nama}" data-logo="/img/${element.logo}" data-slug="${element.slug}"
+                 data-deskripsi="${element.deskripsi}" data-akses="${element.akses}" data-pengguna="${element.pengguna}" data-link="${element.link}">
                     <div class="flex flex-row justify-between items-center mb-2">
                         <img src="/img/${element.logo}" alt="" class="rounded-lg h-8">
                         <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
@@ -234,7 +230,6 @@ function search_bps_kldi(res) {
                             Hits: <span id="hits-count-${element.id}">${element.hits}</span>
                     </div>
                     <p class="text-sm text-gray-500">${element.deskripsi}</p>
-                </a>
             </div>
             `;
         });
@@ -248,14 +243,31 @@ function search_bps_kldi(res) {
 // ========================================
 var pendingCardId = null;
 var pendingCardSlug = null;
+var pendingCardLink = null;
 
-function showConfirmModal(id, nama, logo, slug) {
+function showConfirmModal(id, nama, logo, slug, deskripsi, akses, pengguna, link) {
     pendingCardId = id;
     pendingCardSlug = slug;
+    pendingCardLink = link;
 
     // Populate modal content
     $("#confirm-modal-logo").attr("src", logo);
     $("#confirm-modal-app-name").text(nama);
+    $("#confirm-modal-deskripsi").text(deskripsi || "-");
+    $("#confirm-modal-pengguna").text(pengguna || "-");
+
+    // Set akses badge
+    var $akses = $("#confirm-modal-akses");
+    $akses.text(akses || "-");
+    $akses.removeClass("badge-publik badge-internal");
+    if (akses === "publik") {
+        $akses.addClass("badge-publik");
+    } else {
+        $akses.addClass("badge-internal");
+    }
+
+    // Set link on Kunjungi button
+    $("#confirm-modal-link").attr("href", link || "#");
 
     // Show modal with animation
     var $overlay = $("#confirm-modal-overlay");
@@ -280,6 +292,7 @@ function hideConfirmModal() {
 
     pendingCardId = null;
     pendingCardSlug = null;
+    pendingCardLink = null;
 }
 
 $(document).ready(function () {
@@ -293,6 +306,10 @@ $(document).ready(function () {
         var nama = $card.data("nama") || $card.find(".font-semibold").first().text().trim();
         var logo = $card.data("logo") || $card.find("img").first().attr("src");
         var slug = $card.data("slug") || "";
+        var deskripsi = $card.data("deskripsi") || "";
+        var akses = $card.data("akses") || "";
+        var pengguna = $card.data("pengguna") || "";
+        var link = $card.data("link") || "";
 
         // Extract slug from href if not in data attribute
         if (!slug) {
@@ -301,7 +318,7 @@ $(document).ready(function () {
             if (match) slug = match[1];
         }
 
-        showConfirmModal(id, nama, logo, slug);
+        showConfirmModal(id, nama, logo, slug, deskripsi, akses, pengguna, link);
     });
 
     // === Modal: Cancel / Close ===
@@ -323,13 +340,11 @@ $(document).ready(function () {
         }
     });
 
-    // === Modal: Confirm → update hits & navigate ===
-    $("#confirm-modal-confirm").on("click", function () {
-        if (!pendingCardId || !pendingCardSlug) return;
+    // === Modal: Kunjungi link click → update hits & navigate ===
+    $(document).on("click", "#confirm-modal-link", function (e) {
+        if (!pendingCardId) return;
 
-        var $btn = $(this);
-        $btn.prop("disabled", true).css("opacity", "0.7");
-
+        // Update hits via AJAX (fire and forget)
         $.ajax({
             url: "/update-hits",
             type: "POST",
@@ -342,16 +357,11 @@ $(document).ready(function () {
                 if (hitCountElement.length > 0) {
                     hitCountElement.text(parseInt(response.hits));
                 }
-                // Navigate to detail page
-                window.open(`/info/${response.slug}`, "_blank");
             },
             error: function (xhr, status, error) {
                 console.error("Error updating hit count:", xhr.responseText);
-                // Still navigate even on error
-                window.open(`/info/${pendingCardSlug}`, "_blank");
             },
             complete: function () {
-                $btn.prop("disabled", false).css("opacity", "1");
                 hideConfirmModal();
             },
         });
