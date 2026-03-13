@@ -2,14 +2,9 @@
 
 <div class="rounded-lg border border-neutral-200 p-2 hit-button
             hover:shadow-md hover:border-neutral-300 transition-shadow duration-200 cursor-pointer"
-    data-id="{{ $item->id }}"
-    data-nama="{{ $item->nama }}"
-    data-logo="{{ asset('img/' . $item->logo) }}"
-    data-slug="{{ $item->slug }}"
-    data-deskripsi="{{ $item->deskripsi }}"
-    data-akses="{{ $item->akses }}"
-    data-pengguna="{{ $item->pengguna }}"
-    data-link="{{ $item->link }}">
+    data-id="{{ $item->id }}" data-nama="{{ $item->nama }}" data-logo="{{ asset('img/' . $item->logo) }}"
+    data-slug="{{ $item->slug }}" data-deskripsi="{{ $item->deskripsi }}" data-akses="{{ $item->akses }}"
+    data-pengguna="{{ $item->pengguna }}" data-link="{{ $item->link }}">
     <div class="flex flex-row justify-between items-center {{ $showPembuat ? 'mb-2' : '' }}">
         <img src="{{ asset('img/' . $item->logo) }}" alt="{{ $item->nama }}" class="rounded-lg h-10">
         <span

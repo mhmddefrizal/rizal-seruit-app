@@ -245,7 +245,16 @@ var pendingCardId = null;
 var pendingCardSlug = null;
 var pendingCardLink = null;
 
-function showConfirmModal(id, nama, logo, slug, deskripsi, akses, pengguna, link) {
+function showConfirmModal(
+    id,
+    nama,
+    logo,
+    slug,
+    deskripsi,
+    akses,
+    pengguna,
+    link,
+) {
     pendingCardId = id;
     pendingCardSlug = slug;
     pendingCardLink = link;
@@ -303,7 +312,9 @@ $(document).ready(function () {
 
         var $card = $(this);
         var id = $card.data("id");
-        var nama = $card.data("nama") || $card.find(".font-semibold").first().text().trim();
+        var nama =
+            $card.data("nama") ||
+            $card.find(".font-semibold").first().text().trim();
         var logo = $card.data("logo") || $card.find("img").first().attr("src");
         var slug = $card.data("slug") || "";
         var deskripsi = $card.data("deskripsi") || "";
@@ -318,7 +329,16 @@ $(document).ready(function () {
             if (match) slug = match[1];
         }
 
-        showConfirmModal(id, nama, logo, slug, deskripsi, akses, pengguna, link);
+        showConfirmModal(
+            id,
+            nama,
+            logo,
+            slug,
+            deskripsi,
+            akses,
+            pengguna,
+            link,
+        );
     });
 
     // === Modal: Cancel / Close ===
@@ -335,7 +355,10 @@ $(document).ready(function () {
 
     // === Modal: Escape key to close ===
     $(document).on("keydown", function (e) {
-        if (e.key === "Escape" && $("#confirm-modal-overlay").hasClass("active")) {
+        if (
+            e.key === "Escape" &&
+            $("#confirm-modal-overlay").hasClass("active")
+        ) {
             hideConfirmModal();
         }
     });
