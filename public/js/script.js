@@ -185,14 +185,40 @@ function search_bps_kldi(res) {
 // ========================================
 var pendingCardId = null;
 var pendingCardSlug = null;
+var pendingCardLink = null;
 
-function showConfirmModal(id, nama, logo, slug) {
+function showConfirmModal(
+    id,
+    nama,
+    logo,
+    slug,
+    deskripsi,
+    akses,
+    pengguna,
+    link,
+) {
     pendingCardId = id;
     pendingCardSlug = slug;
+    pendingCardLink = link;
 
     // Populate modal content
     $("#confirm-modal-logo").attr("src", logo);
     $("#confirm-modal-app-name").text(nama);
+    $("#confirm-modal-deskripsi").text(deskripsi || "-");
+    $("#confirm-modal-pengguna").text(pengguna || "-");
+
+    // Set akses badge
+    var $akses = $("#confirm-modal-akses");
+    $akses.text(akses || "-");
+    $akses.removeClass("badge-publik badge-internal");
+    if (akses === "publik") {
+        $akses.addClass("badge-publik");
+    } else {
+        $akses.addClass("badge-internal");
+    }
+
+    // Set link on Kunjungi button
+    $("#confirm-modal-link").attr("href", link || "#");
 
     // Show modal with animation
     var $overlay = $("#confirm-modal-overlay");
@@ -217,6 +243,7 @@ function hideConfirmModal() {
 
     pendingCardId = null;
     pendingCardSlug = null;
+    pendingCardLink = null;
 }
 
 $(document).ready(function () {
@@ -227,9 +254,15 @@ $(document).ready(function () {
 
         var $card = $(this);
         var id = $card.data("id");
-        var nama = $card.data("nama") || $card.find(".font-semibold").first().text().trim();
+        var nama =
+            $card.data("nama") ||
+            $card.find(".font-semibold").first().text().trim();
         var logo = $card.data("logo") || $card.find("img").first().attr("src");
         var slug = $card.data("slug") || "";
+        var deskripsi = $card.data("deskripsi") || "";
+        var akses = $card.data("akses") || "";
+        var pengguna = $card.data("pengguna") || "";
+        var link = $card.data("link") || "";
 
         // Extract slug from href if not in data attribute
         if (!slug) {
@@ -238,7 +271,16 @@ $(document).ready(function () {
             if (match) slug = match[1];
         }
 
-        showConfirmModal(id, nama, logo, slug);
+        showConfirmModal(
+            id,
+            nama,
+            logo,
+            slug,
+            deskripsi,
+            akses,
+            pengguna,
+            link,
+        );
     });
 
     // === Modal: Cancel / Close ===
@@ -255,18 +297,19 @@ $(document).ready(function () {
 
     // === Modal: Escape key to close ===
     $(document).on("keydown", function (e) {
-        if (e.key === "Escape" && $("#confirm-modal-overlay").hasClass("active")) {
+        if (
+            e.key === "Escape" &&
+            $("#confirm-modal-overlay").hasClass("active")
+        ) {
             hideConfirmModal();
         }
     });
 
-    // === Modal: Confirm → update hits & navigate ===
-    $("#confirm-modal-confirm").on("click", function () {
-        if (!pendingCardId || !pendingCardSlug) return;
+    // === Modal: Kunjungi link click → update hits & navigate ===
+    $(document).on("click", "#confirm-modal-link", function (e) {
+        if (!pendingCardId) return;
 
-        var $btn = $(this);
-        $btn.prop("disabled", true).css("opacity", "0.7");
-
+        // Update hits via AJAX (fire and forget)
         $.ajax({
             url: "/update-hits",
             type: "POST",
@@ -279,16 +322,11 @@ $(document).ready(function () {
                 if (hitCountElement.length > 0) {
                     hitCountElement.text(parseInt(response.hits));
                 }
-                // Navigate to detail page
-                window.open(`/info/${response.slug}`, "_blank");
             },
             error: function (xhr, status, error) {
                 console.error("Error updating hit count:", xhr.responseText);
-                // Still navigate even on error
-                window.open(`/info/${pendingCardSlug}`, "_blank");
             },
             complete: function () {
-                $btn.prop("disabled", false).css("opacity", "1");
                 hideConfirmModal();
             },
         });
