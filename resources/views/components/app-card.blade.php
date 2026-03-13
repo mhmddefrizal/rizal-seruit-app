@@ -18,7 +18,7 @@
                 <img src="{{ asset('img/' . $item->logo) }}" alt="{{ $item->nama }}" class="rounded-lg h-10">
                 <span class="rounded-full text-[10px] font-semibold flex items-center justify-center"
                     style="background-color: {{ $item->akses == 'publik' ? '#1EA05E' : '#F59E0B' }}; color: #fff; padding: 2px 12px;">
-                    {{ ucfirst($item->akses) }}
+                    {{ $item->akses }}
                 </span>
             </div>
         </div>
