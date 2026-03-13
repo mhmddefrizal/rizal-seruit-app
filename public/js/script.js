@@ -2,6 +2,72 @@ $("#search_0").on("keyup", function () {
     search($("#search_0").val());
 });
 
+function escapeHtml(value) {
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/\"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+function renderAppCard(el, options) {
+    var opts = options || {};
+    var showPembuat = !!opts.showPembuat;
+    var borderColors = "#EF4444";
+    var akses = (el.akses || "").toLowerCase();
+    var aksesBg = akses === "publik" ? "#1EA05E" : "#F59E0B";
+    var nama = escapeHtml(el.nama || "-");
+    var deskripsi = escapeHtml(el.deskripsi || "-");
+    var pembuat = escapeHtml(el.pembuat || "");
+    var pengguna = escapeHtml(el.pengguna || "");
+    var slug = escapeHtml(el.slug || "");
+    var logo = escapeHtml(el.logo || "");
+    var link = escapeHtml(el.link || "");
+    var hits = Number.isFinite(parseInt(el.hits, 10))
+        ? parseInt(el.hits, 10)
+        : 0;
+
+    return `
+        <div class="rounded-lg border border-neutral-200 hit-button
+                    hover:shadow-md hover:border-neutral-300 transition-shadow duration-200 cursor-pointer
+                    overflow-hidden flex flex-col"
+            data-id="${el.id}" data-nama="${nama}" data-logo="/img/${logo}"
+            data-slug="${slug}" data-deskripsi="${deskripsi}" data-akses="${akses}"
+            data-pengguna="${pengguna}" data-link="${link}">
+            <a href="/info/${slug}" target="_blank" class="flex flex-col flex-1 no-underline">
+                <div class="p-3 pb-0">
+                    <div class="flex flex-row justify-between items-center">
+                        <img src="/img/${logo}" alt="${nama}" class="rounded-lg h-10">
+                        <span class="rounded-full text-[10px] font-semibold flex items-center justify-center"
+                            style="background-color: ${aksesBg}; color: #fff; padding: 2px 12px;">
+                            ${akses}
+                        </span>
+                    </div>
+                </div>
+
+                ${showPembuat && pembuat ? `<div class="px-3 pt-2"><span class="bg-[#1EA05E] text-white rounded-xl text-[10px] px-2 py-0.5">${pembuat}</span></div>` : ""}
+
+                <div class="px-3 pt-3 flex-1">
+                    <div class="flex flex-row justify-between items-start gap-2">
+                        <p class="text-base font-bold text-gray-800 leading-tight">${nama}</p>
+                        <div class="flex items-center gap-2 text-gray-400 shrink-0 ml-2">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" stroke="none">
+                                <path d="M12 1a2 2 0 0 1 2 2v7h1V8a2 2 0 1 1 4 0v4h1V9a2 2 0 1 1 4 0v7a8 8 0 0 1-8 8h-2a6 6 0 0 1-5.2-3L4.35 13.53a2 2 0 0 1 3.46-2L10 15V3a2 2 0 0 1 2-2z" opacity="0.85" />
+                            </svg>
+                            <span class="text-xs font-medium">
+                                Hits: <span id="hits-count-${el.id}">${hits}</span>
+                            </span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-400 mt-1 mb-3 leading-relaxed">${deskripsi}</p>
+                </div>
+
+                <div class="w-full rounded-b-lg" style="height: 2px; background-color: ${borderColors};"></div>
+            </a>
+        </div>`;
+}
+
 // === Homepage search with debounce ===
 var searchTimer = null;
 $("#search_1").on("keyup", function () {
@@ -53,28 +119,9 @@ $("#search_1").on("keyup", function () {
                             '"',
                     );
                     allResults.forEach(function (el) {
-                        var aksesClass =
-                            el.akses === "publik"
-                                ? "border-[#43a4d4]"
-                                : "border-[#e7a861]";
-                        html += `
-                        <div class="rounded-lg border border-neutral-200 p-2 hit-button cursor-pointer
-                                    hover:shadow-md hover:border-neutral-300 transition-shadow duration-200"
-                             data-id="${el.id}" data-nama="${el.nama}" data-logo="/img/${el.logo}" data-slug="${el.slug}"
-                             data-deskripsi="${el.deskripsi}" data-akses="${el.akses}" data-pengguna="${el.pengguna}" data-link="${el.link}">
-                                <div class="flex flex-row justify-between items-center mb-2">
-                                    <img src="/img/${el.logo}" alt="${el.nama}" class="rounded-lg h-10">
-                                    <span class="${aksesClass} border text-black rounded-xl text-[10px] flex items-center justify-center px-2">${el.akses}</span>
-                                </div>
-                                <span class="bg-[#1EA05E] text-white rounded-xl text-[10px] px-2">${el.pembuat}</span>
-                                <div class="flex flex-row justify-between items-center">
-                                    <p class="text-base font-semibold">${el.nama}</p>
-                                    <p class="mt-4 text-xs text-gray-500 w-1/4">
-                                        Hits: <span id="hits-count-${el.id}">${el.hits}</span>
-                                    </p>
-                                </div>
-                                <p class="text-sm text-gray-500">${el.deskripsi}</p>
-                        </div>`;
+                        html += renderAppCard(el, {
+                            showPembuat: !!el.pembuat,
+                        });
                     });
                 }
                 $("#search-results-grid").html(html);
@@ -123,21 +170,7 @@ function search_bps_ri(res) {
         `;
     } else {
         res.forEach((element) => {
-            bg_akses = bps_ri += `
-            <div class="rounded-lg border border-neutral-200 p-2 hit-button cursor-pointer"
-                 data-id="${element.id}" data-nama="${element.nama}" data-logo="/img/${element.logo}" data-slug="${element.slug}"
-                 data-deskripsi="${element.deskripsi}" data-akses="${element.akses}" data-pengguna="${element.pengguna}" data-link="${element.link}">
-                    <div class="flex flex-row justify-between items-center">
-                        <img src="/img/${element.logo}" alt="" class="rounded-lg h-8">
-                        <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
-                    </div>
-                    <div class="flex flex-row justify-between items-center">
-                        <p class="mt-4 text-base font-semibold">${element.nama}</p>
-                        <p class="mt-4 text-xs text-gray-500" id="hits-count-${element.id}">Hits: ${element.hits}</p>
-                    </div>
-                    <p class="text-sm text-gray-500">${element.deskripsi}</p>
-            </div>
-            `;
+            bps_ri += renderAppCard(element, { showPembuat: false });
         });
     }
 
@@ -153,21 +186,7 @@ function search_bps_lampung(res) {
         `;
     } else {
         res.forEach((element) => {
-            bps_lampung += `
-            <div class="rounded-lg border border-neutral-200 p-2 hit-button cursor-pointer"
-                 data-id="${element.id}" data-nama="${element.nama}" data-logo="/img/${element.logo}" data-slug="${element.slug}"
-                 data-deskripsi="${element.deskripsi}" data-akses="${element.akses}" data-pengguna="${element.pengguna}" data-link="${element.link}">
-                    <div class="flex flex-row justify-between items-center">
-                        <img src="/img/${element.logo}" alt="" class="rounded-lg h-8">
-                        <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
-                    </div>
-                    <div class="flex flex-row justify-between items-center">
-                        <p class="mt-4 text-base font-semibold">${element.nama}</p>
-                        <p class="mt-4 text-xs text-gray-500" id="hits-count-${element.id}">Hits: ${element.hits}</p>
-                    </div>
-                    <p class="text-sm text-gray-500">${element.deskripsi}</p>
-            </div>
-            `;
+            bps_lampung += renderAppCard(element, { showPembuat: false });
         });
     }
 
@@ -183,23 +202,7 @@ function search_bps_kabkota(res) {
         `;
     } else {
         res.forEach((element) => {
-            bps_kabkota += `
-            <div class="rounded-lg border border-neutral-200 p-2 hit-button cursor-pointer"
-                 data-id="${element.id}" data-nama="${element.nama}" data-logo="/img/${element.logo}" data-slug="${element.slug}"
-                 data-deskripsi="${element.deskripsi}" data-akses="${element.akses}" data-pengguna="${element.pengguna}" data-link="${element.link}">
-                    <div class="flex flex-row justify-between items-center mb-2">
-                        <img src="/img/${element.logo}" alt="" class="rounded-lg h-8">
-                        <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
-                    </div>
-                    <span class="bg-[#1EA05E] text-white rounded-xl text-[10px] px-2">${element.pembuat}</span>
-                    <div class="flex flex-row justify-between items-center">
-                        <p class="text-base font-semibold w-3/4">${element.nama}</p>
-                        <p class="mt-4 text-xs text-gray-500 w-1/4">
-                            Hits: <span id="hits-count-${element.id}">${element.hits}</span>
-                    </div>
-                    <p class="text-sm text-gray-500">${element.deskripsi}</p>
-            </div>
-            `;
+            bps_kabkota += renderAppCard(element, { showPembuat: true });
         });
     }
 
@@ -215,23 +218,7 @@ function search_bps_kldi(res) {
         `;
     } else {
         res.forEach((element) => {
-            bps_kldi += `
-            <div class="rounded-lg border border-neutral-200 p-2 hit-button cursor-pointer"
-                 data-id="${element.id}" data-nama="${element.nama}" data-logo="/img/${element.logo}" data-slug="${element.slug}"
-                 data-deskripsi="${element.deskripsi}" data-akses="${element.akses}" data-pengguna="${element.pengguna}" data-link="${element.link}">
-                    <div class="flex flex-row justify-between items-center mb-2">
-                        <img src="/img/${element.logo}" alt="" class="rounded-lg h-8">
-                        <span class="border-neutral-300 border text-[#282626] rounded-xl text-[10px] flex items-center justify-center px-2">${element.akses}</span>
-                    </div>
-                    <span class="bg-[#1EA05E] text-white rounded-xl text-[10px] px-2">${element.pembuat}</span>
-                    <div class="flex flex-row justify-between items-center">
-                        <p class="text-base font-semibold w-3/4">${element.nama}</p>
-                        <p class="mt-4 text-xs text-gray-500 w-1/4">
-                            Hits: <span id="hits-count-${element.id}">${element.hits}</span>
-                    </div>
-                    <p class="text-sm text-gray-500">${element.deskripsi}</p>
-            </div>
-            `;
+            bps_kldi += renderAppCard(element, { showPembuat: true });
         });
     }
 
