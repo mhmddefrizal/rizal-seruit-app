@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-<head>
-    @include('partials.head')
-</head>
+@include('partials.head')
 
 <body>
     {{-- Full-width desktop header --}}
@@ -30,7 +28,8 @@
                     </h2>
                     <p id="search-info" class="text-xs text-gray-400 mt-0.5 ml-3"></p>
                 </div>
-                <div id="search-results-grid" class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-4">
+                <div id="search-results-grid"
+                    class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-4">
                 </div>
             </div>
 
