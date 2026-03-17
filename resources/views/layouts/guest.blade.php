@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-@include('partials.head')
+<head>
+  @include('partials.head')
+</head>
 
 <body class="bg-green-100 min-h-screen flex flex-col">
   <div class="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-6">

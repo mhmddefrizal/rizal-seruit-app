@@ -1,14 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SERUIT-BPS | Information</title>
-  @vite('resources/css/app.css')
-  <meta name="csrf-token" content="{{ csrf_token() }}">
-  <link rel="shortcut icon" href="{{ asset('img/logo_bps.png') }}" type="image/x-icon">
-  <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+  @include('partials.head', ['title' => 'Information'])
   <link href="{{ asset('css/datatables.min.css') }}" rel="stylesheet">
   <!-- Font Awesome untuk Ikon -->
   <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
