@@ -225,7 +225,7 @@ header nav a {
 
 /* ---- See More Button ---- */
 .carousel .list .item .introduce .seeMore {
-    font-family: Poppins;
+    font-family: "Plus Jakarta Sans", sans-serif;
     padding: 5px 0;
     border: none;
     border-bottom: 1px solid #555;
@@ -425,7 +425,7 @@ header nav a {
     font-weight: bold;
 }
 .carousel.carousel.showDetail .list .item:nth-child(2) .checkout button {
-    font-family: Poppins;
+    font-family: "Plus Jakarta Sans", sans-serif;
     background-color: transparent;
     border: 1px solid #5555;
     margin-left: 5px;
@@ -502,7 +502,7 @@ header nav a {
     transform: translateX(-50%);
     border: none;
     border-bottom: 1px solid #555;
-    font-family: Poppins;
+    font-family: "Plus Jakarta Sans", sans-serif;
     font-weight: bold;
     letter-spacing: 3px;
     background-color: transparent;
