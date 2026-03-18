@@ -46,6 +46,7 @@
         transform: translate(-50%, -50%);
         text-align: center;
         pointer-events: none;
+        display: none;
     }
 
     .seruit-title {
@@ -194,6 +195,10 @@
 
     /* ===== md: 768px+ ===== */
     @media (min-width: 768px) {
+        .seruit-center {
+            display: block;
+        }
+
         .seruit-header-bar {
             padding: 8px 20px;
             min-height: 64px;
