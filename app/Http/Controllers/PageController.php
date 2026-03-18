@@ -140,6 +140,11 @@ class PageController extends Controller
         ]);
     }
 
+    public function tentang()
+    {
+        return view('pages.tentang');
+    }
+
     public function info($slug)
     {
 

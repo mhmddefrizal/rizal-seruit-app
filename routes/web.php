@@ -7,6 +7,7 @@ use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [PageController::class, 'index'])->name('home');
+Route::get('/tentang-aplikasi', [PageController::class, 'tentang'])->name('tentang');
 Route::get('/kategori/{slug}', [PageController::class, 'kategori'])->name('kategori');
 Route::post('/search', [PageController::class, 'search'])->name('search');
 Route::post('/update-hits', [PageController::class, 'update_hits'])->name('update_hits');
