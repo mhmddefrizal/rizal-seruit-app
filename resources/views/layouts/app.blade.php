@@ -3,27 +3,39 @@
 @include('partials.head')
 
 <body>
-  {{-- Full-width desktop header --}}
-  <div class="xl:block hidden bg-[#1EA05E] text-white py-3 px-6">
-    <div class="flex items-center justify-center gap-4">
-      <img src="{{ asset('img/logo_bps.png') }}" alt="Logo BPS" class="h-12">
-      <div class="text-center">
-        <h3 class="text-4xl font-bold"><a href="{{ route('home') }}">SERUIT</a></h3>
-        <p class="text-lg -mt-1">Satu Ruang Informasi untuk Inovasi Terintegrasi</p>
-      </div>
-    </div>
-  </div>
+    {{-- Green desktop header removed — red header now shows at all screen sizes --}}
 
-  <div class="xl:grid xl:grid-cols-12 xl:h-[calc(100vh-72px)] h-auto overflow-auto">
-    <div class="xl:col-span-4 xl:overflow-hidden">
-      @include('partials.header')
-      @include('partials.hits')
+    <!-- <div class="max-w-screen-xl mt-6 mb-4 pt-8"> -->
+    <div class=" xl:grid xl:grid-cols-12 xl:h-[calc(100vh-72px)] h-auto overflow-auto">
+        <div class="xl:col-span-8 xl:pr-4 xl:pl-5 xl:py-1 md:p-12 px-4 mt-4 pb-4 overflow-auto custom-scrollbar">
+            @include('partials.search')
+
+            {{-- Search results (hidden by default, shown when searching) --}}
+            <div id="search-results" class="hidden">
+                <div class="mb-4">
+                    <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+                        <span class="w-1 h-5 bg-[#1EA05E] rounded-full inline-block"></span>
+                        Hasil Pencarian
+                    </h2>
+                    <p id="search-info" class="text-xs text-gray-400 mt-0.5 ml-3"></p>
+                </div>
+                <div id="search-results-grid"
+                    class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-4">
+                </div>
+            </div>
+
+            <div id="main-content">
+                @yield('content')
+            </div>
+        </div>
+        <div class="xl:col-span-4 xl:overflow-hidden">
+            @include('partials.header')
+            @include('partials.hits')
+        </div>
     </div>
-    <div class="xl:col-span-8 xl:pr-4 xl:pl-5 xl:py-1 md:p-12 px-4 mt-1 pb-4 overflow-auto custom-scrollbar">
-      @yield('content')
-    </div>
-  </div>
-  @include('partials.footer')
+    <!-- </div> -->
+    @include('partials.confirm-modal')
+    @include('partials.footer')
 </body>
 
 </html>

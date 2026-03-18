@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\ListApp;
-use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 
 class PageController extends Controller
@@ -23,6 +22,52 @@ class PageController extends Controller
         $top_hits = collect($top_items);
 
         return view('pages.index', compact('list_bps_ri', 'list_bps_lampung', 'list_bps_kabkota', 'top_hits', 'list_kldi'));
+    }
+
+    public function kategori($slug)
+    {
+        $categories = [
+            'bps-ri' => [
+                'pembuat' => 'BPS RI',
+                'title' => 'BPS RI',
+                'showPembuat' => false,
+            ],
+            'bps-provinsi-lampung' => [
+                'pembuat' => 'BPS Provinsi Lampung',
+                'title' => 'BPS PROVINSI LAMPUNG',
+                'showPembuat' => false,
+            ],
+            'bps-kabkota' => [
+                'pembuat' => 'BPS Kabupaten/Kota',
+                'title' => 'BPS KABUPATEN/KOTA SE-PROVINSI LAMPUNG',
+                'showPembuat' => true,
+            ],
+            'kldi' => [
+                'pembuat' => 'KLDI',
+                'title' => 'KEMENTRIAN/LEMBAGA/DINAS/INSTANSI',
+                'showPembuat' => true,
+            ],
+        ];
+
+        if (! isset($categories[$slug])) {
+            abort(404);
+        }
+
+        $category = $categories[$slug];
+        $apps = ListApp::where('pembuat', $category['pembuat'])->orderBy('nama', 'asc')->get();
+
+        $top_hits = ListApp::orderBy('hits', 'desc')->take(10)->get();
+        $top_items = $top_hits->toArray();
+        $last_element = array_pop($top_items);
+        array_unshift($top_items, $last_element);
+        $top_hits = collect($top_items);
+
+        return view('pages.kategori', [
+            'apps' => $apps,
+            'title' => $category['title'],
+            'showPembuat' => $category['showPembuat'],
+            'top_hits' => $top_hits,
+        ]);
     }
 
     public function search(Request $request)
@@ -95,10 +140,17 @@ class PageController extends Controller
         ]);
     }
 
-    public function info($slug) {
+    public function tentang()
+    {
+        return view('pages.tentang');
+    }
+
+    public function info($slug)
+    {
 
         $app = ListApp::where('slug', $slug)->first();
         $validation = $app->detail ? $app->detail : $app->deskripsi;
+
         return view('pages.detail', compact('app', 'validation'));
     }
 }

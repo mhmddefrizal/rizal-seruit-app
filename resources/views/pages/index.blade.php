@@ -1,168 +1,31 @@
 @extends('layouts.app')
 
 @section('content')
-  <div class="xl:relative xl:block hidden mt-2 mb-3 w-full">
-    <input id="search_0" type="text" placeholder="Cari aplikasi.."
-      class="w-full px-4 py-2 border border-neutral-200 rounded-lg
-             focus:outline-none focus:border-[#1ea05f98] focus:ring-1 focus:ring-[#1ea05f98]">
-    <img src="{{ asset('img/search.svg') }}" alt="Search" class="absolute top-1/2 right-3 transform -translate-y-1/2 w-5 h-5">
-  </div>
+    {{-- Section heading --}}
+    <div class="max-w-screen-xl mb-4">
+        <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
+            <span class="w-1 h-5 bg-[#1EA05E] rounded-full inline-block"></span>
+            Kategori Aplikasi
+        </h2>
+        <p class="text-xs text-gray-400 mt-0.5 ml-3">Pilih kategori untuk melihat daftar aplikasi</p>
+    </div>
 
-  {{-- Bagian BPS RI --}}
-  <div class="">
-    <div class="flex items-center justify-between rounded-lg pt-1 ">
-      <h3 class="font-semibold md:text-xl text-base mb-2">BPS RI</h3>
-      <button id="toggle-chevron" class="focus:outline-none">
-        <svg class="w-6 h-6 chevron chevron-down" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-        </svg>
-      </button>
-    </div>
-    <p id="res_bps_ri"></p>
-    <div id="bps_ri"
-      class="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2
-                          custom-scrollbar transition-max-height duration-500 ease-in-out">
-      @foreach ($list_bps_ri as $item)
-        <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id={{ $item->id }}>
-          <a href="{{ route('info', $item->slug) }}" target="_blank">
-            <div class="flex flex-row justify-between items-center">
-              <img src="{{ asset('img/' . $item->logo) }}" alt="{{ $item->nama }}" class="rounded-lg h-12">
-              <span
-                class="{{ $item->akses == 'publik' ? 'border-[#43a4d4]' : 'border-[#e7a861]' }}
-                           border text-black rounded-xl text-[10px] flex items-center justify-center px-2">
-                {{ $item->akses }}
-              </span>
-            </div>
-            <div class="flex flex-row justify-between items-center">
-              <p class="mt-4 text-base font-semibold">{{ $item->nama }}</p>
-              <p class="mt-4 text-xs text-gray-500 w-1/4">
-                Hits: <span id="hits-count-{{ $item->id }}">{{ $item->hits }}</span>
-              </p>
-            </div>
-            <p class="text-sm text-gray-500">{{ $item->deskripsi }}</p>
-          </a>
-        </div>
-      @endforeach
-    </div>
-  </div>
+    {{-- Category Cards — 4 per row --}}
+    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        <x-category-card href="{{ route('kategori', 'bps-ri') }}" title="BPS RI"
+            description="Aplikasi yang dikembangkan dan dikelola oleh BPS Pusat (BPS RI)" :count="count($list_bps_ri)" color="#1EA05E"
+            icon="ri" />
 
-  {{-- Bagian BPS Provinsi Lampung --}}
-  <div class="my-3">
-    <div class="flex items-center justify-between rounded-lg pt-1 mb-1">
-      <h3 class="font-semibold md:text-xl text-base mb-2">BPS PROVINSI LAMPUNG</h3>
-      <button id="toggle-chevron-lampung" class="focus:outline-none">
-        <svg class="w-6 h-6 chevron chevron-down" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-        </svg>
-      </button>
-    </div>
-    <p id="res_bps_lampung"></p>
-    <div id="bps_lampung"
-      class="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2
-                                custom-scrollbar transition-max-height duration-500 ease-in-out">
-      @foreach ($list_bps_lampung as $item)
-        <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id={{ $item->id }}>
-          <a href="{{ route('info', $item->slug) }}" target="_blank">
-            <div class="flex flex-row justify-between items-center">
-              <img src="{{ asset('img/' . $item->logo) }}" alt="{{ $item->nama }}" class="rounded-lg h-10">
-              <span
-                class="{{ $item->akses == 'publik' ? 'border-[#43a4d4]' : 'border-[#e7a861]' }}
-                           border text-black rounded-xl text-[10px] flex items-center justify-center px-2">
-                {{ $item->akses }}
-              </span>
-            </div>
-            <div class="flex flex-row justify-between items-center">
-              <p class="mt-4 text-base font-semibold">{{ $item->nama }}</p>
-              <p class="mt-4 text-xs text-gray-500 w-1/4">
-                Hits: <span id="hits-count-{{ $item->id }}">{{ $item->hits }}</span>
-              </p>
-            </div>
-            <p class="text-sm text-gray-500">{{ $item->deskripsi }}</p>
-          </a>
-        </div>
-      @endforeach
-    </div>
-  </div>
+        <x-category-card href="{{ route('kategori', 'bps-provinsi-lampung') }}" title="BPS PROVINSI LAMPUNG"
+            description="Aplikasi yang dikembangkan dan dikelola oleh BPS Provinsi Lampung" :count="count($list_bps_lampung)"
+            color="#2B7CB3" icon="provinsi" />
 
-  {{-- Bagian BPS Kabupaten/Kota --}}
-  <div class="my-3">
-    <div class="flex items-center justify-between pt-1 mb-1">
-      <h3 class="font-semibold md:text-xl text-base mb-2">BPS KABUPATEN/KOTA SE-PROVINSI LAMPUNG</h3>
-      <button id="toggle-chevron-kab" class="focus:outline-none">
-        <svg class="w-6 h-6 chevron chevron-down" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-        </svg>
-      </button>
-    </div>
-    <p id="res_bps_kabkota"></p>
-    <div id="bps_kabkota"
-      class="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2
-                                custom-scrollbar max-height-full transition-max-height duration-500 ease-in-out">
-      @foreach ($list_bps_kabkota as $item)
-        <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id={{ $item->id }}>
-          <a href="{{ route('info', $item->slug) }}" target="_blank">
-            <div class="flex flex-row justify-between items-center mb-2">
-              <img src="{{ asset('img/' . $item->logo) }}" alt="{{ $item->nama }}" class="rounded-lg h-10">
-              <span
-                class="{{ $item->akses == 'publik' ? 'border-[#43a4d4]' : 'border-[#e7a861]' }}
-                           border text-black rounded-xl text-[10px] flex items-center justify-center px-2">
-                {{ $item->akses }}
-              </span>
-            </div>
-            <span class="bg-[#1EA05E] text-white rounded-xl text-[10px] px-2">{{ $item->pembuat }}</span>
-            <div class="flex flex-row justify-between items-center">
-              <p class="text-base font-semibold">{{ $item->nama }}</p>
-              <p class="mt-4 text-xs text-gray-500 w-1/4">
-                Hits: <span id="hits-count-{{ $item->id }}">{{ $item->hits }}</span>
-              </p>
-            </div>
-            <p class="text-sm text-gray-500">{{ $item->deskripsi }}</p>
-          </a>
-        </div>
-      @endforeach
-    </div>
-  </div>
+        <x-category-card href="{{ route('kategori', 'bps-kabkota') }}" title="BPS KAB/KOTA SE-PROV. LAMPUNG"
+            description="Aplikasi yang dikembangkan oleh BPS Kabupaten/Kota se-Provinsi Lampung" :count="count($list_bps_kabkota)"
+            color="#E57A25" icon="kabkota" />
 
-  {{-- Bagian K/L/D/I --}}
-  <div class="my-3">
-    <div class="flex items-center justify-between pt-1 mb-1">
-      <h3 class="font-semibold md:text-xl text-base mb-2">KEMENTRIAN/LEMBAGA/DINAS/INSTANSI</h3>
-      <button id="toggle-chevron-kldi" class="focus:outline-none">
-        <svg class="w-6 h-6 chevron chevron-down" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-          xmlns="http://www.w3.org/2000/svg">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
-        </svg>
-      </button>
+        <x-category-card href="{{ route('kategori', 'kldi') }}" title="KEMENTRIAN/LEMBAGA/DINAS/INSTANSI"
+            description="Aplikasi dari Kementerian, Lembaga, Dinas, dan Instansi terkait" :count="count($list_kldi)" color="#8B5CF6"
+            icon="kldi" />
     </div>
-    <p id="res_kldi"></p>
-    <div id="bps_kldi"
-      class="grid lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-3 grid-cols-2 gap-2
-                                custom-scrollbar max-height-full transition-max-height duration-500 ease-in-out">
-      @foreach ($list_kldi as $item)
-        <div class="rounded-lg border border-neutral-200 p-2 hit-button" data-id={{ $item->id }}>
-          <a href="{{ route('info', $item->slug) }}" target="_blank">
-            <div class="flex flex-row justify-between items-center mb-2">
-              <img src="{{ asset('img/' . $item->logo) }}" alt="{{ $item->nama }}" class="rounded-lg h-10">
-              <span
-                class="{{ $item->akses == 'publik' ? 'border-[#43a4d4]' : 'border-[#e7a861]' }}
-                           border text-black rounded-xl text-[10px] flex items-center justify-center px-2">
-                {{ $item->akses }}
-              </span>
-            </div>
-            <span class="bg-[#1EA05E] text-white rounded-xl text-[10px] px-2">{{ $item->pembuat }}</span>
-            <div class="flex flex-row justify-between items-center">
-              <p class="text-base font-semibold">{{ $item->nama }}</p>
-              <p class="mt-4 text-xs text-gray-500 w-1/4">
-                Hits: <span id="hits-count-{{ $item->id }}">{{ $item->hits }}</span>
-              </p>
-            </div>
-            <p class="text-sm text-gray-500">{{ $item->deskripsi }}</p>
-          </a>
-        </div>
-      @endforeach
-    </div>
-  </div>
 @endsection

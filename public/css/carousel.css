@@ -74,6 +74,7 @@ body {
     opacity: 1;
 }
 
+/* ========== CSS VARIABLES FOR CAROUSEL ANIMATIONS ========== */
 :root {
     --item1-transform: translateX(-100%) translateY(-5%) scale(1.5);
     --item1-filter: blur(30px);
@@ -119,89 +120,36 @@ header nav a {
     font-weight: 500;
 }
 
-/* carousel */
-/* .carousel{
-    position: relative;
-    height: 100vh;
-    overflow: hidden;
-}
-.carousel .list{
-    position: absolute;
-    width: 1140px;
-    max-width: 90%;
-    height: 80%;
-    left: 50%;
-    transform: translateX(-50%);
-}
-.carousel .list .item{
-    position: absolute;
-    left: 0%;
-    width: 70%;
-    height: 100%;
-    font-size: 15px;
-    transition: left 0.5s, opacity 0.5s, width 0.5s;
-    display: flex;
-    flex-direction: column;
-}
-.carousel .list .item:nth-child(n + 6){
-    opacity: 0;
-}
-.carousel .list .item:nth-child(2){
-    z-index: 10;
-    transform: translateX(0);
-}
-.carousel .list .item img{
-    width: 45%;
-    position: absolute;
-    right: -46%;
-    top: 50%;
-    transform: translateY(-50%);
-    transition: right 1.5s;
-}
-
-.carousel .list .item .introduce{
-    opacity: 0;
-    pointer-events: none;
-}
-.carousel .list .item:nth-child(2) .introduce{
-    opacity: 1;
-    pointer-events: auto;
-    width: 400px;
-    position: absolute;
-    top: 50%;
-    transform:  translateY(-50%);
-    transition: opacity 0.5s;
-}
-.carousel .list .item .introduce .title{
-    font-size: 1.3em;
-    font-weight: 500;
-    line-height: 1em;
-    margin-bottom: 0.3em;
-}
-.carousel .list .item .introduce .topic{
-    max-width: 60%;
-    line-height: 1em;
-    font-size: 2.5em;
-    font-weight: 500;
-    margin-bottom: 0.3em;
-}
-.carousel .list .item .introduce .des{
-    font-size: small;
-    color: #5559;
-    width: 75%;
-} */
-
+/* ==========================================================
+   CAROUSEL — BASE STYLES
+   ========================================================== */
 .carousel {
     position: relative;
     height: 100vh;
     overflow: hidden;
+    background-color: #f3f4f4;
+    border-radius: 20px;
 }
+.carousel::before {
+    width: 500px;
+    height: 300px;
+    content: "";
+    position: absolute;
+    z-index: -1;
+    border-radius: 20% 30% 80% 10%;
+    filter: blur(150px);
+    top: 50%;
+    left: 50%;
+    transform: translate(-10%, -50%);
+    transition: 1s;
+}
+
 .carousel .list {
     position: absolute;
     width: 1140px;
     max-width: 90%;
     height: 80%;
-    left: 64%;
+    left: 50%;
     transform: translateX(-50%);
 }
 .carousel .list .item {
@@ -215,9 +163,10 @@ header nav a {
         opacity 0.5s,
         width 0.5s;
     display: flex;
-    flex-direction: column;
-    justify-content: center; /* Center the content vertically */
-    gap: 1em; /* Add some spacing between elements */
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1em;
 }
 .carousel .list .item:nth-child(n + 6) {
     opacity: 0;
@@ -226,18 +175,25 @@ header nav a {
     z-index: 10;
     transform: translateX(0);
 }
-.carousel .list .item img {
-    width: 45%;
+
+/* ---- Image ---- */
+.carousel .list .item .item-img {
+    width: 20%;
+    max-width: 120px;
+    min-width: 50px;
+    flex-shrink: 0;
+    object-fit: contain;
     transition: transform 1.5s;
-    align-self: center; /* Center the image horizontally */
 }
+
+/* ---- Introduce block ---- */
 .carousel .list .item .introduce {
     opacity: 0;
-    pointer-events: auto;
+    pointer-events: none;
     display: flex;
     flex-direction: column;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
 }
 .carousel .list .item:nth-child(2) .introduce {
     opacity: 1;
@@ -247,35 +203,29 @@ header nav a {
 .carousel .list .item .introduce .title,
 .carousel .list .item .introduce .topic,
 .carousel .list .item .introduce .des,
-.carousel .list .item .introduce img,
 .carousel .list .item .introduce #pembuat {
-    margin-bottom: 0.75em;
+    margin-bottom: 0.5em;
 }
 .carousel .list .item .introduce .title {
-    font-size: 1.3em;
+    font-size: 1em;
     font-weight: 500;
-    line-height: 1em;
+    line-height: 1.2;
+    color: #888;
 }
 .carousel .list .item .introduce .topic {
-    font-size: 2.5em;
-    font-weight: 500;
+    font-size: 1.6em;
+    font-weight: 600;
+    line-height: 1.2;
 }
 .carousel .list .item .introduce .des {
-    font-size: small;
+    font-size: 0.85em;
     color: #555;
-    width: 75%;
-}
-.carousel .arrows {
-    position: absolute;
-    bottom: 10px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
+    line-height: 1.4;
 }
 
+/* ---- See More Button ---- */
 .carousel .list .item .introduce .seeMore {
-    font-family: Poppins;
-    margin-top: 1.2em;
+    font-family: "Plus Jakarta Sans", sans-serif;
     padding: 5px 0;
     border: none;
     border-bottom: 1px solid #555;
@@ -284,10 +234,15 @@ header nav a {
     letter-spacing: 3px;
     transition: background 0.5s;
     cursor: pointer;
+    font-size: 0.85em;
 }
 .carousel .list .item .introduce .seeMore:hover {
     background: #eee;
 }
+
+/* ==========================================================
+   CAROUSEL — ITEM POSITION TRANSFORMS (nth-child)
+   ========================================================== */
 .carousel .list .item:nth-child(1) {
     transform: var(--item1-transform);
     filter: var(--item1-filter);
@@ -311,7 +266,10 @@ header nav a {
     opacity: var(--item5-opacity);
     pointer-events: auto;
 }
-/* animation text in item2 */
+
+/* ==========================================================
+   CAROUSEL — TEXT ANIMATIONS (item2)
+   ========================================================== */
 .carousel .list .item:nth-child(2) .introduce .title,
 .carousel .list .item:nth-child(2) .introduce .topic,
 .carousel .list .item:nth-child(2) .introduce #pembuat,
@@ -343,6 +301,10 @@ header nav a {
 .carousel .list .item:nth-child(2) .introduce .seeMore {
     animation-delay: 1.8s;
 }
+
+/* ==========================================================
+   CAROUSEL — NEXT/PREV SLIDE ANIMATIONS
+   ========================================================== */
 /* next click */
 .carousel.next .item:nth-child(1) {
     animation: transformFromPosition2 0.5s ease-in-out 1 forwards;
@@ -405,12 +367,13 @@ header nav a {
     }
 }
 
-/* detail  */
+/* ==========================================================
+   CAROUSEL — DETAIL VIEW
+   ========================================================== */
 .carousel .list .item .detail {
     opacity: 0;
     pointer-events: auto;
 }
-/* showDetail */
 .carousel.showDetail .list .item:nth-child(3),
 .carousel.showDetail .list .item:nth-child(4) {
     left: 100%;
@@ -424,7 +387,7 @@ header nav a {
     opacity: 0;
     pointer-events: auto;
 }
-.carousel.showDetail .list .item:nth-child(2) img {
+.carousel.showDetail .list .item:nth-child(2) .item-img {
     right: 50%;
 }
 .carousel.showDetail .list .item:nth-child(2) .detail {
@@ -462,7 +425,7 @@ header nav a {
     font-weight: bold;
 }
 .carousel.carousel.showDetail .list .item:nth-child(2) .checkout button {
-    font-family: Poppins;
+    font-family: "Plus Jakarta Sans", sans-serif;
     background-color: transparent;
     border: 1px solid #5555;
     margin-left: 5px;
@@ -494,18 +457,30 @@ header nav a {
 .carousel.showDetail .list .item:nth-child(2) .detail .checkout {
     animation-delay: 1.6s;
 }
-.arrows {
+
+/* ==========================================================
+   ARROW BUTTONS
+   ========================================================== */
+.carousel .arrows {
     position: absolute;
-    bottom: 10px;
-    width: 1140px;
-    max-width: 90%;
+    top: 0;
+    bottom: 0;
+    left: 5%;
+    right: 5%;
     display: flex;
     justify-content: space-between;
-    left: 50%;
-    transform: translateX(-50%);
+    align-items: center;
+    pointer-events: none;
+    z-index: 20;
 }
+.carousel .arrows button {
+    pointer-events: auto;
+}
+
 #prev,
 #next {
+    background-color: #a51c31;
+    color: #ffff;
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -527,12 +502,11 @@ header nav a {
     transform: translateX(-50%);
     border: none;
     border-bottom: 1px solid #555;
-    font-family: Poppins;
+    font-family: "Plus Jakarta Sans", sans-serif;
     font-weight: bold;
     letter-spacing: 3px;
     background-color: transparent;
     padding: 10px;
-    /* opacity: 0; */
     transition: opacity 0.5s;
 }
 .carousel.showDetail #back {
@@ -543,141 +517,221 @@ header nav a {
     opacity: 0;
     pointer-events: auto;
 }
-.carousel {
-    background-color: rgba(243, 242, 242, 0.437);
-}
-.carousel::before {
-    width: 500px;
-    height: 300px;
-    content: "";
-    /* background-image: linear-gradient(70deg, #DC422A, blue); */
-    position: absolute;
-    z-index: -1;
-    border-radius: 20% 30% 80% 10%;
-    filter: blur(150px);
-    top: 50%;
-    left: 50%;
-    transform: translate(-10%, -50%);
-    transition: 1s;
-}
 .carousel.showDetail::before {
     transform: translate(-100%, -50%) rotate(90deg);
     filter: blur(130px);
 }
-/* Desktop: carousel inside sidebar */
-@media screen and (min-width: 1280px) {
+
+/* ==========================================================
+   DOT INDICATORS (hidden by default, shown on mobile/tablet)
+   ========================================================== */
+.carousel-dots {
+    display: none;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 0 6px;
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 25;
+}
+.carousel-dots .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background-color: #c4c4c4;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.3s ease;
+}
+.carousel-dots .dot:hover {
+    background-color: #888;
+    transform: scale(1.2);
+}
+.carousel-dots .dot.active {
+    background-color: #a51c31;
+    width: 24px;
+    border-radius: 4px;
+    transform: scale(1);
+}
+
+/* ==========================================================
+   RESPONSIVE — DESKTOP ≥1024px (lg + xl + 2xl)
+   Gambar di kiri, teks di kanan — horizontal layout
+   ========================================================== */
+@media screen and (min-width: 1024px) {
     .carousel {
-        height: calc(100vh - 140px);
+        --sidebar-carousel-width: 90%;
+        --sidebar-carousel-height: 50vh;
+        --sidebar-list-height: 85%;
+        --sidebar-img-width: 15%;
+        --sidebar-font-size: 12px;
+        --sidebar-title-size: 1em;
+        --sidebar-topic-size: 1.5em;
+        --sidebar-gap: 1em;
+    }
+
+    .carousel {
+        width: var(--sidebar-carousel-width);
+        height: var(--sidebar-carousel-height);
         overflow: hidden;
+        margin: 12px auto 0;
     }
     .carousel .list {
         width: 100%;
         max-width: 100%;
         left: 50%;
-        height: 85%;
+        height: var(--sidebar-list-height);
     }
     .carousel .list .item {
+        margin-top: 20px;
         width: 100%;
-        font-size: 10px;
+        font-size: var(--sidebar-font-size);
         display: flex;
-        flex-direction: column;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
-        gap: 0.5em;
+        gap: var(--sidebar-gap);
     }
-    .carousel .list .item img {
-        width: 35%;
+    .carousel .list .item .item-img {
+        width: var(--sidebar-img-width);
+        max-width: 100px;
+        min-width: 50px;
         position: static;
         transform: none;
+        flex-shrink: 0;
     }
     .carousel .list .item .introduce {
-        width: 100%;
+        width: 55%;
         flex-direction: column;
-        align-items: center;
-        text-align: center;
+        align-items: flex-start;
+        text-align: left;
+    }
+    .carousel .list .item .introduce .title {
+        font-size: var(--sidebar-title-size);
+        position: static;
     }
     .carousel .list .item .introduce .topic {
-        font-size: 2em;
+        font-size: var(--sidebar-topic-size);
     }
     .carousel .list .item .introduce .des {
-        width: 90%;
+        width: 100%;
+    }
+    .carousel .list .item .introduce .seeMore {
+        font-size: 0.85em;
     }
     .carousel .arrows {
-        bottom: 5px;
+        top: 0;
+    }
+    .carousel-dots {
+        display: none !important;
     }
     .carousel::before {
         display: none;
     }
 }
-@media screen and (max-width: 1024px) {
+
+/* xl (≥1280px) — sedikit lebih besar dari lg */
+@media screen and (min-width: 1280px) {
     .carousel {
-        height: 40vh;
+        --sidebar-img-width: 16%;
+        --sidebar-font-size: 13px;
+        --sidebar-title-size: 1.1em;
+        --sidebar-topic-size: 1.6em;
+        --sidebar-gap: 1.2em;
+    }
+}
+
+/* 2xl (≥1536px) — sedikit tambahan */
+@media screen and (min-width: 1536px) {
+    .carousel {
+        --sidebar-font-size: 14px;
+        --sidebar-title-size: 1.15em;
+        --sidebar-topic-size: 1.7em;
+    }
+}
+
+/* ==========================================================
+   RESPONSIVE — TABLET: 640px – 1023px
+   Gambar di KIRI, teks di KANAN, centered
+   ========================================================== */
+@media screen and (max-width: 1023px) {
+    .carousel {
+        height: 36vh;
+        min-height: 220px;
     }
     .carousel .list {
-        left: 54%;
+        left: 50%;
+        max-width: 92%;
+        height: 80%;
     }
     .carousel .list .item {
         width: 100%;
-    }
-    .carousel .list .item img {
-        right: 0%;
-        width: 30%;
-    }
-    .carousel .list .item {
-        width: 100%;
-        font-size: 10px;
+        font-size: 11px;
         display: flex;
-        flex-direction: row-reverse;
-        justify-content: space-between;
+        flex-direction: row; /* gambar kiri, teks kanan */
+        justify-content: center;
         align-items: center;
-        gap: 0em;
+        gap: 0.8em;
+    }
+    .carousel .list .item .item-img {
+        width: 22%;
+        max-width: 100px;
+        min-width: 50px;
+        position: static;
+        transform: none;
+        flex-shrink: 0;
+        order: -1; /* gambar selalu di kiri */
     }
     .carousel .list .item .introduce {
-        width: 100%;
+        width: auto;
+        max-width: 65%;
         flex-direction: column;
-        align-items: start;
-        text-align: start;
+        align-items: flex-start;
+        text-align: left;
     }
-    .carousel::before {
-        background-image: none;
+    .carousel .list .item .introduce .title {
+        font-size: 1.1em;
+        position: static;
+    }
+    .carousel .list .item .introduce .topic {
+        font-size: 1.6em;
+        line-height: 1.2;
+    }
+    .carousel .list .item .introduce .des {
+        width: 100%;
+        font-size: 0.9em;
+    }
+    .carousel .list .item .introduce .seeMore {
+        font-size: 0.9em;
     }
     .carousel .list .item .introduce .title,
     .carousel .list .item .introduce .topic,
     .carousel .list .item .introduce .des,
-    .carousel .list .item .introduce img,
     .carousel .list .item .introduce #pembuat {
-        margin-bottom: 0.5em;
+        margin-bottom: 0.4em;
     }
-}
-@media screen and (max-width: 991px) {
-    /* ipad, tablets */
-    .carousel .list {
-        left: 50%;
+    /* Hide blurred preview slides, only show active slide */
+    .carousel .list .item:nth-child(1),
+    .carousel .list .item:nth-child(3),
+    .carousel .list .item:nth-child(4),
+    .carousel .list .item:nth-child(5) {
+        opacity: 0 !important;
+        visibility: hidden;
+        pointer-events: none;
     }
-    .carousel .list .item {
-        width: 100%;
+    .carousel::before {
+        background-image: none;
     }
-    .carousel .list .item {
-        width: 100%;
+    /* Hide arrows, show dots */
+    .carousel .arrows {
+        display: none !important;
     }
-    .carousel .list .item img {
-        right: 0%;
-        width: 30%;
-    }
-    .carousel .list .item {
-        width: 100%;
-        font-size: 10px;
+    .carousel-dots {
         display: flex;
-        flex-direction: row-reverse;
-        justify-content: space-between;
-        align-items: center;
-        gap: 0em;
-    }
-    .carousel .list .item .introduce {
-        width: 100%;
-        flex-direction: column;
-        align-items: start;
-        text-align: start;
     }
     .carousel.showDetail .list .item:nth-child(2) .detail .specifications {
         overflow: auto;
@@ -686,46 +740,50 @@ header nav a {
         font-size: 2em;
     }
 }
+
+/* ==========================================================
+   RESPONSIVE — MOBILE: ≤767px
+   Gambar di KIRI, teks di KANAN
+   ========================================================== */
 @media screen and (max-width: 767px) {
-    /* mobile */
     .carousel {
-        height: 30vh;
+        height: 32vh;
+        min-height: 200px;
     }
     .carousel .list {
-        height: 100%;
-    }
-    .carousel .list .item .introduce {
-        width: 100%;
-        flex-direction: column;
-        align-items: start;
-        text-align: start;
-    }
-    .carousel .list .item .introduce .des {
-        width: 100%;
-    }
-    .carousel .list .item .introduce .title {
-        font-size: 2em;
-    }
-    .carousel .list .item .introduce .topic {
-        font-size: 3em;
+        height: 82%;
+        max-width: 94%;
     }
     .carousel .list .item {
-        width: 100%;
-        font-size: 6px;
+        font-size: 9px;
+        gap: 0.6em;
     }
-    .carousel .list .item img {
-        width: 40%;
+    .carousel .list .item .item-img {
+        width: 24%;
+        max-width: 80px;
+        min-width: 40px;
     }
-    /* .carousel .list .item .introduce .des {
-        height: 6em;
-    } */
+    .carousel .list .item .introduce {
+        max-width: 60%;
+    }
+    .carousel .list .item .introduce .title {
+        font-size: 1.1em;
+    }
+    .carousel .list .item .introduce .topic {
+        font-size: 1.5em;
+    }
+    .carousel .list .item .introduce .des {
+        font-size: 0.85em;
+    }
+    .carousel .list .item .introduce .seeMore {
+        font-size: 0.85em;
+    }
     .carousel.showDetail .list .item:nth-child(2) .detail {
         backdrop-filter: blur(10px);
         font-size: small;
     }
     .carousel .list .item:nth-child(2) .introduce .des,
     .carousel.showDetail .list .item:nth-child(2) .detail .des {
-        /* height: 100px; */
         overflow: auto;
     }
     .carousel.showDetail .list .item:nth-child(2) .detail .checkout {
@@ -733,31 +791,61 @@ header nav a {
         width: max-content;
         float: right;
     }
-    /* .arrows {
-        display: none;
-    } */
-    .carousel .list .item .introduce a.seeMore {
-        font-size: 1.5em;
+    .carousel-dots {
+        bottom: 4px;
+        gap: 6px;
     }
-    .carousel .arrows {
-        position: absolute;
-        bottom: 100px;
-        width: 100vw;
-        max-width: 100%;
-        display: flex;
-        justify-content: space-between;
-        left: 50%;
-        transform: translateX(-50%);
+    .carousel-dots .dot {
+        width: 6px;
+        height: 6px;
     }
-    /* #prev,
-    #next{
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        font-family: monospace;
-        border: 1px solid #5555;
-        font-size: large;
-        bottom: 1000px;
-        left: 10%;
-    } */
+    .carousel-dots .dot.active {
+        width: 20px;
+    }
+}
+
+/* ==========================================================
+   RESPONSIVE — SMALL PHONE: ≤480px
+   ========================================================== */
+@media screen and (max-width: 480px) {
+    .carousel {
+        height: 28vh;
+        min-height: 170px;
+    }
+    .carousel .list {
+        height: 82%;
+        max-width: 96%;
+    }
+    .carousel .list .item {
+        font-size: 7.5px;
+        gap: 0.5em;
+    }
+    .carousel .list .item .item-img {
+        width: 22%;
+        max-width: 65px;
+        min-width: 35px;
+    }
+    .carousel .list .item .introduce .title {
+        font-size: 1em;
+    }
+    .carousel .list .item .introduce .topic {
+        font-size: 1.3em;
+    }
+    .carousel .list .item .introduce .des {
+        font-size: 0.8em;
+        line-height: 1.3;
+    }
+    .carousel .list .item .introduce .seeMore {
+        font-size: 0.8em;
+    }
+    .carousel .list .item .introduce .title,
+    .carousel .list .item .introduce .topic,
+    .carousel .list .item .introduce .des,
+    .carousel .list .item .introduce #pembuat {
+        margin-bottom: 0.25em;
+    }
+    .carousel-dots {
+        bottom: 2px;
+        padding: 6px 0 4px;
+    }
 }
