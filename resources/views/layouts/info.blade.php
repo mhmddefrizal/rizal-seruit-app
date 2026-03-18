@@ -15,7 +15,7 @@
     <div class="min-h-screen">
 
         <!-- Konten Utama -->
-        <main class="py-10 mt-16">
+        <main class="py-10 mt-14">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 @yield('content')
             </div>

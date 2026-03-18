@@ -5,14 +5,13 @@
         <div class="p-6 sm:p-8 md:p-10 bg-white border-b border-gray-200">
 
             {{-- Header --}}
-            <div class="flex items-center gap-3 mb-6">
-                <span class="w-1.5 h-8 bg-[#a51c31] rounded-full inline-block"></span>
+            <div class="flex items-center justify-center gap-3 mb-6">
                 <h1 class="text-2xl sm:text-3xl font-bold text-gray-800">Tentang SERUIT</h1>
             </div>
 
             {{-- Subtitle --}}
             <div
-                class="mb-8 bg-gradient-to-r from-[#a51c31]/5 to-transparent rounded-lg p-4 sm:p-6 border-l-4 border-[#a51c31]">
+                class="mb-8 bg-gradient-to-r from-[#a51c31]/5 to-transparent rounded-lg py-4 pr-4 pl-0 sm:py-6 sm:pr-6 sm:pl-0 border-l-4 border-[#a51c31]">
                 <p class="text-lg sm:text-xl font-semibold text-[#a51c31]">
                     Satu Ruang Informasi untuk Inovasi Terintegrasi
                 </p>
