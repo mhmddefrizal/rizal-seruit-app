@@ -1,23 +1,26 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
-  @include('partials.head', ['title' => 'Information'])
-  <link href="{{ asset('css/datatables.min.css') }}" rel="stylesheet">
-  <!-- Font Awesome untuk Ikon -->
-  <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
+    @include('partials.head', ['title' => 'Information'])
+    <link href="{{ asset('css/datatables.min.css') }}" rel="stylesheet">
+    <!-- Font Awesome untuk Ikon -->
+    <link rel="stylesheet" href="{{ asset('css/all.min.css') }}">
 </head>
 
 <body class="bg-gray-100 font-sans">
 
-  <div class="min-h-screen">
+    @include('partials.header')
 
-    <!-- Konten Utama -->
-    <main class="py-10">
-      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-        @yield('content')
-      </div>
-    </main>
-  </div>
+    <div class="min-h-screen">
+
+        <!-- Konten Utama -->
+        <main class="py-10 mt-16">
+            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                @yield('content')
+            </div>
+        </main>
+    </div>
 
 </body>
 
