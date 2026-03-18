@@ -23,7 +23,7 @@
         <div class="relative overflow-hidden" style="height: 140px;">
 
             {{-- Category image --}}
-            @if($imagePath)
+            @if ($imagePath)
                 <img src="{{ $imagePath }}" alt="{{ $title }}"
                     class="group-hover:scale-110 transition-transform duration-500 ease-out"
                     style="width: 100%; height: 100%; object-fit: cover;">
@@ -31,7 +31,8 @@
 
             {{-- Count badge (top-right) --}}
             <div style="position: absolute; top: 10px; right: 10px; z-index: 10;">
-                <span style="background: rgba(255,255,255,0.92); color: #1f2937; font-size: 10px; font-weight: 600; border-radius: 6px; padding: 4px 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.15);">
+                <span
+                    style="background: rgba(255,255,255,0.92); color: #1f2937; font-size: 10px; font-weight: 600; border-radius: 6px; padding: 4px 10px; box-shadow: 0 1px 3px rgba(0,0,0,0.15);">
                     {{ $count }} Aplikasi
                 </span>
             </div>
@@ -51,11 +52,12 @@
                 </p>
             </div>
 
-            {{-- "Lihat Semua" link --}}
-            <div class="flex items-center gap-1.5 mt-3 text-xs font-semibold transition-all duration-300 group-hover:gap-2.5"
-                style="color: {{ $color }};">
-                <span>Lihat Semua</span>
-
+            <div class="mt-3">
+                <span
+                    class="inline-block text-xs font-bold text-white px-3 py-2 rounded-md transition-all duration-300 group-hover:opacity-90"
+                    style="background-color: #2563EB;">
+                    Lihat Semua
+                </span>
             </div>
         </div>
 

@@ -552,7 +552,7 @@ header nav a {
     transform: scale(1.2);
 }
 .carousel-dots .dot.active {
-    background-color: #1ea053;
+    background-color: #a51c31;
     width: 24px;
     border-radius: 4px;
     transform: scale(1);

@@ -14,7 +14,7 @@
                     <div class="introduce">
                         <div class="title">#TOP HITS No. {{ $order[$i] }}</div>
                         <div class="topic">{{ $item['nama'] }}</div>
-                        <span id="pembuat" class="bg-[#EF4444] rounded-md px-2 text-white text-xs">
+                        <span id="pembuat" class="bg-[#1ea053] rounded-md px-2 text-white text-xs">
                             {{ $item['pembuat'] }}
                         </span>
                         <div class="des">
