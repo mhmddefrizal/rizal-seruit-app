@@ -14,14 +14,14 @@
                     <div class="introduce">
                         <div class="title">#TOP HITS No. {{ $order[$i] }}</div>
                         <div class="topic">{{ $item['nama'] }}</div>
-                        <span id="pembuat" class="bg-[#1ea053] rounded-md px-2 text-white text-xs">
+                        <span id="pembuat" class="bg-[#EF4444] rounded-md px-2 text-white text-xs">
                             {{ $item['pembuat'] }}
                         </span>
                         <div class="des">
                             Hits: {{ $item['hits'] }}
                             <div class="text-sm text-black">{{ $item['deskripsi'] }}</div>
                         </div>
-                        <a href="{{ route('info', $item['slug']) }}" class="seeMore" target="_blank">Kunjungi &#8599</a>
+                        <a href="{{ $item['link'] }}" class="seeMore" target="_blank">Kunjungi &#8599</a>
                     </div>
                 </div>
                 @php $i++; @endphp
