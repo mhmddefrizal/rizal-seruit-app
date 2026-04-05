@@ -13,8 +13,34 @@
     {{-- Breadcrumb --}}
     <x-breadcrumb :route="'home'" :menu="'Beranda'" :submenu="$title" />
 
-    {{-- Section title --}}
-    <h2 class="font-bold md:text-2xl text-lg mb-4">{{ $title }}</h2>
+    {{-- Section title + Filter row --}}
+    <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-4">
+        <h2 class="font-bold md:text-2xl text-lg">{{ $title }}</h2>
+
+        {{-- Akses Filter --}}
+        <div class="flex items-center gap-2">
+            <label for="filter_akses" class="text-sm text-gray-500 font-medium whitespace-nowrap">
+                <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 inline-block mr-1 -mt-0.5" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3" />
+                </svg>
+                Akses:
+            </label>
+            <select id="filter_akses"
+                class="px-3 py-1.5 text-sm border border-neutral-200 rounded-lg bg-white text-gray-700
+                       focus:outline-none focus:border-[#1ea05f98] focus:ring-1 focus:ring-[#1ea05f98]
+                       cursor-pointer transition-colors duration-200">
+                <option value="semua">Semua</option>
+                <option value="vpn">VPN</option>
+                <option value="publik">Publik</option>
+            </select>
+        </div>
+    </div>
+
+    {{-- Filter info text --}}
+    <p id="filter_info" class="text-xs text-gray-400 mb-3 hidden">
+        <span id="filter_count"></span> aplikasi ditampilkan
+    </p>
 
     {{-- App Grid --}}
     <div id="app_grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -24,4 +50,9 @@
             <p class="text-gray-500 col-span-full">Belum ada aplikasi dalam kategori ini.</p>
         @endforelse
     </div>
+
+    {{-- Empty state for filter results --}}
+    <p id="filter_empty" class="text-gray-400 text-sm text-center py-8 hidden">
+        Tidak ada aplikasi dengan akses yang dipilih.
+    </p>
 @endsection

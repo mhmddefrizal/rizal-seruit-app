@@ -130,12 +130,50 @@ $("#search_1").on("keyup", function () {
     }, 300);
 });
 
-$("#search_kategori").on("keyup", function () {
-    var keyword = $(this).val().toLowerCase();
+// === Kategori page: combined search + akses filter ===
+function applyKategoriFilters() {
+    var keyword = ($("#search_kategori").val() || "").toLowerCase();
+    var akses = ($("#filter_akses").val() || "semua").toLowerCase();
+    var visibleCount = 0;
+    var totalCount = 0;
+
     $("#app_grid .hit-button").each(function () {
+        totalCount++;
         var text = $(this).text().toLowerCase();
-        $(this).toggle(text.indexOf(keyword) > -1);
+        var cardAkses = ($(this).data("akses") || "").toLowerCase();
+
+        var matchesSearch = keyword === "" || text.indexOf(keyword) > -1;
+        var matchesFilter = akses === "semua" || cardAkses === akses;
+
+        if (matchesSearch && matchesFilter) {
+            $(this).show();
+            visibleCount++;
+        } else {
+            $(this).hide();
+        }
     });
+
+    // Show/hide filter info & empty state
+    if (akses !== "semua" || keyword !== "") {
+        $("#filter_info").removeClass("hidden");
+        $("#filter_count").text(visibleCount);
+    } else {
+        $("#filter_info").addClass("hidden");
+    }
+
+    if (visibleCount === 0 && totalCount > 0) {
+        $("#filter_empty").removeClass("hidden");
+    } else {
+        $("#filter_empty").addClass("hidden");
+    }
+}
+
+$("#search_kategori").on("keyup", function () {
+    applyKategoriFilters();
+});
+
+$("#filter_akses").on("change", function () {
+    applyKategoriFilters();
 });
 
 // Only run AJAX search if target elements exist (kategori sections on page)
