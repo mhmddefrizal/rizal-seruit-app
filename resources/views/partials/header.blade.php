@@ -41,15 +41,36 @@
   line-height: 1.3;
 }
 
+.seruit-logo-text a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* .seruit-logo-text a:hover {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  } */
+
 .seruit-center {
   position: absolute;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  pointer-events: none;
+  pointer-events: auto;
   display: none;
 }
+
+.seruit-center a {
+  display: inline-block;
+  color: inherit;
+  text-decoration: none;
+}
+
+/* .seruit-center a:hover {
+  text-decoration: underline;
+  text-underline-offset: 4px;
+} */
 
 .seruit-title {
   font-size: 20px;
@@ -195,8 +216,8 @@
   }
 }
 
-/* ===== md: 768px+ ===== */
-@media (min-width: 768px) {
+/* ===== custom: 900px+ ===== */
+@media (min-width: 900px) {
   .seruit-center {
     display: block;
   }
@@ -310,13 +331,16 @@
 
     {{-- Logo kiri --}}
     <div class="seruit-logo-section">
-      <img src="{{ asset('img/bpslogo1.png') }}" alt="BPS Logo" class="seruit-logo-img">
-
+      <a href="{{ route('home') }}">
+        <img src="{{ asset('img/bpslogo1.png') }}" alt="BPS Logo" class="seruit-logo-img">
+      </a>
       <span class="seruit-logo-text">
         <em>
-          <a href="/">Badan Pusat Statistik</a>
-          <br>
-          <a href="/">Provinsi Lampung</a>
+          <a href="{{ route('home') }}" aria-label="Badan Pusat Statistik Provinsi Lampung">
+            Badan Pusat Statistik
+            <br>
+            Provinsi Lampung
+          </a>
         </em>
       </span>
 
@@ -324,8 +348,10 @@
 
     {{-- Teks tengah --}}
     <div class="seruit-center">
-      <h3 class="seruit-title">SERUIT</h3>
-      <p class="seruit-subtitle">Satu Ruang Informasi untuk Inovasi Terintegrasi</p>
+      <a href="{{ route('home') }}" aria-label="Kembali ke halaman utama SERUIT">
+        <h3 class="seruit-title">SERUIT</h3>
+        <p class="seruit-subtitle">Satu Ruang Informasi untuk Inovasi Terintegrasi</p>
+      </a>
     </div>
 
     {{-- Menu kanan --}}
@@ -368,23 +394,29 @@
 </div>
 
 <script>
-function toggleMobileMenu() {
-  var menu = document.getElementById('mobile-menu');
-  var btn = document.getElementById('hamburger-btn');
-  var line1 = document.getElementById('hamburger-line-1');
-  var line2 = document.getElementById('hamburger-line-2');
-  var line3 = document.getElementById('hamburger-line-3');
-  var isOpen = menu.classList.contains('menu-open');
+function getMenuElements() {
+  return {
+    menu: document.getElementById('mobile-menu'),
+    btn: document.getElementById('hamburger-btn'),
+    line1: document.getElementById('hamburger-line-1'),
+    line2: document.getElementById('hamburger-line-2'),
+    line3: document.getElementById('hamburger-line-3')
+  };
+}
+
+function setMenuState(isOpen) {
+  var elements = getMenuElements();
+  var menu = elements.menu;
+  var btn = elements.btn;
+  var line1 = elements.line1;
+  var line2 = elements.line2;
+  var line3 = elements.line3;
+
+  if (!menu || !btn || !line1 || !line2 || !line3) {
+    return;
+  }
 
   if (isOpen) {
-    menu.style.maxHeight = '0';
-    menu.style.opacity = '0';
-    menu.classList.remove('menu-open');
-    btn.setAttribute('aria-expanded', 'false');
-    line1.style.transform = '';
-    line2.style.opacity = '1';
-    line3.style.transform = '';
-  } else {
     menu.classList.add('menu-open');
     menu.style.maxHeight = menu.scrollHeight + 'px';
     menu.style.opacity = '1';
@@ -392,25 +424,31 @@ function toggleMobileMenu() {
     line1.style.transform = 'translateY(7px) rotate(45deg)';
     line2.style.opacity = '0';
     line3.style.transform = 'translateY(-7px) rotate(-45deg)';
+  } else {
+    menu.style.maxHeight = '0';
+    menu.style.opacity = '0';
+    menu.classList.remove('menu-open');
+    btn.setAttribute('aria-expanded', 'false');
+    line1.style.transform = '';
+    line2.style.opacity = '1';
+    line3.style.transform = '';
   }
+}
+
+function toggleMobileMenu() {
+  var menu = document.getElementById('mobile-menu');
+  if (!menu) {
+    return;
+  }
+  var isOpen = menu.classList.contains('menu-open');
+  setMenuState(!isOpen);
 }
 
 window.addEventListener('resize', function() {
   if (window.innerWidth >= 1024) {
     var menu = document.getElementById('mobile-menu');
-    var btn = document.getElementById('hamburger-btn');
-    var line1 = document.getElementById('hamburger-line-1');
-    var line2 = document.getElementById('hamburger-line-2');
-    var line3 = document.getElementById('hamburger-line-3');
-
     if (menu && menu.classList.contains('menu-open')) {
-      menu.style.maxHeight = '0';
-      menu.style.opacity = '0';
-      menu.classList.remove('menu-open');
-      btn.setAttribute('aria-expanded', 'false');
-      line1.style.transform = '';
-      line2.style.opacity = '1';
-      line3.style.transform = '';
+      setMenuState(false);
     }
   }
 });
