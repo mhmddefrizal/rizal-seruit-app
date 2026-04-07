@@ -50,7 +50,11 @@
 </div>
 
 {{-- Empty state for filter results --}}
-<p id="filter_empty" class="text-gray-400 text-sm text-center py-8 hidden">
-  Tidak ada aplikasi dengan akses yang dipilih.
-</p>
+<div id="filter_empty" class="text-center py-10 hidden">
+  <div id="filter_empty_icon"></div>
+  <p id="filter_empty_text" class="text-gray-500 text-sm mt-1"></p>
+  <p id="filter_empty_hint"
+    class="text-xs text-amber-600 bg-amber-50 border border-amber-200 rounded-lg inline-block px-4 py-2 mt-3 hidden">
+  </p>
+</div>
 @endsection

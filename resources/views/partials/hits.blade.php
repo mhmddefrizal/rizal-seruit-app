@@ -5,8 +5,8 @@
     $pembuatBadgeColors = [
     'BPS RI' => '#EF4444',
     'BPS Provinsi Lampung' => '#8100D1',
-    'BPS Kab-Kota Seprovinsi Lampung' => '#66D0BC',
-    'BPS Kabupaten/Kota' => '#66D0BC',
+    // 'BPS Kab-Kota Seprovinsi Lampung' => '#44A194',
+    'BPS Kabupaten/Kota' => '#44A194',
     'KLDI' => '#57595B',
     ];
     $i = 0;
