@@ -6,6 +6,7 @@ use App\Models\ListApp;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use SweetAlert2\Laravel\Swal;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class ListAppController extends Controller
@@ -49,7 +50,7 @@ class ListAppController extends Controller
         $app->link = $request->link;
         $app->hits = 0;
         $app->slug = Str::uuid();
-        $app->user_id = auth()->id();
+        $app->user_id = Auth::id();
 
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');

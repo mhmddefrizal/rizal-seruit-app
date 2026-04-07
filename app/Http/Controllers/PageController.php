@@ -31,21 +31,25 @@ class PageController extends Controller
                 'pembuat' => 'BPS RI',
                 'title' => 'BPS RI',
                 'showPembuat' => false,
+                'borderColor' => '#EF4444',
             ],
             'bps-provinsi-lampung' => [
                 'pembuat' => 'BPS Provinsi Lampung',
                 'title' => 'BPS PROVINSI LAMPUNG',
                 'showPembuat' => false,
+                'borderColor' => '#8100D1',
             ],
             'bps-kabkota' => [
                 'pembuat' => 'BPS Kabupaten/Kota',
                 'title' => 'BPS KABUPATEN/KOTA SE-PROVINSI LAMPUNG',
                 'showPembuat' => true,
+                'borderColor' => '#66D0BC',
             ],
             'kldi' => [
                 'pembuat' => 'KLDI',
                 'title' => 'KEMENTRIAN/LEMBAGA/DINAS/INSTANSI',
                 'showPembuat' => true,
+                'borderColor' => '#57595B',
             ],
         ];
 
@@ -66,6 +70,7 @@ class PageController extends Controller
             'apps' => $apps,
             'title' => $category['title'],
             'showPembuat' => $category['showPembuat'],
+            'borderColor' => $category['borderColor'],
             'top_hits' => $top_hits,
         ]);
     }
