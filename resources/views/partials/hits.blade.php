@@ -4,7 +4,7 @@
     $order = [10, 1, 2, 3, 4, 5, 6, 7, 8, 9];
     $pembuatBadgeColors = [
     'BPS RI' => '#EF4444',
-    'BPS Provinsi Lampung' => '#8100D1',
+    'BPS Provinsi' => '#8100D1',
     // 'BPS Kab-Kota Seprovinsi Lampung' => '#44A194',
     'BPS Kabupaten/Kota' => '#44A194',
     'KLDI' => '#57595B',
@@ -20,12 +20,13 @@
       {{-- Bagian introduce untuk menampilkan informasi tentang top hits --}}
       <div class="introduce">
         @php
-        $pembuatColor = $pembuatBadgeColors[$item['pembuat']] ?? '#57595B';
+        $pembuatKey = $item['pembuat'] === 'BPS Provinsi Lampung' ? 'BPS Provinsi' : $item['pembuat'];
+        $pembuatColor = $pembuatBadgeColors[$pembuatKey] ?? '#57595B';
         @endphp
         <div class="title">#TOP HITS No. {{ $order[$i] }}</div>
         <div class="topic">{{ $item['nama'] }}</div>
         <span class="rounded-md px-2 text-white text-xs" @style(['background-color: ' . $pembuatColor])>
-          {{ $item['pembuat'] }}
+          {{ $pembuatKey }}
         </span>
         <div class="des">
           Hits: {{ $item['hits'] }}
