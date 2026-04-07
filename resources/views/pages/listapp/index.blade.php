@@ -81,7 +81,7 @@
                   class="fa fa-eye"></i></a>
               <a href="{{ route('listapp.edit', $app['slug']) }}" class="text-indigo-600 hover:text-indigo-900 mx-2"><i
                   class="fa fa-edit"></i></a>
-              <form action="{{ route('listapp.delete', $app['slug']) }}" method="POST" class="inline">
+              <form action="{{ route('listapp.delete', $app['slug']) }}" method="POST" class="inline form-delete" data-name="{{ $app['nama'] }}">
                 @csrf
                 @method('DELETE')
                 <button type="submit" class="text-red-600 hover:text-red-900 mx-2">
@@ -102,10 +102,34 @@
 @endsection
 
 @push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script>
 $(document).ready(function() {
   // Inisialisasi DataTables
   $('#applications-table').DataTable();
+
+  // Konfirmasi Delete dengan SweetAlert2
+  $(document).on('submit', '.form-delete', function(e) {
+    e.preventDefault();
+    var form = this;
+    var name = $(this).data('name');
+    
+    Swal.fire({
+      title: 'Hapus Data',
+      text: "Apakah anda yakin Data dengan nama aplikasi '" + name + "' ingin dihapus?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#dc2626', // tailwind red-600
+      cancelButtonColor: '#6b7280', // tailwind gray-500
+      confirmButtonText: 'Ya, hapus!',
+      cancelButtonText: 'Tidak',
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        form.submit();
+      }
+    });
+  });
 });
 </script>
 @endpush
