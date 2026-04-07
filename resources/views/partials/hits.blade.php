@@ -2,6 +2,13 @@
   <div class="list">
     @php
     $order = [10, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    $pembuatBadgeColors = [
+    'BPS RI' => '#EF4444',
+    'BPS Provinsi Lampung' => '#8100D1',
+    'BPS Kab-Kota Seprovinsi Lampung' => '#66D0BC',
+    'BPS Kabupaten/Kota' => '#66D0BC',
+    'KLDI' => '#57595B',
+    ];
     $i = 0;
     @endphp
     @if (count($top_hits) > 0)
@@ -12,9 +19,12 @@
 
       {{-- Bagian introduce untuk menampilkan informasi tentang top hits --}}
       <div class="introduce">
+        @php
+        $pembuatColor = $pembuatBadgeColors[$item['pembuat']] ?? '#57595B';
+        @endphp
         <div class="title">#TOP HITS No. {{ $order[$i] }}</div>
         <div class="topic">{{ $item['nama'] }}</div>
-        <span id="pembuat" class="bg-[#1ea053] rounded-md px-2 text-white text-xs">
+        <span class="rounded-md px-2 text-white text-xs" @style(['background-color: ' . $pembuatColor])>
           {{ $item['pembuat'] }}
         </span>
         <div class="des">
