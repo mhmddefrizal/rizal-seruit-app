@@ -23,7 +23,7 @@
         <!-- Detail Info -->
         <div class="flex-1 w-full">
           <!-- Desktop: Table layout -->
-          <div class="hidden sm:block overflow-x-auto mb-3">
+          <div class="desktop-only overflow-x-auto mb-3">
             <table class="min-w-full border border-gray-200 rounded-lg">
               <tbody class="divide-y divide-gray-200">
                 <tr>
@@ -51,7 +51,7 @@
           </div>
 
           <!-- Mobile: Stacked list layout -->
-          <div class="sm:hidden space-y-3">
+          <div class="mobile-only space-y-3">
             <div class="border-b border-gray-100 pb-2">
               <span class="block text-xs font-semibold text-gray-500 uppercase tracking-wide">Nama</span>
               <span class="block text-sm text-gray-800 mt-0.5">{{ $user->name }}</span>

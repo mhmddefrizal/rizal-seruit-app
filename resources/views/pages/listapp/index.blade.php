@@ -35,7 +35,7 @@
     @include('sweetalert2::index')
 
     <!-- Tabel Data (Desktop) -->
-    <div class="hidden sm:block overflow-x-auto">
+    <div class="desktop-only overflow-x-auto">
       <table id="applications-table" class="min-w-full divide-y divide-gray-200">
         <thead class="bg-gray-50">
           <tr>
@@ -80,7 +80,7 @@
     </div>
 
     <!-- Card Layout (Mobile) -->
-    <div class="sm:hidden space-y-3">
+    <div class="mobile-only space-y-3">
       @php $idx = 1; @endphp
       @foreach ($list_apps as $app)
       <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">

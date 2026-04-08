@@ -110,6 +110,27 @@
         .hamburger.active .hamburger-line:nth-child(3) {
             transform: translateY(-8px) rotate(-45deg);
         }
+
+        /* ========================================
+           Responsive Visibility Helpers
+           ======================================== */
+        .desktop-only {
+            display: none !important;
+        }
+
+        .mobile-only {
+            display: block !important;
+        }
+
+        @media (min-width: 640px) {
+            .desktop-only {
+                display: block !important;
+            }
+
+            .mobile-only {
+                display: none !important;
+            }
+        }
     </style>
 </head>
 
