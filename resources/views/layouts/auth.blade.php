@@ -80,35 +80,87 @@
         /* ========================================
            Mobile Navigation
            ======================================== */
-        .mobile-menu {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
+
+        /* Desktop nav: hidden on mobile, flex on md+ */
+        .nav-desktop {
+            display: none;
         }
 
-        .mobile-menu.open {
-            max-height: 300px;
+        /* Hamburger button: visible on mobile, hidden on md+ */
+        .hamburger-btn {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            padding: 8px;
+            background: none;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease;
         }
 
-        .hamburger-line {
+        .hamburger-btn:hover {
+            background-color: #f3f4f6;
+        }
+
+        .hamburger-btn .hamburger-line {
             display: block;
-            width: 24px;
+            width: 20px;
             height: 2px;
             background-color: #374151;
             border-radius: 2px;
             transition: all 0.3s ease;
         }
 
-        .hamburger.active .hamburger-line:nth-child(1) {
-            transform: translateY(8px) rotate(45deg);
+        .hamburger-btn.active .hamburger-line:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
         }
 
-        .hamburger.active .hamburger-line:nth-child(2) {
+        .hamburger-btn.active .hamburger-line:nth-child(2) {
             opacity: 0;
         }
 
-        .hamburger.active .hamburger-line:nth-child(3) {
-            transform: translateY(-8px) rotate(-45deg);
+        .hamburger-btn.active .hamburger-line:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
+        /* Mobile menu panel */
+        .mobile-nav {
+            display: block;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .mobile-nav.open {
+            max-height: 400px;
+        }
+
+        /* Username on mobile only */
+        .user-name-desktop {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            .nav-desktop {
+                display: flex;
+                gap: 1.5rem;
+            }
+
+            .hamburger-btn {
+                display: none !important;
+            }
+
+            .mobile-nav {
+                display: none !important;
+            }
+
+            .user-name-desktop {
+                display: inline;
+            }
         }
 
         /* ========================================
@@ -138,48 +190,38 @@
 
     <div class="min-h-screen">
         <!-- Header -->
-        <header class="bg-white shadow-md relative z-50">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="flex items-center justify-between h-16">
+        <header class="bg-white shadow-md" style="position: relative; z-index: 50;">
+            <div class="max-w-7xl mx-auto px-4" style="padding-left: 1rem; padding-right: 1rem;">
+                <div style="display: flex; align-items: center; justify-content: space-between; height: 64px;">
                     <!-- Logo + Desktop Nav -->
-                    <div class="flex items-center space-x-6">
-                        <a href="{{ route('admin.index') }}" class="text-xl sm:text-2xl font-bold text-gray-800 whitespace-nowrap">SERUIT-BPS</a>
+                    <div style="display: flex; align-items: center; gap: 1.5rem;">
+                        <a href="{{ route('admin.index') }}" style="font-size: 1.25rem; font-weight: 700; color: #1f2937; white-space: nowrap; text-decoration: none;">SERUIT-BPS</a>
 
-                        <nav class="hidden md:flex space-x-6">
-                            <a href="{{ route('admin.index') }}"
-                                class="text-gray-600 hover:text-gray-900 transition duration-300">
-                                Dashboard
-                            </a>
-                            <a href="{{ route('listapp.index') }}"
-                                class="text-gray-600 hover:text-gray-900 transition duration-300">
-                                Kelola Aplikasi
-                            </a>
+                        <nav class="nav-desktop">
+                            <a href="{{ route('admin.index') }}" style="color: #4b5563; text-decoration: none; transition: color 0.3s;">Dashboard</a>
+                            <a href="{{ route('listapp.index') }}" style="color: #4b5563; text-decoration: none; transition: color 0.3s;">Kelola Aplikasi</a>
                             @if (Auth::user()->role == 'admin')
-                                <a href="{{ route('users.index') }}"
-                                    class="text-gray-600 hover:text-gray-900 transition duration-300">
-                                    Kelola Pengguna
-                                </a>
+                                <a href="{{ route('users.index') }}" style="color: #4b5563; text-decoration: none; transition: color 0.3s;">Kelola Pengguna</a>
                             @endif
                         </nav>
                     </div>
 
-                    <!-- Right side: User info + Logout + Hamburger -->
-                    <div class="flex items-center space-x-3 sm:space-x-4">
-                        <span class="hidden sm:inline text-gray-700 font-medium">{{ Auth::user()->name ?? 'Guest' }}</span>
-                        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gray-300 flex items-center justify-center">
-                            <i class="fa fa-user text-gray-600 text-sm sm:text-base"></i>
+                    <!-- Right side -->
+                    <div style="display: flex; align-items: center; gap: 0.75rem;">
+                        <span class="user-name-desktop" style="color: #374151; font-weight: 500;">{{ Auth::user()->name ?? 'Guest' }}</span>
+                        <div style="width: 36px; height: 36px; border-radius: 50%; background-color: #d1d5db; display: flex; align-items: center; justify-content: center;">
+                            <i class="fa fa-user" style="color: #4b5563; font-size: 14px;"></i>
                         </div>
                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                             @csrf
                         </form>
-                        <a href="{{ route('logout') }}" class="text-gray-500 hover:text-gray-800"
+                        <a href="{{ route('logout') }}" style="color: #6b7280; text-decoration: none;"
                             onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                            <i class="fa fa-sign-out-alt fa-lg"></i>
+                            <i class="fa fa-sign-out-alt" style="font-size: 18px;"></i>
                         </a>
 
-                        <!-- Hamburger Button (Mobile only) -->
-                        <button type="button" class="md:hidden hamburger flex flex-col justify-center items-center gap-[6px] p-2 -mr-2"
-                            id="hamburger-btn" aria-label="Toggle navigation">
+                        <!-- Hamburger Button -->
+                        <button type="button" class="hamburger-btn" id="hamburger-btn" aria-label="Toggle navigation">
                             <span class="hamburger-line"></span>
                             <span class="hamburger-line"></span>
                             <span class="hamburger-line"></span>
@@ -189,23 +231,23 @@
             </div>
 
             <!-- Mobile Navigation Menu -->
-            <div class="md:hidden mobile-menu border-t border-gray-200" id="mobile-menu">
-                <div class="px-4 py-3 space-y-2 bg-white">
-                    <span class="block px-3 py-2 text-sm text-gray-500 font-medium sm:hidden">
+            <div class="mobile-nav" id="mobile-menu">
+                <div style="padding: 0.75rem 1rem; background: #fff;">
+                    <div style="padding: 0.5rem 0.75rem; margin-bottom: 0.25rem; font-size: 0.875rem; color: #6b7280; font-weight: 500;">
                         {{ Auth::user()->name ?? 'Guest' }}
-                    </span>
+                    </div>
                     <a href="{{ route('admin.index') }}"
-                        class="block px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition duration-200">
-                        <i class="fa fa-tachometer-alt mr-2 w-5 text-center"></i>Dashboard
+                        style="display: block; padding: 0.625rem 0.75rem; border-radius: 8px; color: #374151; text-decoration: none; font-size: 0.9375rem; transition: background-color 0.2s;">
+                        <i class="fa fa-tachometer-alt" style="margin-right: 0.5rem; width: 20px; text-align: center;"></i>Dashboard
                     </a>
                     <a href="{{ route('listapp.index') }}"
-                        class="block px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition duration-200">
-                        <i class="fa fa-th-list mr-2 w-5 text-center"></i>Kelola Aplikasi
+                        style="display: block; padding: 0.625rem 0.75rem; border-radius: 8px; color: #374151; text-decoration: none; font-size: 0.9375rem; transition: background-color 0.2s;">
+                        <i class="fa fa-th-list" style="margin-right: 0.5rem; width: 20px; text-align: center;"></i>Kelola Aplikasi
                     </a>
                     @if (Auth::user()->role == 'admin')
                         <a href="{{ route('users.index') }}"
-                            class="block px-3 py-2 rounded-lg text-gray-700 hover:bg-gray-100 transition duration-200">
-                            <i class="fa fa-users mr-2 w-5 text-center"></i>Kelola Pengguna
+                            style="display: block; padding: 0.625rem 0.75rem; border-radius: 8px; color: #374151; text-decoration: none; font-size: 0.9375rem; transition: background-color 0.2s;">
+                            <i class="fa fa-users" style="margin-right: 0.5rem; width: 20px; text-align: center;"></i>Kelola Pengguna
                         </a>
                     @endif
                 </div>
@@ -233,9 +275,18 @@
         var mobileMenu = document.getElementById('mobile-menu');
 
         if (hamburger && mobileMenu) {
-            hamburger.addEventListener('click', function() {
+            hamburger.addEventListener('click', function(e) {
+                e.stopPropagation();
                 hamburger.classList.toggle('active');
                 mobileMenu.classList.toggle('open');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('open');
+                }
             });
         }
     });
