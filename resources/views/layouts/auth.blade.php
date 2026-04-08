@@ -192,7 +192,7 @@
   <div class="min-h-screen">
     <!-- Header -->
     <header class="bg-white shadow-md" style="position: relative; z-index: 50;">
-      <div class="max-w-7xl mx-auto px-4" style="padding-left: 1rem; padding-right: 1rem;">
+      <div class="w-full px-4" style="padding-left: 1rem; padding-right: 0;">
         <div style="display: flex; align-items: center; justify-content: space-between; height: 64px;">
           <!-- Logo + Desktop Nav -->
           <div style="display: flex; align-items: center; gap: 1.5rem;">
@@ -212,7 +212,8 @@
           </div>
 
           <!-- Right side -->
-          <div style="display: flex; align-items: center; gap: 0.75rem;">
+          <div
+            style="display: flex; flex: 1; align-items: center; justify-content: flex-end; gap: 0.75rem; margin-left: auto; padding-right: 1rem;">
             <span class="user-name-desktop"
               style="color: #374151; font-weight: 500;">{{ Auth::user()->name ?? 'Guest' }}</span>
             <div
