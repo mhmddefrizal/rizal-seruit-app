@@ -162,6 +162,23 @@
     .user-name-desktop {
       display: inline;
     }
+
+    .header-main-row {
+      position: static;
+    }
+
+    .header-left {
+      padding-right: 0;
+    }
+
+    .header-right {
+      position: static;
+      top: auto;
+      right: auto;
+      transform: none;
+      margin-left: auto;
+      padding-right: 0.5rem;
+    }
   }
 
   /* ========================================
@@ -173,6 +190,48 @@
 
   .mobile-only {
     display: block !important;
+  }
+
+  .header-main-row {
+    display: flex;
+    align-items: center;
+    height: 64px;
+    width: 100%;
+  }
+
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    flex: 1;
+    min-width: 0;
+  }
+
+  .header-right {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-left: auto;
+    padding-right: 0.5rem;
+  }
+
+  @media (max-width: 767px) {
+    .header-main-row {
+      position: relative !important;
+    }
+
+    .header-left {
+      padding-right: 8.5rem !important;
+    }
+
+    .header-right {
+      position: absolute !important;
+      right: 0.25rem !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+      margin-left: 0 !important;
+      padding-right: 0 !important;
+    }
   }
 
   @media (min-width: 640px) {
@@ -193,9 +252,9 @@
     <!-- Header -->
     <header class="bg-white shadow-md" style="position: relative; z-index: 50;">
       <div class="w-full px-4" style="padding-left: 1rem; padding-right: 0;">
-        <div style="display: flex; align-items: center; justify-content: space-between; height: 64px;">
+        <div class="header-main-row">
           <!-- Logo + Desktop Nav -->
-          <div style="display: flex; align-items: center; gap: 1.5rem;">
+          <div class="header-left">
             <a href="{{ route('admin.index') }}"
               style="font-size: 1.25rem; font-weight: 700; color: #1f2937; white-space: nowrap; text-decoration: none;">SERUIT-BPS</a>
 
@@ -212,8 +271,7 @@
           </div>
 
           <!-- Right side -->
-          <div
-            style="display: flex; flex: 1; align-items: center; justify-content: flex-end; gap: 0.75rem; margin-left: auto; padding-right: 1rem;">
+          <div class="header-right">
             <span class="user-name-desktop"
               style="color: #374151; font-weight: 500;">{{ Auth::user()->name ?? 'Guest' }}</span>
             <div
