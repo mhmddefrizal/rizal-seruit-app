@@ -107,10 +107,10 @@
             </div>
 
             <!-- Card Layout (Mobile) -->
-            <div class="mobile-only space-y-3">
+            <div class="mobile-only mobile-card-stack">
                 @php $idx = 1; @endphp
                 @foreach ($list_apps as $app)
-                    <div class="bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
+                    <div class="mobile-card bg-white border border-gray-200 rounded-lg p-4 shadow-sm">
                         <div class="flex items-start justify-between mb-2">
                             <div class="flex-1 min-w-0">
                                 <span class="text-xs text-gray-400 font-medium">#{{ $idx }}</span>
@@ -146,6 +146,18 @@
         </div>
     </div>
 @endsection
+
+@push('styles')
+    <style>
+        .mobile-card-stack .mobile-card {
+            margin-bottom: 1.5rem;
+        }
+
+        .mobile-card-stack .mobile-card:last-child {
+            margin-bottom: 0;
+        }
+    </style>
+@endpush
 
 @push('scripts')
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
