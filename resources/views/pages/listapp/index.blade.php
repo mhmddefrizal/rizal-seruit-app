@@ -24,7 +24,7 @@
             </div>
 
             <!-- Judul -->
-            <div class="flex sm:flex-row sm:justify-between gap-3 mb-4 sm:mb-6">
+            <div class="flex justify-between items-center gap-3 mb-4 sm:mb-6">
                 <h2 class="text-xl sm:text-2xl font-semibold text-gray-800">{{ $apps_submenu }}</h2>
                 <a href="{{ route('listapp.create') }}"
                     class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 text-sm sm:text-base sm:w-auto">
