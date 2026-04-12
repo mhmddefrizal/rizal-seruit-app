@@ -1639,6 +1639,9 @@
         .sm\:mt-10 {
             margin-top: calc(var(--spacing) * 10);
         }
+        .sm\:mt-16 {
+            margin-top: calc(var(--spacing) * 16);
+        }
         .sm\:flex {
             display: flex;
         }
