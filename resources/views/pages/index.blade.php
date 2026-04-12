@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- Section heading --}}
-    <div class="max-w-screen-xl mb-4">
+    <div class="max-w-7xl mx-auto mb-4 px-1 sm:px-0">
         <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
             <span class="w-1 h-5 bg-[#1EA05E] rounded-full inline-block"></span>
             Kategori Aplikasi

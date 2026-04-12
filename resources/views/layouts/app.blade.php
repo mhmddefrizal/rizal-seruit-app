@@ -2,12 +2,13 @@
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 @include('partials.head')
 
-<body>
+<body class="overflow-x-hidden">
     {{-- Green desktop header removed — red header now shows at all screen sizes --}}
 
     <!-- <div class="max-w-screen-xl mt-6 mb-4 pt-8"> -->
-    <div class=" xl:grid xl:grid-cols-12 xl:h-[calc(100vh-72px)] h-auto overflow-auto">
-        <div class="xl:col-span-8 xl:pr-4 xl:pl-5 xl:py-1 px-4 mt-4 pb-4 overflow-auto custom-scrollbar">
+    <div class="xl:grid xl:grid-cols-12 xl:h-[calc(100vh-72px)] h-auto overflow-y-auto overflow-x-hidden">
+        <div
+            class="xl:col-span-8 min-w-0 xl:pr-4 xl:pl-5 xl:py-1 px-4 mt-4 pb-4 overflow-y-auto overflow-x-hidden custom-scrollbar">
             @include('partials.search')
 
             {{-- Search results (hidden by default, shown when searching) --}}
@@ -28,7 +29,7 @@
                 @yield('content')
             </div>
         </div>
-        <div class="xl:col-span-4 xl:overflow-hidden">
+        <div class="xl:col-span-4 min-w-0 xl:overflow-hidden">
             @include('partials.header')
             @include('partials.hits')
         </div>
