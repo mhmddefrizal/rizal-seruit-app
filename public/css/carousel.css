@@ -120,6 +120,35 @@ header nav a {
     font-weight: 500;
 }
 
+/* Offset for content that sits below the fixed header */
+.hits-offset {
+    padding-top: 56px;
+}
+
+@media (min-width: 640px) {
+    .hits-offset {
+        padding-top: 60px;
+    }
+}
+
+@media (min-width: 900px) {
+    .hits-offset {
+        padding-top: 64px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .hits-offset {
+        padding-top: 72px;
+    }
+}
+
+@media (min-width: 1280px) {
+    .hits-offset {
+        padding-top: 76px;
+    }
+}
+
 /* ==========================================================
    CAROUSEL — BASE STYLES
    ========================================================== */

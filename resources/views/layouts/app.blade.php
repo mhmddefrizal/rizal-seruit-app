@@ -31,7 +31,9 @@
         </div>
         <div class="xl:col-span-4 min-w-0 xl:overflow-hidden">
             @include('partials.header')
-            @include('partials.hits')
+            <div class="hits-offset">
+                @include('partials.hits')
+            </div>
         </div>
     </div>
     <!-- </div> -->

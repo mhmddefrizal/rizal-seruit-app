@@ -1,4 +1,4 @@
-<div class="carousel xl:pt-2 xl:mt-0 md:mt-40 mt-36">
+<div class="carousel">
     <div class="list">
         @php
             $order = [10, 1, 2, 3, 4, 5, 6, 7, 8, 9];
