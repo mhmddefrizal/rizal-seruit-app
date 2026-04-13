@@ -21,8 +21,7 @@
             </div>
 
             {{-- Description --}}
-            {{-- Align justify --}}
-            <div style="text-align: justify" class="prose prose-gray max-w-none space-y-4 text-gray-700 leading-relaxed">
+            <div class="prose prose-gray max-w-none space-y-4 text-gray-700 leading-relaxed text-justify">
                 <p>
                     <strong>SERUIT</strong> (Satu Ruang Informasi untuk Inovasi Terintegrasi) adalah platform digital yang
                     dikembangkan oleh Badan Pusat Statistik (BPS) Provinsi Lampung sebagai pusat informasi dan katalog
@@ -62,7 +61,7 @@
             <div class="mt-10">
                 <h3 class="text-lg font-semibold text-gray-800 mb-4">Tim Pengembang</h3>
 
-                <div class="bg-gray-50 rounded-lg p-6 border border-gray-200">
+                <div class="bg-gray-50 rounded-lg p-6 border border-gray-200 text-justify">
                     <p class="text-gray-700 leading-relaxed text-justify">
                         Aplikasi <strong>SERUIT</strong> merupakan hasil kolaborasi dari berbagai pihak yang berkontribusi
                         dalam
