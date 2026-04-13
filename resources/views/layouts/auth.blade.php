@@ -139,8 +139,8 @@
         .mobile-nav {
             display: none;
             position: fixed;
-            top: 64px;
-            left: 0;
+            /* top: 64px;
+            left: 0; */
             right: 0;
             background: #fff;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
