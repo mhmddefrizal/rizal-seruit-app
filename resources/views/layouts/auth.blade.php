@@ -137,15 +137,22 @@
 
         /* Mobile menu panel */
         .mobile-nav {
-            display: block;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease;
-            border-top: 1px solid #e5e7eb;
+            display: none;
+            position: fixed;
+            top: 64px;
+            left: 0;
+            right: 0;
+            background: #fff;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            z-index: 49;
         }
 
         .mobile-nav.open {
-            max-height: 400px;
+            display: block;
+        }
+
+        .mobile-nav-link:hover {
+            background-color: #f3f4f6;
         }
 
         /* Username on mobile only */
@@ -305,34 +312,36 @@
                     </div>
                 </div>
             </div>
-
-            <!-- Mobile Navigation Menu -->
-            <div class="mobile-nav" id="mobile-menu">
-                <div style="padding: 0.75rem 1rem; background: #fff;">
-                    <div
-                        style="padding: 0.5rem 0.75rem; margin-bottom: 0.25rem; font-size: 0.875rem; color: #6b7280; font-weight: 500;">
-                        {{ Auth::user()->name ?? 'Guest' }}
-                    </div>
-                    <a href="{{ route('admin.index') }}"
-                        style="display: block; padding: 0.625rem 0.75rem; border-radius: 8px; color: #374151; text-decoration: none; font-size: 0.9375rem; transition: background-color 0.2s;">
-                        <i class="fa fa-tachometer-alt"
-                            style="margin-right: 0.5rem; width: 20px; text-align: center;"></i>Dashboard
-                    </a>
-                    <a href="{{ route('listapp.index') }}"
-                        style="display: block; padding: 0.625rem 0.75rem; border-radius: 8px; color: #374151; text-decoration: none; font-size: 0.9375rem; transition: background-color 0.2s;">
-                        <i class="fa fa-th-list"
-                            style="margin-right: 0.5rem; width: 20px; text-align: center;"></i>Kelola Aplikasi
-                    </a>
-                    @if (Auth::user()->role == 'admin')
-                        <a href="{{ route('users.index') }}"
-                            style="display: block; padding: 0.625rem 0.75rem; border-radius: 8px; color: #374151; text-decoration: none; font-size: 0.9375rem; transition: background-color 0.2s;">
-                            <i class="fa fa-users"
-                                style="margin-right: 0.5rem; width: 20px; text-align: center;"></i>Kelola Pengguna
-                        </a>
-                    @endif
-                </div>
-            </div>
         </header>
+
+        <!-- Mobile Navigation Menu (outside header) -->
+        <div class="mobile-nav" id="mobile-menu">
+            <div style="padding: 0.5rem 1rem 0.75rem; border-top: 1px solid #e5e7eb;">
+                <div
+                    style="padding: 0.5rem 0.75rem; margin-bottom: 0.25rem; font-size: 0.8125rem; color: #9ca3af; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em;">
+                    {{ Auth::user()->name ?? 'Guest' }}
+                </div>
+                <a href="{{ route('admin.index') }}" class="mobile-nav-link"
+                    style="display: flex; align-items: center; padding: 0.625rem 0.75rem; border-radius: 8px; color: #374151; text-decoration: none; font-size: 0.9375rem; transition: background-color 0.2s;">
+                    <i class="fa fa-tachometer-alt"
+                        style="margin-right: 0.625rem; width: 20px; text-align: center; color: #6b7280;"></i>Dashboard
+                </a>
+                <a href="{{ route('listapp.index') }}" class="mobile-nav-link"
+                    style="display: flex; align-items: center; padding: 0.625rem 0.75rem; border-radius: 8px; color: #374151; text-decoration: none; font-size: 0.9375rem; transition: background-color 0.2s;">
+                    <i class="fa fa-th-list"
+                        style="margin-right: 0.625rem; width: 20px; text-align: center; color: #6b7280;"></i>Kelola
+                    Aplikasi
+                </a>
+                @if (Auth::user()->role == 'admin')
+                    <a href="{{ route('users.index') }}" class="mobile-nav-link"
+                        style="display: flex; align-items: center; padding: 0.625rem 0.75rem; border-radius: 8px; color: #374151; text-decoration: none; font-size: 0.9375rem; transition: background-color 0.2s;">
+                        <i class="fa fa-users"
+                            style="margin-right: 0.625rem; width: 20px; text-align: center; color: #6b7280;"></i>Kelola
+                        Pengguna
+                    </a>
+                @endif
+            </div>
+        </div>
 
         <!-- Konten Utama -->
         <main class="py-6 sm:py-10">
