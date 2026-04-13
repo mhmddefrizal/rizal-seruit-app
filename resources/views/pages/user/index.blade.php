@@ -10,6 +10,19 @@
                 'submenu' => $users_submenu,
             ])
 
+            <!-- Search Bar -->
+            <div class="mb-4 sm:mb-6 sm:hidden">
+                <form action="#" method="GET" class="relative w-full">
+                    <input type="text" name="search" id="search" placeholder="Search"
+                        class="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        value="{{ request('search', '') }}">
+                    <button type="submit"
+                        class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </form>
+            </div>
+
             <!-- Judul -->
             <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4 sm:mb-6">
                 <h2 class="text-xl sm:text-2xl font-semibold text-gray-800">{{ $users_submenu }}</h2>
