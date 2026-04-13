@@ -102,8 +102,8 @@ body {
     --item5-opacity: 0;
 }
 header {
-    width: 1140px;
-    max-width: 90%;
+    width: 90%;
+    max-width: 100%;
     display: flex;
     justify-content: space-between;
     margin: auto;
@@ -154,14 +154,16 @@ header nav a {
    ========================================================== */
 .carousel {
     position: relative;
-    height: 100vh;
+    /* Fluid height: tumbuh bersama container, tidak terikat viewport zoom */
+    height: auto;
+    min-height: 200px;
     overflow: hidden;
     background-color: #f3f4f4;
     border-radius: 20px;
 }
 .carousel::before {
-    width: 500px;
-    height: 300px;
+    width: 40%;
+    height: 40%;
     content: "";
     position: absolute;
     z-index: -1;
@@ -175,11 +177,20 @@ header nav a {
 
 .carousel .list {
     position: absolute;
-    width: 1140px;
-    max-width: 90%;
+    width: 100%;
+    max-width: 100%;
     height: 80%;
     left: 50%;
     transform: translateX(-50%);
+}
+
+/* Placeholder agar .carousel memiliki tinggi minimal saat height:auto (mobile/tablet) */
+.carousel::after {
+    content: "";
+    display: block;
+    /* Tinggi konten item carousel: image + teks — fluid via em */
+    padding-top: 12em;
+    pointer-events: none;
 }
 .carousel .list .item {
     position: absolute;
@@ -593,40 +604,38 @@ header nav a {
    ========================================================== */
 @media screen and (min-width: 1024px) {
     .carousel {
-        --sidebar-carousel-width: 90%;
-        --sidebar-carousel-height: 50vh;
-        --sidebar-list-height: 85%;
-        --sidebar-img-width: 15%;
-        --sidebar-font-size: 12px;
-        --sidebar-title-size: 1em;
-        --sidebar-topic-size: 1.5em;
-        --sidebar-gap: 1em;
-    }
-
-    .carousel {
-        width: var(--sidebar-carousel-width);
-        height: var(--sidebar-carousel-height);
+        width: 90%;
+        /*
+         * Gunakan em-based height agar scale otomatis saat browser di-zoom.
+         * em mengikuti font-size root → zoom browser = ubah font-size → carousel ikut.
+         */
+        height: 18em;
+        min-height: 180px;
         overflow: hidden;
         margin: 12px auto 0;
+    }
+    /* Di desktop list pakai absolute, carousel punya explicit height — normal */
+    .carousel::after {
+        display: none;
     }
     .carousel .list {
         width: 100%;
         max-width: 100%;
         left: 50%;
-        height: var(--sidebar-list-height);
+        height: 85%;
     }
     .carousel .list .item {
         margin-top: 20px;
         width: 100%;
-        font-size: var(--sidebar-font-size);
+        font-size: 0.75rem;
         display: flex;
         flex-direction: row;
         justify-content: center;
         align-items: center;
-        gap: var(--sidebar-gap);
+        gap: 1em;
     }
     .carousel .list .item .item-img {
-        width: var(--sidebar-img-width);
+        width: 15%;
         max-width: 100px;
         min-width: 50px;
         position: static;
@@ -640,11 +649,11 @@ header nav a {
         text-align: left;
     }
     .carousel .list .item .introduce .title {
-        font-size: var(--sidebar-title-size);
+        font-size: 1em;
         position: static;
     }
     .carousel .list .item .introduce .topic {
-        font-size: var(--sidebar-topic-size);
+        font-size: 1.5em;
     }
     .carousel .list .item .introduce .des {
         width: 100%;
@@ -666,20 +675,29 @@ header nav a {
 /* xl (≥1280px) — sedikit lebih besar dari lg */
 @media screen and (min-width: 1280px) {
     .carousel {
-        --sidebar-img-width: 16%;
-        --sidebar-font-size: 13px;
-        --sidebar-title-size: 1.1em;
-        --sidebar-topic-size: 1.6em;
-        --sidebar-gap: 1.2em;
+        font-size: 0.8125rem;
+    }
+    .carousel .list .item .item-img {
+        width: 16%;
+    }
+    .carousel .list .item .introduce .title {
+        font-size: 1.1em;
+    }
+    .carousel .list .item .introduce .topic {
+        font-size: 1.6em;
     }
 }
 
 /* 2xl (≥1536px) — sedikit tambahan */
 @media screen and (min-width: 1536px) {
     .carousel {
-        --sidebar-font-size: 14px;
-        --sidebar-title-size: 1.15em;
-        --sidebar-topic-size: 1.7em;
+        font-size: 0.875rem;
+    }
+    .carousel .list .item .introduce .title {
+        font-size: 1.15em;
+    }
+    .carousel .list .item .introduce .topic {
+        font-size: 1.7em;
     }
 }
 
@@ -689,8 +707,10 @@ header nav a {
    ========================================================== */
 @media screen and (max-width: 1023px) {
     .carousel {
-        height: 36vh;
+        /* Gunakan height fluid — tidak terikat viewport zoom */
+        height: auto;
         min-height: 220px;
+        padding-bottom: 40px;
     }
     .carousel .list {
         left: 50%;
@@ -776,8 +796,9 @@ header nav a {
    ========================================================== */
 @media screen and (max-width: 767px) {
     .carousel {
-        height: 32vh;
+        height: auto;
         min-height: 200px;
+        padding-bottom: 36px;
     }
     .carousel .list {
         height: 82%;
@@ -838,8 +859,9 @@ header nav a {
    ========================================================== */
 @media screen and (max-width: 480px) {
     .carousel {
-        height: 28vh;
+        height: auto;
         min-height: 170px;
+        padding-bottom: 30px;
     }
     .carousel .list {
         height: 82%;
