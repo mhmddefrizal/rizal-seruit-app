@@ -1664,6 +1664,18 @@
         .sm\:mt-16 {
             margin-top: calc(var(--spacing) * 16);
         }
+        .sm\:mt-18 {
+            margin-top: calc(var(--spacing) * 18);
+        }
+        .sm\:mt-20 {
+            margin-top: calc(var(--spacing) * 20);
+        }
+        .sm\:mt-22 {
+            margin-top: calc(var(--spacing) * 22);
+        }
+        .sm\:mt-24 {
+            margin-top: calc(var(--spacing) * 24);
+        }
         .sm\:flex {
             display: flex;
         }
@@ -1800,6 +1812,15 @@
         }
         .lg\:mt-18 {
             margin-top: calc(var(--spacing) * 18);
+        }
+        .lg\:mt-20 {
+            margin-top: calc(var(--spacing) * 20);
+        }
+        .lg\:mt-22 {
+            margin-top: calc(var(--spacing) * 22);
+        }
+        .lg\:mt-24 {
+            margin-top: calc(var(--spacing) * 24);
         }
         .lg\:block {
             display: block;
