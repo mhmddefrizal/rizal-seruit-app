@@ -24,10 +24,10 @@
             </div>
 
             <!-- Judul -->
-            <div class="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-4 sm:mb-6">
+            <div class="flex justify-between items-center gap-3 mb-4 sm:mb-6">
                 <h2 class="text-xl sm:text-2xl font-semibold text-gray-800">{{ $users_submenu }}</h2>
                 <a href="{{ route('users.create') }}"
-                    class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 text-sm sm:text-base w-full sm:w-auto">
+                    class="inline-flex items-center justify-center px-4 py-2 bg-blue-600 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75 text-sm sm:text-base sm:w-auto">
                     <i class="fa fa-plus mr-2"></i>Tambah Pengguna
                 </a>
             </div>
