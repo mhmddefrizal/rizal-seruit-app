@@ -90,12 +90,12 @@
            Mobile Navigation
            ======================================== */
 
-        /* Desktop nav: hidden on mobile, flex on md+ */
+        /* Desktop nav: hidden on <=925px, visible on >925px */
         .nav-desktop {
             display: none;
         }
 
-        /* Hamburger button: visible on mobile, hidden on md+ */
+        /* Hamburger button: visible on <=925px, hidden on >925px */
         .hamburger-btn {
             display: flex;
             flex-direction: column;
@@ -139,8 +139,6 @@
         .mobile-nav {
             display: none;
             position: fixed;
-            /* top: 64px;
-            left: 0; */
             right: 0;
             background: #fff;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
@@ -160,7 +158,7 @@
             display: none;
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 926px) {
             .nav-desktop {
                 display: flex;
                 gap: 1.5rem;
@@ -230,11 +228,7 @@
             padding-right: 0.5rem;
         }
 
-        @media (max-width: 767px) {
-            /* .header-main-row {
-                position: relative !important;
-            } */
-
+        @media (max-width: 925px) {
             .header-left {
                 padding-right: 8.5rem !important;
             }
@@ -362,8 +356,14 @@
         document.addEventListener('DOMContentLoaded', function() {
             var hamburger = document.getElementById('hamburger-btn');
             var mobileMenu = document.getElementById('mobile-menu');
+            var mobileBreakpoint = 925;
 
             if (hamburger && mobileMenu) {
+                var closeMobileMenu = function() {
+                    hamburger.classList.remove('active');
+                    mobileMenu.classList.remove('open');
+                };
+
                 hamburger.addEventListener('click', function(e) {
                     e.stopPropagation();
                     hamburger.classList.toggle('active');
@@ -373,8 +373,14 @@
                 // Close menu when clicking outside
                 document.addEventListener('click', function(e) {
                     if (!hamburger.contains(e.target) && !mobileMenu.contains(e.target)) {
-                        hamburger.classList.remove('active');
-                        mobileMenu.classList.remove('open');
+                        closeMobileMenu();
+                    }
+                });
+
+                // Ensure mobile menu closes when switching to desktop width
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth > mobileBreakpoint) {
+                        closeMobileMenu();
                     }
                 });
             }
