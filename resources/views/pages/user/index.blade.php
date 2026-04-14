@@ -144,6 +144,8 @@
                     </div>
                     @php $idx++; @endphp
                 @endforeach
+
+                <div id="mobile-pagination-users" class="mobile-pagination"></div>
             </div>
         </div>
     </div>
@@ -158,6 +160,37 @@
         .mobile-card-stack .mobile-card:last-child {
             margin-bottom: 0;
         }
+
+        .mobile-pagination {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .mobile-pagination .page-btn {
+            min-width: 2rem;
+            height: 2rem;
+            padding: 0 0.625rem;
+            border: 1px solid #d1d5db;
+            border-radius: 0.5rem;
+            background: #fff;
+            color: #374151;
+            font-size: 0.875rem;
+            line-height: 1;
+        }
+
+        .mobile-pagination .page-btn.active {
+            background: #2563eb;
+            border-color: #2563eb;
+            color: #fff;
+        }
+
+        .mobile-pagination .page-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
     </style>
 @endpush
 
@@ -168,6 +201,56 @@
             if ($(window).width() >= 640) {
                 $('#users-table').DataTable();
             }
+
+            // Pagination sederhana untuk card mobile (0-639px)
+            function initMobileCardPagination(stackSelector, pagerSelector, itemsPerPage) {
+                if ($(window).width() >= 640) {
+                    return;
+                }
+
+                var $stack = $(stackSelector);
+                var $cards = $stack.find('.mobile-card');
+                var $pager = $(pagerSelector);
+                var totalItems = $cards.length;
+                var totalPages = Math.ceil(totalItems / itemsPerPage);
+
+                if (totalPages <= 1) {
+                    $pager.empty();
+                    return;
+                }
+
+                function renderPage(page) {
+                    var start = (page - 1) * itemsPerPage;
+                    var end = start + itemsPerPage;
+
+                    $cards.hide().slice(start, end).show();
+
+                    var buttons = '';
+                    buttons += '<button type="button" class="page-btn" data-page="' + (page - 1) + '" ' +
+                        (page === 1 ? 'disabled' : '') + '>Prev</button>';
+
+                    for (var i = 1; i <= totalPages; i++) {
+                        buttons += '<button type="button" class="page-btn ' + (i === page ? 'active' : '') +
+                            '" data-page="' + i + '">' + i + '</button>';
+                    }
+
+                    buttons += '<button type="button" class="page-btn" data-page="' + (page + 1) + '" ' +
+                        (page === totalPages ? 'disabled' : '') + '>Next</button>';
+
+                    $pager.html(buttons);
+                }
+
+                renderPage(1);
+
+                $pager.on('click', '.page-btn', function() {
+                    var page = parseInt($(this).data('page'), 10);
+                    if (!isNaN(page) && page >= 1 && page <= totalPages) {
+                        renderPage(page);
+                    }
+                });
+            }
+
+            initMobileCardPagination('.mobile-card-stack', '#mobile-pagination-users', 5);
         });
     </script>
 @endpush
