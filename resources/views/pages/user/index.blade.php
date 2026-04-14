@@ -214,7 +214,7 @@
                 var totalItems = $cards.length;
                 var totalPages = Math.ceil(totalItems / itemsPerPage);
 
-                if (totalPages <= 1) {
+                if (totalPages === 0) {
                     $pager.empty();
                     return;
                 }
