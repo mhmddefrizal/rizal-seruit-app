@@ -12,9 +12,9 @@
 
             <!-- Search Bar -->
             <div class="mb-4 sm:mb-6 sm:hidden">
-                <form action="#" method="GET" class="relative w-full">
+                <form action="{{ url()->current() }}" method="GET" class="relative w-full mobile-search-form">
                     <input type="text" name="search" id="search" placeholder="Search"
-                        class="w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        class="mobile-search-input w-full px-4 py-2 pr-10 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
                         value="{{ request('search', '') }}">
                     <button type="submit"
                         class="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600">
@@ -145,6 +145,7 @@
                     @php $idx++; @endphp
                 @endforeach
 
+                <div id="mobile-empty-users" class="mobile-empty-state hidden">Pengguna tidak ditemukan.</div>
                 <div id="mobile-pagination-users" class="mobile-pagination"></div>
             </div>
         </div>
@@ -191,6 +192,21 @@
             opacity: 0.5;
             cursor: not-allowed;
         }
+
+        .mobile-empty-state {
+            margin-top: 0.75rem;
+            padding: 0.75rem;
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            background: #f9fafb;
+            color: #6b7280;
+            text-align: center;
+            font-size: 0.875rem;
+        }
+
+        .hidden {
+            display: none;
+        }
     </style>
 @endpush
 
@@ -202,28 +218,42 @@
                 $('#users-table').DataTable();
             }
 
-            // Pagination sederhana untuk card mobile (0-639px)
-            function initMobileCardPagination(stackSelector, pagerSelector, itemsPerPage) {
+            // Search + pagination untuk card mobile (0-639px)
+            function initMobileCardSearchPagination(options) {
                 if ($(window).width() >= 640) {
                     return;
                 }
 
-                var $stack = $(stackSelector);
+                var $stack = $(options.stackSelector);
                 var $cards = $stack.find('.mobile-card');
-                var $pager = $(pagerSelector);
-                var totalItems = $cards.length;
-                var totalPages = Math.ceil(totalItems / itemsPerPage);
-
-                if (totalPages === 0) {
-                    $pager.empty();
-                    return;
-                }
+                var $pager = $(options.pagerSelector);
+                var $searchForm = $(options.searchFormSelector);
+                var $searchInput = $(options.searchInputSelector);
+                var $emptyState = $(options.emptyStateSelector);
+                var filteredCards = $cards;
 
                 function renderPage(page) {
-                    var start = (page - 1) * itemsPerPage;
-                    var end = start + itemsPerPage;
+                    var totalItems = filteredCards.length;
+                    var totalPages = Math.ceil(totalItems / options.itemsPerPage);
 
-                    $cards.hide().slice(start, end).show();
+                    if (totalPages === 0) {
+                        $cards.hide();
+                        $pager.empty();
+                        $emptyState.removeClass('hidden');
+                        return;
+                    }
+
+                    $emptyState.addClass('hidden');
+
+                    if (page > totalPages) {
+                        page = totalPages;
+                    }
+
+                    var start = (page - 1) * options.itemsPerPage;
+                    var end = start + options.itemsPerPage;
+
+                    $cards.hide();
+                    filteredCards.slice(start, end).show();
 
                     var buttons = '';
                     buttons += '<button type="button" class="page-btn" data-page="' + (page - 1) + '" ' +
@@ -242,15 +272,49 @@
 
                 renderPage(1);
 
+                function applySearch() {
+                    var query = $.trim($searchInput.val()).toLowerCase();
+
+                    if (!query) {
+                        filteredCards = $cards;
+                    } else {
+                        filteredCards = $cards.filter(function() {
+                            return $(this).text().toLowerCase().indexOf(query) !== -1;
+                        });
+                    }
+
+                    renderPage(1);
+                }
+
                 $pager.on('click', '.page-btn', function() {
                     var page = parseInt($(this).data('page'), 10);
-                    if (!isNaN(page) && page >= 1 && page <= totalPages) {
+                    if (!isNaN(page) && page >= 1) {
                         renderPage(page);
                     }
                 });
+
+                $searchForm.on('submit', function(e) {
+                    e.preventDefault();
+                    applySearch();
+                });
+
+                $searchInput.on('input', function() {
+                    applySearch();
+                });
+
+                if ($.trim($searchInput.val()) !== '') {
+                    applySearch();
+                }
             }
 
-            initMobileCardPagination('.mobile-card-stack', '#mobile-pagination-users', 5);
+            initMobileCardSearchPagination({
+                stackSelector: '.mobile-card-stack',
+                pagerSelector: '#mobile-pagination-users',
+                searchFormSelector: '.mobile-search-form',
+                searchInputSelector: '.mobile-search-input',
+                emptyStateSelector: '#mobile-empty-users',
+                itemsPerPage: 5
+            });
         });
     </script>
 @endpush
