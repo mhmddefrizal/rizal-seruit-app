@@ -14,7 +14,7 @@
             <div id="search-results" class="hidden">
                 <div class="mb-4">
                     <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
-                        <span class="w-1 h-5 bg-[#1EA05E] rounded-full inline-block"></span>
+                        <span class="w-1 h-5 rounded-full inline-block"></span>
                         Hasil Pencarian
                     </h2>
                     <p id="search-info" class="text-xs text-gray-400 mt-0.5 ml-3"></p>
