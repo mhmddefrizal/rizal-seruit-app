@@ -10,9 +10,8 @@
             </div>
 
             {{-- Subtitle --}}
-            <div
-                class="mb-8 bg-gradient-to-r from-[#a51c31]/5 to-transparent rounded-lg py-4 pr-4 pl-0 sm:py-6 sm:pr-6 sm:pl-0 border-l-4 border-[#a51c31]">
-                <p class="text-lg sm:text-xl font-semibold text-[#a51c31]">
+            <div class="mb-8 bg-gradient-to-r to-transparent rounded-lg py-4 pr-4 pl-0 sm:py-6 sm:pr-6 sm:pl-0">
+                <p class="text-lg sm:text-xl font-semibold">
                     Satu Ruang Informasi untuk Inovasi Terintegrasi
                 </p>
                 <p class="text-sm text-gray-500 mt-1">
