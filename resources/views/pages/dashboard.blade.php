@@ -7,7 +7,7 @@
                 <h2 class="text-2xl font-semibold text-gray-800">Dashboard</h2>
             </div>
 
-            <div class="grid grid-cols-1 sm:grid-cols-4 gap-6">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="bg-red-200 rounded-lg shadow-md p-6">
                     <p class="text-sm font-medium text-gray-900">Apps BPS Selindo</p>
                     <p class="mt-1 text-2xl font-semibold text-gray-900">{{ $total_bps_ri }}</p>

@@ -213,13 +213,14 @@
     <script>
         $(document).ready(function() {
             // Inisialisasi DataTables (desktop table only)
-            if ($(window).width() >= 640) {
+            // matchMedia stays in sync with CSS breakpoints at any zoom level
+            if (window.matchMedia('(min-width: 640px)').matches) {
                 $('#applications-table').DataTable();
             }
 
             // Search + pagination untuk card mobile (0-639px)
             function initMobileCardSearchPagination(options) {
-                if ($(window).width() >= 640) {
+                if (window.matchMedia('(min-width: 640px)').matches) {
                     return;
                 }
 

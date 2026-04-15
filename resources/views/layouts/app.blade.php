@@ -7,7 +7,7 @@
 
     <!-- <div class="max-w-screen-xl mt-6 mb-4 pt-8"> -->
     <div class="h-auto overflow-y-auto overflow-x-hidden">
-        <div class="min-w-0 px-4 mt-4 pb-4 overflow-y-auto overflow-x-hidden custom-scrollbar">
+        <div class="max-w-7xl mx-auto min-w-0 px-4 mt-4 pb-4 overflow-y-auto overflow-x-hidden custom-scrollbar">
             @include('partials.search')
 
             {{-- Search results (hidden by default, shown when searching) --}}

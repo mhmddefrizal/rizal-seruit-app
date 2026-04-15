@@ -87,6 +87,33 @@
         }
 
         /* ========================================
+           Auth Header — Fluid Sizing
+           ======================================== */
+        .header-main-row {
+            display: flex;
+            align-items: center;
+            /* Fluid height: 3.5rem (56px) → 4rem (64px) */
+            height: clamp(3.5rem, 3.25rem + 0.75vw, 4rem);
+            width: 100%;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex: 1;
+            min-width: 0;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            margin-left: auto;
+            padding-right: 0.5rem;
+        }
+
+        /* ========================================
            Mobile Navigation
            ======================================== */
 
@@ -101,11 +128,11 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            gap: 5px;
-            padding: 8px;
+            gap: 0.3125rem;
+            padding: 0.5rem;
             background: none;
             border: 1px solid #e5e7eb;
-            border-radius: 8px;
+            border-radius: 0.5rem;
             cursor: pointer;
             transition: background-color 0.2s ease;
         }
@@ -116,15 +143,15 @@
 
         .hamburger-btn .hamburger-line {
             display: block;
-            width: 20px;
-            height: 2px;
+            width: 1.25rem;
+            height: 0.125rem;
             background-color: #374151;
-            border-radius: 2px;
+            border-radius: 0.125rem;
             transition: all 0.3s ease;
         }
 
         .hamburger-btn.active .hamburger-line:nth-child(1) {
-            transform: translateY(7px) rotate(45deg);
+            transform: translateY(0.4375rem) rotate(45deg);
         }
 
         .hamburger-btn.active .hamburger-line:nth-child(2) {
@@ -132,7 +159,7 @@
         }
 
         .hamburger-btn.active .hamburger-line:nth-child(3) {
-            transform: translateY(-7px) rotate(-45deg);
+            transform: translateY(-0.4375rem) rotate(-45deg);
         }
 
         /* Mobile menu panel */
@@ -203,29 +230,6 @@
 
         .mobile-only {
             display: block !important;
-        }
-
-        .header-main-row {
-            display: flex;
-            align-items: center;
-            height: 64px;
-            width: 100%;
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            flex: 1;
-            min-width: 0;
-        }
-
-        .header-right {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            margin-left: auto;
-            padding-right: 0.5rem;
         }
 
         @media (max-width: 925px) {

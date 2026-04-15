@@ -1,6 +1,18 @@
 {{-- Embedded responsive styles — works independently of Tailwind --}}
 <style>
-    /* Base header */
+    /* ========================================
+       CSS Custom Properties — single source of truth
+       ======================================== */
+    :root {
+        /* Fluid header height: 3.5rem (56px) → 4.75rem (76px) */
+        --header-height: clamp(3.5rem, 3rem + 1.25vw, 4.75rem);
+        /* Fluid header padding-x: 0.75rem → 2.5rem */
+        --header-px: clamp(0.75rem, 0.25rem + 1.25vw, 2.5rem);
+    }
+
+    /* ========================================
+       Base header
+       ======================================== */
     .seruit-header-wrapper {
         position: fixed;
         width: 100%;
@@ -15,19 +27,20 @@
         align-items: stretch;
         background: #a51c31;
         color: #fff;
-        padding: 8px 12px;
-        min-height: 56px;
+        padding: clamp(0.5rem, 0.4rem + 0.15vw, 0.625rem) var(--header-px);
+        min-height: var(--header-height);
     }
 
     .seruit-logo-section {
         display: flex;
         align-items: center;
-        gap: 8px;
+        gap: 0.5rem;
         flex-shrink: 0;
     }
 
     .seruit-logo-img {
-        height: 36px;
+        /* Fluid logo: 2.25rem (36px) → 3rem (48px) */
+        height: clamp(2.25rem, 1.75rem + 1.25vw, 3rem);
         width: auto;
         object-fit: contain;
         flex-shrink: 0;
@@ -35,8 +48,8 @@
 
     .seruit-logo-text {
         text-transform: uppercase;
-        /* text-align: center; */
-        font-size: 12px;
+        /* Fluid font: 0.75rem (12px) → 1.0625rem (17px) */
+        font-size: clamp(0.75rem, 0.5rem + 0.625vw, 1.0625rem);
         font-weight: 600;
         line-height: 1.3;
     }
@@ -45,11 +58,6 @@
         color: inherit;
         text-decoration: none;
     }
-
-    /* .seruit-logo-text a:hover {
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  } */
 
     .seruit-center {
         position: absolute;
@@ -67,27 +75,24 @@
         text-decoration: none;
     }
 
-    /* .seruit-center a:hover {
-  text-decoration: underline;
-  text-underline-offset: 4px;
-} */
-
     .seruit-title {
-        font-size: 20px;
+        /* Fluid title: 1.25rem (20px) → 2.25rem (36px) */
+        font-size: clamp(1.25rem, 0.5rem + 1.875vw, 2.25rem);
         font-weight: 700;
         line-height: 1.1;
         margin: 0;
     }
 
     .seruit-subtitle {
-        font-size: 10px;
+        /* Fluid subtitle: 0.625rem (10px) → 1rem (16px) */
+        font-size: clamp(0.625rem, 0.375rem + 0.625vw, 1rem);
         line-height: 1.2;
         margin: 0;
     }
 
     .seruit-right-menu {
         position: absolute;
-        right: 12px;
+        right: var(--header-px);
         top: 50%;
         transform: translateY(-50%);
         z-index: 20;
@@ -96,8 +101,9 @@
     .seruit-nav-desktop {
         display: none;
         align-items: center;
-        gap: 20px;
-        font-size: 14px;
+        /* Fluid gap and font */
+        gap: clamp(1.25rem, 1rem + 0.5vw, 1.5rem);
+        font-size: clamp(0.875rem, 0.8rem + 0.2vw, 0.9375rem);
         font-weight: 600;
     }
 
@@ -116,11 +122,11 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        width: 40px;
-        height: 40px;
+        width: 2.5rem;
+        height: 2.5rem;
         background: transparent;
         border: none;
-        border-radius: 6px;
+        border-radius: 0.375rem;
         cursor: pointer;
         padding: 0;
     }
@@ -131,18 +137,20 @@
 
     .seruit-hamburger-line {
         display: block;
-        width: 20px;
-        height: 2px;
+        width: 1.25rem;
+        height: 0.125rem;
         background: #fff;
-        border-radius: 2px;
+        border-radius: 0.125rem;
         transition: all 0.3s ease;
     }
 
     .seruit-hamburger-line+.seruit-hamburger-line {
-        margin-top: 5px;
+        margin-top: 0.3125rem;
     }
 
-    /* Mobile dropdown */
+    /* ========================================
+       Mobile dropdown
+       ======================================== */
     .seruit-mobile-menu {
         background: #8b1728;
         color: #fff;
@@ -159,17 +167,17 @@
     .seruit-mobile-menu nav {
         display: flex;
         flex-direction: column;
-        padding: 8px 0;
+        padding: 0.5rem 0;
     }
 
     .seruit-mobile-menu a {
         display: flex;
         align-items: center;
-        gap: 12px;
-        padding: 12px 20px;
+        gap: 0.75rem;
+        padding: 0.75rem 1.25rem;
         color: #fff;
         text-decoration: none;
-        font-size: 14px;
+        font-size: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
         font-weight: 500;
         transition: background 0.2s;
     }
@@ -179,106 +187,20 @@
     }
 
     .seruit-mobile-menu svg {
-        width: 18px;
-        height: 18px;
+        width: 1.125rem;
+        height: 1.125rem;
         flex-shrink: 0;
     }
 
-    /* ===== sm: 640px+ ===== */
-    @media (min-width: 640px) {
-        .seruit-header-bar {
-            padding: 8px 16px;
-            min-height: 60px;
-        }
-
-        .seruit-logo-img {
-            height: 38px;
-        }
-
-        .seruit-logo-text {
-            font-size: 13px;
-        }
-
-        .seruit-title {
-            font-size: 22px;
-        }
-
-        .seruit-subtitle {
-            font-size: 11px;
-        }
-
-        .seruit-right-menu {
-            right: 16px;
-        }
-
-        .seruit-mobile-menu a {
-            font-size: 15px;
-        }
-    }
-
-    /* ===== custom: 900px+ ===== */
+    /* ===== 900px+ — show center title ===== */
     @media (min-width: 900px) {
         .seruit-center {
             display: block;
-        }
-
-        .seruit-header-bar {
-            padding: 8px 20px;
-            min-height: 64px;
-        }
-
-        .seruit-logo-img {
-            height: 40px;
-        }
-
-        .seruit-logo-text {
-            font-size: 15px;
-        }
-
-        .seruit-title {
-            font-size: 28px;
-        }
-
-        .seruit-subtitle {
-            font-size: 13px;
-        }
-
-        .seruit-right-menu {
-            right: 20px;
-        }
-
-        .seruit-mobile-menu a {
-            font-size: 16px;
         }
     }
 
     /* ===== lg: 1024px+ — show nav links, hide hamburger ===== */
     @media (min-width: 1024px) {
-        .seruit-header-bar {
-            padding: 8px 32px;
-            min-height: 72px;
-        }
-
-        .seruit-logo-img {
-            height: 44px;
-        }
-
-        .seruit-logo-text {
-            font-size: 16px;
-        }
-
-        .seruit-title {
-            font-size: 32px;
-        }
-
-        .seruit-subtitle {
-            font-size: 15px;
-        }
-
-        .seruit-right-menu {
-            right: 32px;
-        }
-
         .seruit-nav-desktop {
             display: flex;
         }
@@ -289,39 +211,6 @@
 
         .seruit-mobile-menu {
             display: none !important;
-        }
-    }
-
-    /* ===== xl: 1280px+ ===== */
-    @media (min-width: 1280px) {
-        .seruit-header-bar {
-            padding: 10px 40px;
-            min-height: 76px;
-        }
-
-        .seruit-logo-img {
-            height: 48px;
-        }
-
-        .seruit-logo-text {
-            font-size: 17px;
-        }
-
-        .seruit-title {
-            font-size: 36px;
-        }
-
-        .seruit-subtitle {
-            font-size: 16px;
-        }
-
-        .seruit-right-menu {
-            right: 40px;
-        }
-
-        .seruit-nav-desktop {
-            font-size: 15px;
-            gap: 24px;
         }
     }
 </style>
