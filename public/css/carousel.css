@@ -581,8 +581,8 @@ header nav a {
    ========================================================== */
 @media screen and (min-width: 1024px) {
     .carousel {
-        width: 90%;
-        max-width: 80rem;
+        width: 100%;
+        max-width: none;
         /* Fluid height: scales smoothly with viewport */
         height: clamp(14rem, 10rem + 5vw, 18rem);
         min-height: 11.25rem;

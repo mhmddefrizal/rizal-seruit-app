@@ -5,10 +5,12 @@
 <body class="overflow-x-hidden">
     {{-- Green desktop header removed — red header now shows at all screen sizes --}}
 
+    @php
+        $contentShellClass = 'w-full max-w-[1600px] 2xl:max-w-[1720px] mx-auto min-w-0 px-4 sm:px-6 lg:px-8 xl:px-10';
+    @endphp
     <!-- <div class="max-w-screen-xl mt-6 mb-4 pt-8"> -->
     <div class="h-auto overflow-y-auto overflow-x-hidden">
-        <div
-            class="w-full max-w-[1600px] 2xl:max-w-[1720px] mx-auto min-w-0 px-4 sm:px-6 lg:px-8 xl:px-10 mt-4 pb-4 overflow-y-auto overflow-x-hidden custom-scrollbar">
+        <div class="{{ $contentShellClass }} mt-4 pb-4 overflow-y-auto overflow-x-hidden custom-scrollbar">
             @include('partials.search')
 
             {{-- Search results (hidden by default, shown when searching) --}}
@@ -31,8 +33,11 @@
         </div>
         <div class="min-w-0">
             @include('partials.header')
-            <div class="hits-offset">
-                @include('partials.hits')
+
+            <div class="{{ $contentShellClass }}">
+                <div class="hits-offset">
+                    @include('partials.hits')
+                </div>
             </div>
         </div>
     </div>
