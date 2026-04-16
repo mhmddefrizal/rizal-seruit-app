@@ -7,7 +7,8 @@
 
     <!-- <div class="max-w-screen-xl mt-6 mb-4 pt-8"> -->
     <div class="h-auto overflow-y-auto overflow-x-hidden">
-        <div class="max-w-7xl mx-auto min-w-0 px-4 mt-4 pb-4 overflow-y-auto overflow-x-hidden custom-scrollbar">
+        <div
+            class="w-full max-w-[1600px] 2xl:max-w-[1720px] mx-auto min-w-0 px-4 sm:px-6 lg:px-8 xl:px-10 mt-4 pb-4 overflow-y-auto overflow-x-hidden custom-scrollbar">
             @include('partials.search')
 
             {{-- Search results (hidden by default, shown when searching) --}}
@@ -20,7 +21,7 @@
                     <p id="search-info" class="text-xs text-gray-400 mt-0.5 ml-3"></p>
                 </div>
                 <div id="search-results-grid"
-                    class="grid lg:grid-cols-3 md:grid-cols-3 sm:grid-cols-2 grid-cols-2 gap-4">
+                    class="grid 2xl:grid-cols-5 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-4">
                 </div>
             </div>
 

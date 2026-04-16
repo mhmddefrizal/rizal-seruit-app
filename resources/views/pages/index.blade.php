@@ -2,7 +2,7 @@
 
 @section('content')
     {{-- Section heading --}}
-    <div class="max-w-7xl mx-auto mb-4 px-1 sm:px-0">
+    <div class="w-full mb-4 px-1 sm:px-0">
         <h2 class="text-lg font-bold text-gray-800 flex items-center gap-2">
             <span class="w-1 h-5 rounded-full inline-block"></span>
             Kategori Aplikasi
@@ -11,7 +11,7 @@
     </div>
 
     {{-- Category Cards — 4 per row --}}
-    <div class="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+    <div class="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 2xl:grid-cols-5 gap-6">
         <x-category-card href="{{ route('kategori', 'bps-ri') }}" title="BPS RI"
             description="Aplikasi yang dikembangkan dan dikelola oleh BPS Pusat (BPS RI)" :count="count($list_bps_ri)" color="#1EA05E"
             icon="ri" />
