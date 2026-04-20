@@ -30,13 +30,13 @@ class PageController extends Controller
             'bps-ri' => [
                 'pembuat' => 'BPS RI',
                 'title' => 'BPS RI',
-                'showPembuat' => false,
+                'showPembuat' => true,
                 'borderColor' => '#EF4444',
             ],
             'bps-provinsi-lampung' => [
                 'pembuat' => 'BPS Provinsi Lampung',
                 'title' => 'BPS PROVINSI LAMPUNG',
-                'showPembuat' => false,
+                'showPembuat' => true,
                 'borderColor' => '#8100D1',
             ],
             'bps-kabkota' => [
