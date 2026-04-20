@@ -264,7 +264,7 @@
     <div class="min-h-screen">
         <!-- Header -->
         <header class="bg-white shadow-md" style="position: relative; z-index: 50;">
-            <div class="w-full px-4" style="padding-left: 1rem; padding-right: 0;">
+            <div class="w-full max-w-[1120px] mx-auto px-4 sm:px-6 lg:px-8">
                 <div class="header-main-row">
                     <!-- Logo + Desktop Nav -->
                     <div class="header-left">
@@ -343,7 +343,7 @@
 
         <!-- Konten Utama -->
         <main class="py-6 sm:py-10">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="w-full max-w-[1120px] mx-auto px-4 sm:px-6 lg:px-8">
                 @yield('content')
             </div>
         </main>

@@ -16,7 +16,7 @@
 
         <!-- Konten Utama -->
         <main class="py-10 mt-14">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="w-full max-w-[1120px] mx-auto px-4 sm:px-6 lg:px-8">
                 @yield('content')
             </div>
         </main>
