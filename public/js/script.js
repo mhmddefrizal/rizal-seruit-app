@@ -14,7 +14,6 @@ function escapeHtml(value) {
 function renderAppCard(el, options) {
     var opts = options || {};
     var showPembuat = !!opts.showPembuat;
-    var borderColors = "#EF4444";
     var akses = (el.akses || "").toLowerCase();
     var aksesBg = akses === "publik" ? "#1EA05E" : "#F59E0B";
     var nama = escapeHtml(el.nama || "-");
@@ -30,6 +29,7 @@ function renderAppCard(el, options) {
         KLDI: "#57595B",
     };
 
+    var borderColors = pembuatBadgeColors[pembuatKey] || "#EF4444";
     var pembuatBg = pembuatBadgeColors[pembuatKey] || "#57595B";
     var pembuat = escapeHtml(pembuatKey || "");
     var pengguna = escapeHtml(el.pengguna || "");
