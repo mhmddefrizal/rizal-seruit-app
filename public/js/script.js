@@ -277,7 +277,7 @@ function search_bps_ri(res) {
         `;
     } else {
         res.forEach((element) => {
-            bps_ri += renderAppCard(element, { showPembuat: false });
+            bps_ri += renderAppCard(element, { showPembuat: true });
         });
     }
 
@@ -293,7 +293,7 @@ function search_bps_lampung(res) {
         `;
     } else {
         res.forEach((element) => {
-            bps_lampung += renderAppCard(element, { showPembuat: false });
+            bps_lampung += renderAppCard(element, { showPembuat: true });
         });
     }
 
