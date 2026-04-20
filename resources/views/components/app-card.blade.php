@@ -9,24 +9,25 @@
     <a href="{{ route('info', $item->slug) }}" target="_blank" class="flex flex-col flex-1 no-underline">
         {{-- Top section: Logo + Badge --}}
         <div class="p-3 pb-0">
-            <div class="flex flex-row justify-between items-center">
-                <img src="{{ asset('img/' . $item->logo) }}" alt="{{ $item->nama }}" class="rounded-lg h-10">
+            <div class="flex flex-row justify-between items-start">
+                <div class="flex items-center gap-2">
+                    <img src="{{ asset('img/' . $item->logo) }}" alt="{{ $item->nama }}" class="rounded-lg h-10">
+
+                    @if ($showPembuat)
+                        <span class="text-white rounded-xl text-[10px] px-2 py-0.5" style="background-color: #1EA05E;">
+                            {{ $item->pembuat }}
+                        </span>
+                    @endif
+                </div>
+
                 <span class="rounded-full text-[10px] font-semibold flex items-center justify-center"
                     @if ($item->akses == 'publik') style="background-color: #1EA05E; color: #fff; padding: 2px 12px;"
-          @else
-          style="background-color: #F59E0B; color: #fff; padding: 2px 12px;" @endif>
+            @else
+            style="background-color: #F59E0B; color: #fff; padding: 2px 12px;" @endif>
                     {{ $item->akses }}
                 </span>
             </div>
         </div>
-
-        {{-- Pembuat badge --}}
-        @if ($showPembuat)
-            <div class="px-3 pt-2">
-                <span class="text-white rounded-xl text-[10px] px-2 py-0.5"
-                    style="background-color: #1EA05E;">{{ $item->pembuat }}</span>
-            </div>
-        @endif
 
         {{-- Title + Hits on same row --}}
         <div class="px-3 pt-3 flex-1">
