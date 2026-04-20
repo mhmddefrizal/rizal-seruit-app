@@ -37,16 +37,17 @@ function renderAppCard(el, options) {
             data-pengguna="${pengguna}" data-link="${link}">
             <a href="/info/${slug}" target="_blank" class="flex flex-col flex-1 no-underline">
                 <div class="p-3 pb-0">
-                    <div class="flex flex-row justify-between items-center">
-                        <img src="/img/${logo}" alt="${nama}" class="rounded-lg h-10">
+                    <div class="flex flex-row justify-between items-start">
+                        <div class="flex items-center gap-2">
+                            <img src="/img/${logo}" alt="${nama}" class="rounded-lg h-10">
+                            ${showPembuat && pembuat ? `<span class="text-white rounded-xl text-[10px] px-2 py-0.5" style="background-color: #1EA05E;">${pembuat}</span>` : ""}
+                        </div>
                         <span class="rounded-full text-[10px] font-semibold flex items-center justify-center"
                             style="background-color: ${aksesBg}; color: #fff; padding: 2px 12px;">
                             ${akses}
                         </span>
                     </div>
                 </div>
-
-                ${showPembuat && pembuat ? `<div class="px-3 pt-2"><span class="bg-[#1EA05E] text-white rounded-xl text-[10px] px-2 py-0.5">${pembuat}</span></div>` : ""}
 
                 <div class="px-3 pt-3 flex-1">
                     <div class="flex flex-row justify-between items-start gap-2">
