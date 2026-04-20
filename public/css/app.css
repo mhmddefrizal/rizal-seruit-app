@@ -1929,6 +1929,51 @@
         .xl\:max-w-6xl {
             max-width: var(--container-6xl);
         }
+
+        .xl\:mt-20 {
+            margin-top: calc(var(--spacing) * 20);
+        }
+
+        .xl\:mt-22 {
+            margin-top: calc(var(--spacing) * 22);
+        }
+
+        .xl\:mt-24 {
+            margin-top: calc(var(--spacing) * 24);
+        }
+
+        .xl\:mt-26 {
+            margin-top: calc(var(--spacing) * 26);
+        }
+
+        .xl\:mt-28 {
+            margin-top: calc(var(--spacing) * 28);
+        }
+
+        .xl\:mt-40 {
+            margin-top: calc(var(--spacing) * 40);
+        }
+    }
+
+    @media (min-width: 90rem) {
+        .mt-2xl-22 {
+            margin-top: calc(var(--spacing) * 22);
+        }
+
+        .mt-2xl-24 {
+            margin-top: calc(var(--spacing) * 24);
+        }
+
+        .mt-2xl-26 {
+            margin-top: calc(var(--spacing) * 26);
+        }
+
+        .mt-2xl-28 {
+            margin-top: calc(var(--spacing) * 28);
+        }
+        .mt-2xl-30 {
+            margin-top: calc(var(--spacing) * 30);
+        }
     }
     .rtl\:flex-row-reverse:where(:dir(rtl), [dir="rtl"], [dir="rtl"] *) {
         flex-direction: row-reverse;
