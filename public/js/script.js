@@ -19,7 +19,19 @@ function renderAppCard(el, options) {
     var aksesBg = akses === "publik" ? "#1EA05E" : "#F59E0B";
     var nama = escapeHtml(el.nama || "-");
     var deskripsi = escapeHtml(el.deskripsi || "-");
-    var pembuat = escapeHtml(el.pembuat || "");
+    var pembuatRaw = el.pembuat || "";
+    var pembuatKey =
+        pembuatRaw === "BPS Provinsi Lampung" ? "BPS Provinsi" : pembuatRaw;
+
+    var pembuatBadgeColors = {
+        "BPS RI": "#EF4444",
+        "BPS Provinsi": "#8100D1",
+        "BPS Kabupaten/Kota": "#44A194",
+        KLDI: "#57595B",
+    };
+
+    var pembuatBg = pembuatBadgeColors[pembuatKey] || "#57595B";
+    var pembuat = escapeHtml(pembuatKey || "");
     var pengguna = escapeHtml(el.pengguna || "");
     var slug = escapeHtml(el.slug || "");
     var logo = escapeHtml(el.logo || "");
@@ -40,7 +52,7 @@ function renderAppCard(el, options) {
                     <div class="flex flex-row justify-between items-start">
                         <div class="flex items-center gap-2">
                             <img src="/img/${logo}" alt="${nama}" class="rounded-lg h-10">
-                            ${showPembuat && pembuat ? `<span class="text-white rounded-xl text-[10px] px-2 py-0.5" style="background-color: #1EA05E;">${pembuat}</span>` : ""}
+                            ${showPembuat && pembuat ? `<span class="text-white rounded-xl text-[10px] px-2 py-0.5" style="background-color: ${pembuatBg};">${pembuat}</span>` : ""}
                         </div>
                         <span class="rounded-full text-[10px] font-semibold flex items-center justify-center"
                             style="background-color: ${aksesBg}; color: #fff; padding: 2px 12px;">

@@ -1,5 +1,18 @@
 @props(['item', 'showPembuat' => false, 'borderColor' => '#EF4444'])
 
+@php
+    $pembuatBadgeColors = [
+        'BPS RI' => '#EF4444',
+        'BPS Provinsi' => '#8100D1',
+        'BPS Kabupaten/Kota' => '#44A194',
+        'KLDI' => '#57595B',
+    ];
+
+    $pembuatKey = $item->pembuat === 'BPS Provinsi Lampung' ? 'BPS Provinsi' : $item->pembuat;
+
+    $pembuatColor = $pembuatBadgeColors[$pembuatKey] ?? '#57595B';
+@endphp
+
 <div class="rounded-lg border border-neutral-200 hit-button
             hover:shadow-md hover:border-neutral-300 transition-shadow duration-200 cursor-pointer
             overflow-hidden flex flex-col"
@@ -14,8 +27,9 @@
                     <img src="{{ asset('img/' . $item->logo) }}" alt="{{ $item->nama }}" class="rounded-lg h-10">
 
                     @if ($showPembuat)
-                        <span class="text-white rounded-xl text-[10px] px-2 py-0.5" style="background-color: #1EA05E;">
-                            {{ $item->pembuat }}
+                        <span class="text-white rounded-xl text-[10px] px-2 py-0.5"
+                            style="background-color: {{ $pembuatColor }};">
+                            {{ $pembuatKey }}
                         </span>
                     @endif
                 </div>
