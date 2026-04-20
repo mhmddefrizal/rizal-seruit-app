@@ -183,28 +183,54 @@ function applyKategoriFilters() {
     var $emptyText = $("#filter_empty_text");
     var $emptyHint = $("#filter_empty_hint");
 
-    if (visibleCount === 0 && totalCount > 0 && (keyword !== "" || akses !== "semua")) {
+    if (
+        visibleCount === 0 &&
+        totalCount > 0 &&
+        (keyword !== "" || akses !== "semua")
+    ) {
         $empty.removeClass("hidden");
 
         // Case: user searched something that exists but doesn't match the active filter
         if (keyword !== "" && akses !== "semua" && searchMatchCount > 0) {
             var aksesLabel = akses === "vpn" ? "VPN" : "Publik";
-            $emptyIcon.html('<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-amber-400 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" /></svg>');
-            $emptyText.html('Aplikasi <strong>"' + keyword + '"</strong> tidak ditemukan di akses <strong>' + aksesLabel + '</strong>');
-            $emptyHint.removeClass("hidden").html('💡 Mungkin filter akses tidak sesuai? Coba pilih <strong>"Semua"</strong> atau ganti filter akses.');
+            $emptyIcon.html(
+                '<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-amber-400 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z" /></svg>',
+            );
+            $emptyText.html(
+                'Aplikasi <strong>"' +
+                    keyword +
+                    '"</strong> tidak ditemukan di akses <strong>' +
+                    aksesLabel +
+                    "</strong>",
+            );
+            $emptyHint
+                .removeClass("hidden")
+                .html(
+                    '💡 Mungkin filter akses tidak sesuai? Coba pilih <strong>"Semua"</strong> atau ganti filter akses.',
+                );
         }
         // Case: search keyword doesn't match anything at all
         else if (keyword !== "" && searchMatchCount === 0) {
-            $emptyIcon.html('<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-gray-300 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg>');
-            $emptyText.html('Aplikasi <strong>"' + keyword + '"</strong> tidak ditemukan.');
-            $emptyHint.addClass("hidden").html('');
+            $emptyIcon.html(
+                '<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-gray-300 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" /></svg>',
+            );
+            $emptyText.html(
+                'Aplikasi <strong>"' + keyword + '"</strong> tidak ditemukan.',
+            );
+            $emptyHint.addClass("hidden").html("");
         }
         // Case: filter active, no search, but no apps match the filter
         else {
             var aksesLabel2 = akses === "vpn" ? "VPN" : "Publik";
-            $emptyIcon.html('<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-gray-300 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z" /></svg>');
-            $emptyText.html('Tidak ada aplikasi dengan akses <strong>' + aksesLabel2 + '</strong>.');
-            $emptyHint.addClass("hidden").html('');
+            $emptyIcon.html(
+                '<svg xmlns="http://www.w3.org/2000/svg" class="w-10 h-10 text-gray-300 mx-auto mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.533.09.917.556.917 1.096v1.044a2.25 2.25 0 0 1-.659 1.591l-5.432 5.432a2.25 2.25 0 0 0-.659 1.591v2.927a2.25 2.25 0 0 1-1.244 2.013L9.75 21v-6.568a2.25 2.25 0 0 0-.659-1.591L3.659 7.409A2.25 2.25 0 0 1 3 5.818V4.774c0-.54.384-1.006.917-1.096A48.32 48.32 0 0 1 12 3Z" /></svg>',
+            );
+            $emptyText.html(
+                "Tidak ada aplikasi dengan akses <strong>" +
+                    aksesLabel2 +
+                    "</strong>.",
+            );
+            $emptyHint.addClass("hidden").html("");
         }
     } else {
         $empty.addClass("hidden");
