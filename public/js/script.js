@@ -46,7 +46,7 @@ function renderAppCard(el, options) {
                     </div>
                 </div>
 
-                ${showPembuat && pembuat ? `<div class="px-3 pt-2"><span class="bg-[#1EA05E] text-white rounded-xl text-[10px] px-2 py-0.5">${pembuat}</span></div>` : ""}
+                ${showPembuat && pembuat ? `<div class="px-3 pt-2"><span class="text-white rounded-xl text-[10px] px-2 py-0.5" style="background-color: #1EA05E;">${pembuat}</span></div>` : ""}
 
                 <div class="px-3 pt-3 flex-1">
                     <div class="flex flex-row justify-between items-start gap-2">

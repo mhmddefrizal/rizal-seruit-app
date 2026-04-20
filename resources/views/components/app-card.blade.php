@@ -23,7 +23,8 @@
         {{-- Pembuat badge --}}
         @if ($showPembuat)
             <div class="px-3 pt-2">
-                <span class="bg-[#1EA05E] text-white rounded-xl text-[10px] px-2 py-0.5">{{ $item->pembuat }}</span>
+                <span class="text-white rounded-xl text-[10px] px-2 py-0.5"
+                    style="background-color: #1EA05E;">{{ $item->pembuat }}</span>
             </div>
         @endif
 
