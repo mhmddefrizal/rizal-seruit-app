@@ -79,9 +79,15 @@
                                             class="text-indigo-600 hover:text-indigo-900 mx-1 sm:mx-2">
                                             <i class="fa fa-edit"></i>
                                         </a>
-                                        <button class="text-red-600 hover:text-red-900 mx-1 sm:mx-2">
-                                            <i class="fa fa-trash"></i>
-                                        </button>
+                                        <form action="{{ route('users.delete', $user->slug) }}" method="POST"
+                                            class="inline form-delete-user" data-name="{{ $user->name }}"
+                                            data-email="{{ $user->email }}" data-role="{{ $user->role }}">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="text-red-600 hover:text-red-900 mx-1 sm:mx-2">
+                                                <i class="fa fa-trash"></i>
+                                            </button>
+                                        </form>
                                     @elseif(Auth::user()->role === 'user' && Auth::user()->id === $user->id)
                                         <a href="{{ route('users.edit', $user->slug) }}"
                                             class="text-indigo-600 hover:text-indigo-900 mx-1 sm:mx-2">
@@ -123,7 +129,14 @@
                                 @if (Auth::user()->role === 'admin')
                                     <a href="{{ route('users.edit', $user->slug) }}"
                                         class="text-indigo-600 hover:text-indigo-900"><i class="fa fa-edit"></i></a>
-                                    <button class="text-red-600 hover:text-red-900"><i class="fa fa-trash"></i></button>
+                                    <form action="{{ route('users.delete', $user->slug) }}" method="POST"
+                                        class="inline form-delete-user" data-name="{{ $user->name }}"
+                                        data-email="{{ $user->email }}" data-role="{{ $user->role }}">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-600 hover:text-red-900"><i
+                                                class="fa fa-trash"></i></button>
+                                    </form>
                                 @elseif(Auth::user()->role === 'user' && Auth::user()->id === $user->id)
                                     <a href="{{ route('users.edit', $user->slug) }}"
                                         class="text-indigo-600 hover:text-indigo-900"><i class="fa fa-edit"></i></a>
@@ -211,6 +224,7 @@
 @endpush
 
 @push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         $(document).ready(function() {
             // Inisialisasi DataTables (desktop table only)
@@ -315,6 +329,37 @@
                 searchInputSelector: '.mobile-search-input',
                 emptyStateSelector: '#mobile-empty-users',
                 itemsPerPage: 5
+            });
+
+            $(document).on('submit', '.form-delete-user', function(e) {
+                e.preventDefault();
+
+                var form = this;
+                var name = $(this).data('name');
+                var email = $(this).data('email');
+                var role = $(this).data('role');
+
+                Swal.fire({
+                    title: 'Hapus Pengguna',
+                    html: 'Apakah Anda yakin ingin menghapus data pengguna berikut?<br><br>' +
+                        '<div style="text-align:left; display:inline-block;">' +
+                        '<strong>Nama:</strong> ' + name + '<br>' +
+                        '<strong>Email:</strong> ' + email + '<br>' +
+                        '<strong>Role:</strong> ' + role +
+                        '</div>',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#dc2626',
+                    cancelButtonColor: '#6b7280',
+                    confirmButtonText: 'Ya, hapus!',
+                    cancelButtonText: 'Tidak',
+                    reverseButtons: true,
+                    focusCancel: true
+                }).then((result) => {
+                    if (result.isConfirmed) {
+                        form.submit();
+                    }
+                });
             });
         });
     </script>
