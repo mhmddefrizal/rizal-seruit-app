@@ -102,7 +102,7 @@ body {
     --item5-opacity: 0;
 }
 header {
-    width: 90%;
+    /* width: 90%; */
     max-width: 100%;
     display: flex;
     justify-content: space-between;
